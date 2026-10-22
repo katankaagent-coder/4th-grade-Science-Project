@@ -48,12 +48,17 @@
       }
       opts.onEnd?.();
     }
-    const r = document.querySelector('.tray input[type=range]');
-    if (r) {
+    // Sweep each slider like a finger drag: min -> max -> min, in small steps.
+    for (const r of document.querySelectorAll('.tray input[type=range]')) {
       const min = +r.min, max = +r.max;
-      for (const f of [0, 0.5, 1, 0.25, 0.75, 1]) {
-        await setRange(min + (max - min) * f);
-        await sleep(400);
+      const path = [];
+      for (let i = 0; i <= 50; i++) path.push(i / 50);
+      for (let i = 50; i >= 0; i--) path.push(i / 50);
+      for (const f of path) {
+        r.value = min + (max - min) * f;
+        r.dispatchEvent(new Event('input'));
+        await sleep(60);
+        if (!document.querySelector('.task-goal')) return;
       }
     }
     if (attempt > 0) {
