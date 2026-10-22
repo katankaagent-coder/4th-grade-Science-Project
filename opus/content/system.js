@@ -1,0 +1,28 @@
+// Fixed phrases the app speaks between lesson content. Every string here gets a neural voice clip.
+export const SYSTEM = {
+  welcome: 'Hi Kelenna! I am Vespa, your robot bee. Let us go find out how the world works!',
+  welcomeBack: ['Welcome back, Kelenna! Pick a mission.', 'Hi again! Ready to learn something cool?', 'Buzz buzz! Which mission today?'],
+  warmup: 'First, a quick warm-up. Let us see what you still remember!',
+  findOut: ['Locked in! Let us find out.', 'Good guess. Now watch closely!', 'Okay! Let us test it.'],
+  taskDone: ['You did it!', 'Nice work, scientist!', 'Awesome! That is exactly right.'],
+  wiggleMoves: [
+    'Stand up and do ten jumping jacks!',
+    'Reach up high like a tall tree. Now touch your toes!',
+    'Buzz around the room like a bee for twenty seconds!',
+    'Shake your hands like you are drying them. Now stomp your feet!',
+    'Take three big slow breaths. In through your nose. Out through your mouth.',
+    'Stand on one foot like a flamingo. Now switch feet!',
+  ],
+  wordsIntro: 'Now that you know the idea, let us learn the science words for it.',
+  quizIntro: 'Time to prove it! Ten questions. Take your time and read each one.',
+  quizGreat: 'Three stars! You really understand this!',
+  quizGood: 'Good job! Want to try a new quiz for more stars?',
+  quizTry: 'That was tricky. The questions you missed will come back later, so you can beat them.',
+  finish: 'Mission complete! I am so proud of you, Kelenna.',
+  comebackIntro: 'These are questions that tricked you before. Let us beat them this time!',
+  comebackEmpty: 'No comeback questions right now. Nice work!',
+  quizMissSort: 'Some cards are in the wrong group. They went back to the top.',
+  quizMissOrderFirst: 'The first step is not right yet.',
+  quizMissOrder: 'Some steps are out of order. The right ones stayed.',
+  quizMissLook: 'Look again.',
+};

@@ -1,0 +1,10 @@
+{
+  "name": "Kelenna's 4th Grade Science 3D Lab (Dunbar Middle School)",
+  "short_name": "Kelenna Science 3D",
+  "description": "Interactive 3D TEKS 5E Science Master Suite for 4th Grade at Dunbar Middle School, Dickinson ISD, TX.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#003366",
+  "orientation": "any"
+}

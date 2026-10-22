@@ -1,0 +1,674 @@
+[
+  {
+    "key": "m1_1_engage_0",
+    "text": "Welcome to science lab, Kelenna! Imagine you're walking along Dickinson Bayou after a big storm. Look at all this washed-up debris: rusty iron dock nails, pine bark chips, and heavy river stones! How can we sort all these without picking up every piece one-by-one? By tapping into their secret physical superpowers—their physical properties!"
+  },
+  {
+    "key": "m1_1_engage_1",
+    "text": "Here is secret weapon number one: a strong magnet! Watch what happens when we hover it over the messy pile—CLACK! Only the iron dock nails fly straight up into the air. Why? Because iron atoms have a special magnetic pull, while pine bark and rocks don't care at all. We just sorted out the iron in two seconds flat using Magnetism!"
+  },
+  {
+    "key": "m1_1_engage_2",
+    "text": "Next, we dump the leftover bark and stones into a tank of water. SPLASH! Just like you wearing a lifejacket in a swimming pool, the pine bark floats right at the top because it is less dense than water. But the heavy river stones sink like cannonballs to the bottom! Water acts as our referee for Relative Density."
+  },
+  {
+    "key": "m1_1_engage_3",
+    "text": "Finally, we place our sorted treasures onto the triple beam balance pan. By sliding the counterweights, we measure exactly how many grams of 'stuff' or matter are packed inside each sample. By testing mass, magnetism, and sinking or floating, you can classify any mystery object in the universe!"
+  },
+  {
+    "key": "m1_1_explain_0",
+    "text": "Hey Kelenna, let's explore science from First Principles! Everything you can see, touch, or hold is made of Matter—tiny invisible building blocks like LEGO bricks. When we measure MASS on a balance scale, we are counting how many of those building blocks are packed inside. More blocks means more mass in grams!"
+  },
+  {
+    "key": "m1_1_explain_1",
+    "text": "Now let's talk about MAGNETISM! A magnet doesn't need to touch an object to pull on it; it has an invisible magnetic field reaching through the air like a superhero tractor beam. It grabs onto specific metals containing iron, steel, nickel, or cobalt. Wood, plastic, and aluminum just ignore it completely!"
+  },
+  {
+    "key": "m1_1_explain_2",
+    "text": "Next up: RELATIVE DENSITY! Think about a crowded school hallway packed shoulder-to-shoulder versus an empty hallway. Density is how tightly packed those building blocks are. If an object's tiny building blocks are packed more tightly than water molecules, it sinks down like a stone. If its blocks are spaced looser than water, it pops up and floats like pine bark!"
+  },
+  {
+    "key": "m1_1_explain_3",
+    "text": "What about TEMPERATURE? Matter is never totally still—its tiny particles are always jiggling! When things get hot, the particles dance around super fast with thermal energy. When things get cold, they slow down. A thermometer measures that dance in degrees Celsius (°C)!"
+  },
+  {
+    "key": "m1_1_explain_4",
+    "text": "Finally, matter wears three different outfits called STATES OF MATTER! In a Solid, particles lock arms tightly and keep their own shape, like a wooden block. In a Liquid, particles slide around each other like friends in a swimming pool. And in a Gas, particles zoom everywhere like pinballs to fill the whole room!"
+  },
+  {
+    "key": "vocab_m1_1_v0",
+    "text": "Matter! What does matter really mean? Imagine the universe is built out of tiny invisible LEGO blocks. Matter is any stuff that has weight and takes up space—like your desk, the water in Galveston Bay, and even the air you breathe!"
+  },
+  {
+    "key": "vocab_m1_1_v1",
+    "text": "Mass! Think of mass as counting how many tiny building blocks are packed inside your backpack. The more blocks inside, the more mass it has! In 4th grade science, we weigh mass in grams using balance scales."
+  },
+  {
+    "key": "vocab_m1_1_v2",
+    "text": "Relative Density! Imagine jumping into a swimming pool with a foam pool noodle. The foam floats high because its particles are spread out and less dense than water, while a dropped coin sinks fast because its particles are squished together tightly!"
+  },
+  {
+    "key": "vocab_m1_1_v3",
+    "text": "Magnetism! A magnet is like a superhero with an invisible tractor beam. It can reach right through air, paper, and water to snatch up iron and steel nails without touching anything else!"
+  },
+  {
+    "key": "vocab_m1_1_v4",
+    "text": "State of Matter! Matter comes in three team uniforms: Solid, Liquid, and Gas! In solids, particles lock hands tight. In liquids, they flow around like swimmers. In gases, they bounce everywhere like bouncy balls!"
+  },
+  {
+    "key": "m1_2_engage_0",
+    "text": "Check out these two beakers of bayou water, Kelenna! In Beaker 1, we stir in bayou sand—it swirls around like a muddy snowglobe and settles right to the bottom. In Beaker 2, we stir in white sea salt—and SWOOSH, it looks like it completely disappeared! Did that salt magically vanish into thin air?"
+  },
+  {
+    "key": "m1_2_engage_1",
+    "text": "Let's put on our super microscopic goggles! The salt didn't vanish at all! Its tiny building blocks broke apart into millions of invisible pieces and hid evenly between the water molecules. When ingredients spread out completely evenly like that, we call it a special kind of mixture: a Solution!"
+  },
+  {
+    "key": "m1_2_engage_2",
+    "text": "Now let's try to rescue our ingredients! For the sand mixture, we pour it through filter paper. The paper's microscopic pores trap the big sand grains while clear water drips through. Easy peasy! But when we pour the saltwater through, the salt particles are so tiny they slip right through the filter paper!"
+  },
+  {
+    "key": "m1_2_engage_3",
+    "text": "So how do we catch the hidden salt? We turn on the heat! As the hot plate boils the water away into steam, the salt particles lock back together as shiny white crystals at the bottom. Not a single grain was lost—matter was protected and conserved the whole time!"
+  },
+  {
+    "key": "m1_2_explain_0",
+    "text": "First principles time, Kelenna! A Mixture is when two or more ingredients hang out together in the same bowl without chemically changing who they are. Think of trail mix with M&Ms, pretzels, and raisins: you can easily pick them apart because each piece keeps its own physical properties!"
+  },
+  {
+    "key": "m1_2_explain_1",
+    "text": "A Solution is a sneaky, special type of mixture where one substance dissolves and spreads out completely evenly in another. Like stirring lemonade powder into water! It looks completely clear and smooth, and you can't separate it with a simple kitchen strainer."
+  },
+  {
+    "key": "m1_2_explain_2",
+    "text": "How do science detectives separate mixtures? We use physical properties as our secret tools! Use a magnet to pull out iron nails, use a mesh sieve to catch big gravel, use filter paper to trap fine sand, and use water so floating bark separates from sinking stones!"
+  },
+  {
+    "key": "m1_2_explain_3",
+    "text": "Here is the Golden Rule of the Universe: The Law of Conservation of Matter! Matter cannot be magically created or destroyed. If you mix 20 grams of sugar into 100 grams of water, the final sweet water weighs EXACTLY 120 grams! Every single building block is still there!"
+  },
+  {
+    "key": "m1_2_explain_4",
+    "text": "When water in a saltwater solution gets warm, it evaporates into invisible water vapor gas and floats up into the sky. But the solid salt is left behind at the bottom of the dish! Every single gram of salt is recovered, proving that dissolving never destroys matter!"
+  },
+  {
+    "key": "vocab_m1_2_v0",
+    "text": "Mixture! Imagine dumping pretzels, chocolate chips, and popcorn into a party bowl. That is a mixture! You can pick out every single pretzel because each ingredient keeps its own flavor, shape, and properties."
+  },
+  {
+    "key": "vocab_m1_2_v1",
+    "text": "Solution! A solution is like the ultimate hide-and-seek game! When you stir drink mix into water, the powder breaks down so small that it hides between the water molecules, creating one smooth, clear liquid from top to bottom."
+  },
+  {
+    "key": "vocab_m1_2_v2",
+    "text": "Dissolve! When you drop sugar into lemonade, the sugar doesn’t disappear into another dimension! The water molecules gently pull the sugar building blocks apart until they are floating invisibly all throughout the glass."
+  },
+  {
+    "key": "vocab_m1_2_v3",
+    "text": "Conservation of Matter! Think of your LEGO collection. If you take apart a LEGO castle and build a spaceship, you still have the exact same number of bricks! Nature works the exact same way: you can never lose a single particle of matter."
+  },
+  {
+    "key": "vocab_m1_2_v4",
+    "text": "Evaporation! Ever wonder where puddles go after a rainstorm? Sun energy warms up the water particles on top, giving them wings to float into the sky as invisible water vapor. If there was salt in the puddle, the dry salt stays behind!"
+  },
+  {
+    "key": "m2_1_engage_0",
+    "text": "Picture this, Kelenna! We're at the Dickinson Bayou boat ramp. A heavy fishing boat trailer sits parked on a steep slope. If that ramp is covered in slick green algae, the trailer slides backwards into the water even with its brakes locked! But on dry, grooved concrete, it stays parked safely. Why does the surface matter so much?"
+  },
+  {
+    "key": "m2_1_engage_1",
+    "text": "First, Earth is constantly reaching out with an invisible hand called Gravity! It pulls down on every single gram of the boat and trailer, tugging it toward the center of the Earth and down the slope. Gravity doesn't need to touch the trailer—it's an invisible non-contact force!"
+  },
+  {
+    "key": "m2_1_engage_2",
+    "text": "Now look where rubber meets the road! Microscopic bumps on the tire grab onto microscopic bumps on the concrete like hands gripping a rock climbing wall. That rubbing contact force is Friction! Friction fights against sliding. On slick wet algae, the bumps can't grip, friction drops to almost zero, and whoosh—down it slides!"
+  },
+  {
+    "key": "m2_1_engage_3",
+    "text": "When the grip of friction perfectly matches the downward pull of gravity, the forces are in a balanced tug-of-war! Neither side wins, so the trailer rests completely motionless at 0 miles per hour. But make one force bigger, and motion changes immediately!"
+  },
+  {
+    "key": "m2_1_explain_0",
+    "text": "What is a Force from first principles? Simply put: a force is a Push or a Pull! Nothing in the entire universe can start moving, stop moving, speed up, or turn a corner unless an unbalanced push or pull acts on it. In 4th grade science, we measure forces in units called Newtons!"
+  },
+  {
+    "key": "m2_1_explain_1",
+    "text": "Contact forces require physical touch! Friction is the rubbing friend that slows down motion whenever two surfaces slide past each other. Think of your bicycle brake pads squeezing against your bike wheel—they rub hard to create friction and bring you to a safe, screeching halt!"
+  },
+  {
+    "key": "m2_1_explain_2",
+    "text": "Non-contact forces work like superpower forcefields without touching! Gravity is the invisible downward pull that all massive objects have. Earth's gravity pulls you, your basketball, and Dickinson Bayou water down toward the center of our planet!"
+  },
+  {
+    "key": "m2_1_explain_3",
+    "text": "Magnetism is another awesome non-contact force! A magnet can push another magnet away or pull iron paperclips across an empty desk without ever having to touch them first. Its magnetic field reaches right through air, paper, and water!"
+  },
+  {
+    "key": "m2_1_explain_4",
+    "text": "Think of a playground tug-of-war! If two equal teams pull with the exact same strength in opposite directions, the rope doesn't budge—forces are BALANCED. But if one side pulls harder, the forces become UNBALANCED, and the rope accelerates toward the winning team!"
+  },
+  {
+    "key": "vocab_m2_1_v0",
+    "text": "Force! Every time you kick a soccer ball, pull your backpack strap, or press an elevator button, you are applying a force! Forces are simply pushes and pulls that change how things move."
+  },
+  {
+    "key": "vocab_m2_1_v1",
+    "text": "Gravity! Why don’t people on the other side of Earth float off into deep space? Because Earth has massive gravity that acts like an invisible hug, pulling you, the oceans, and the atmosphere firmly toward the ground!"
+  },
+  {
+    "key": "vocab_m2_1_v2",
+    "text": "Friction! Rub your hands together fast—feel that warmth and resistance? That is friction! Friction is the rubbing force between two touching surfaces. Rough surfaces create lots of friction; slick icy surfaces create very little!"
+  },
+  {
+    "key": "vocab_m2_1_v3",
+    "text": "Normal Force! When you sit on a chair, why don’t you fall right through the plastic to the center of the Earth? Because the chair pushes straight back up on you with a supporting normal force that balances gravity!"
+  },
+  {
+    "key": "vocab_m2_1_v4",
+    "text": "Motion! Whenever anything changes position—whether it’s a sprinting cheetah, a rolling bowling ball, or a soaring rocket—it is in motion! Only an unbalanced force can start or stop that motion."
+  },
+  {
+    "key": "m2_2_engage_0",
+    "text": "Imagine standing on a fishing pier over Galveston Bay, Kelenna! A massive cargo tugboat chugs past in the middle of the channel. Seconds later, your quiet wooden pier starts bobbing up and down, and resting pelicans flutter into the air! How did that boat push your pier from 200 feet away without ever touching it?"
+  },
+  {
+    "key": "m2_2_engage_1",
+    "text": "Look at the rolling ripples! As the boat bulldozes forward, its powerful engine shoves the bay water aside. That push travels across the bay as a moving wave! The water molecules don't travel all the way to shore—they just bob up and down in place like kids doing 'the wave' in a stadium!"
+  },
+  {
+    "key": "m2_2_engage_2",
+    "text": "When those rolling ripples reach your wooden dock—CRASH! The traveling energy transfers straight into the wooden pilings, lifting the heavy dock up into the air. Energy traveled all the way across the bay through the water without a single wire or rope!"
+  },
+  {
+    "key": "m2_2_engage_3",
+    "text": "Now watch this collision experiment with steel marbles. When marble 1 swings down and smacks marble 2, marble 1 stops dead in its tracks! The kinetic energy zips like lightning through the middle marbles and launches the last marble high into the air! Energy moves from object to object!"
+  },
+  {
+    "key": "m2_2_explain_0",
+    "text": "What is Kinetic Energy from first principles? In simple words: it is the energy of MOTION! Anything that is moving has kinetic energy. A rolling bowling ball, a flying soccer ball, or a speeding bicycle all carry kinetic energy. The faster it moves and the heavier it is, the more kinetic energy it packs!"
+  },
+  {
+    "key": "m2_2_explain_1",
+    "text": "What happens during a Collision? When two moving objects crash into each other, their kinetic energy doesn't disappear. It transfers! Just like bumper cars at the Galveston Pleasure Pier, car A slows down while car B gets kicked forward, and you hear a loud CLACK sound!"
+  },
+  {
+    "key": "m2_2_explain_2",
+    "text": "What is a Wave? A wave is energy on the move through a material called a medium! Think of a long jump rope: when you flick your wrist up and down, a wave travels all the way to your friend. The rope doesn't leave your hand; only the wave energy traveled through the rope!"
+  },
+  {
+    "key": "m2_2_explain_3",
+    "text": "Waves have two big measurements: Amplitude and Wavelength! Amplitude is how tall the wave crest reaches—tall waves carry huge, powerful energy! Wavelength is the distance from one wave peak to the very next wave peak, like the spacing between train cars on a track!"
+  },
+  {
+    "key": "m2_2_explain_4",
+    "text": "Energy has the same superpower as matter: it cannot be created or destroyed! When two soccer balls collide, some motion energy turns into sound waves you can hear and a tiny bit of heat friction you can feel. Total energy is always conserved and accounted for!"
+  },
+  {
+    "key": "vocab_m2_2_v0",
+    "text": "Energy! Energy is the universe’s superpower to make things happen! Without energy, nothing could move, grow, make sound, or shine light. Energy can change into different forms, but it is never lost!"
+  },
+  {
+    "key": "vocab_m2_2_v1",
+    "text": "Kinetic Energy! Think of a rolling bowling ball heading straight for the pins. That ball is packed with kinetic energy! As soon as it hits the pins—BAM—that kinetic energy transfers into the pins, sending them flying!"
+  },
+  {
+    "key": "vocab_m2_2_v2",
+    "text": "Collision! Have you ever played marbles or pool? When the white cue ball smacks into the solid 8-ball, that crash is a collision! The cue ball stops, and its motion energy gets passed right into the 8-ball!"
+  },
+  {
+    "key": "vocab_m2_2_v3",
+    "text": "Wave! Picture people in a packed football stadium doing “The Wave.” Each person just stands up and sits down, but the ripple travels all the way around the stadium! That’s how waves work: energy travels, while matter bobs in place!"
+  },
+  {
+    "key": "vocab_m2_2_v4",
+    "text": "Vibration! Put your fingers gently on your throat and hum a low note—bzzzzz! Feel that buzzing against your fingertips? That is a vibration! Vibrations shake the air particles around them to create sound waves that reach your ears!"
+  },
+  {
+    "key": "m2_3_engage_0",
+    "text": "Imagine a dark, foggy night along Dickinson Bayou, Kelenna! Boats rely on a glowing warning beacon to steer safely away from the rocks. But suddenly, the beacon bulb flickers out! The battery is brand new and fully charged. What broke the pathway of power?"
+  },
+  {
+    "key": "m2_3_engage_1",
+    "text": "Look closely at the wiring! Electricity is like a crowd of runners on a circular track. If there is even one tiny gap or cut in the wire, the runners stop instantly! For electricity to flow, the pathway must be a 100% closed, unbroken loop from the battery, through the bulb, and back again!"
+  },
+  {
+    "key": "m2_3_engage_2",
+    "text": "Now let's test what materials can bridge the gap. If we touch an iron bolt or shiny copper wire across the gap—FLASH! The bulb glows bright because metals are Conductors with open highways for electrons. But if we try a wooden stick or rubber band, the bulb stays dark because they are Insulators that block electric current!"
+  },
+  {
+    "key": "m2_3_engage_3",
+    "text": "When electrical current zooms through the super-thin metal filament inside the bulb, the particles squeeze and rub together furiously. That electric energy transforms into dazzling bright light energy AND warm thermal energy you can feel! One energy form turns into another!"
+  },
+  {
+    "key": "m2_3_explain_0",
+    "text": "First principles rule number one: Electricity demands a Closed Circuit! Think of a closed roller coaster track: the coaster cars can only loop around if all the rails are connected together. If the loop has a gap, it is an Open Circuit, and electric current stops moving immediately!"
+  },
+  {
+    "key": "m2_3_explain_1",
+    "text": "How do we control lights in your room? With a Switch! A switch is like a drawbridge over a castle moat. When the switch is closed (down), the bridge is complete and electric current crosses smoothly. When you flip the switch open (up), a gap appears and electric current is blocked!"
+  },
+  {
+    "key": "m2_3_explain_2",
+    "text": "What is an Electrical Conductor? It's a material with an open highway for electrons! Metals like copper, aluminum, iron, and steel let electric charges glide through them effortlessly. That's why electrical cords are always packed with shiny copper wires inside!"
+  },
+  {
+    "key": "m2_3_explain_3",
+    "text": "What is an Electrical Insulator? It's a stubborn roadblock! Materials like rubber, plastic, dry wood, and glass hold onto their particles super tight and refuse to let electric current pass. That's why electricians wear thick rubber gloves—to block electric shocks and keep you safe!"
+  },
+  {
+    "key": "m2_3_explain_4",
+    "text": "When electricity arrives at its destination, it transforms! In a light bulb, electrical energy becomes light and thermal heat. In a school bell, it turns into sound and kinetic vibrations. In a fan, it turns into mechanical motion! Energy changes costumes, but never disappears!"
+  },
+  {
+    "key": "vocab_m2_3_v0",
+    "text": "Electrical Circuit! Think of an electric circuit as a closed race track. The battery gives the electric charges a push, the wires are the roadway, and the light bulb is the pit stop where energy gets used to shine light!"
+  },
+  {
+    "key": "vocab_m2_3_v1",
+    "text": "Conductor! Imagine an open eight-lane highway with green lights all the way. That is what a conductor is for electricity! Metals like copper, silver, and iron give electricity a super-fast, smooth ride."
+  },
+  {
+    "key": "vocab_m2_3_v2",
+    "text": "Insulator! An insulator is like a giant brick wall across the road! Electricity tries to pass through rubber or plastic, but the atoms say “NO WAY!” That’s why rubber keeps electricians safe from dangerous shocks."
+  },
+  {
+    "key": "vocab_m2_3_v3",
+    "text": "Thermal Energy! Everything around you is made of tiny dancing atoms. When they dance super fast, they create thermal energy—heat! When electricity squeezes through a bulb filament, friction turns electrical energy into thermal heat and light!"
+  },
+  {
+    "key": "vocab_m2_3_v4",
+    "text": "Closed Circuit! Picture a drawbridge that has lowered completely so cars can drive smoothly across the river. A closed circuit has zero gaps, allowing electric current to complete its entire loop and power up lights, buzzers, and motors!"
+  },
+  {
+    "key": "m3_1_engage_0",
+    "text": "Hey Kelenna! Check out our home planet Earth! See how it leans like a spinning top tilted sideways? Earth is tilted at an angle of 23.5 degrees, and that tilt never changes direction as we travel around the Sun!"
+  },
+  {
+    "key": "m3_1_engage_1",
+    "text": "Look at June! Dickinson, Texas is tilted right toward the Sun! It is like pointing a flashlight straight down at your hand—intense, direct heat with 14 hours of daylight and super short noon shadows!"
+  },
+  {
+    "key": "m3_1_engage_2",
+    "text": "Now fast forward six months to December! Earth has orbited halfway around, so Texas now tilts away from the Sun. Light hits us at a low slant, spreading warmth thin like butter on bread, casting long noon shadows!"
+  },
+  {
+    "key": "m3_1_engage_3",
+    "text": "Because Earth takes exactly 365 days to circle the Sun, this pattern repeats like clockwork every single year: spring, summer, autumn, and winter! Science lets us predict the seasons!"
+  },
+  {
+    "key": "m3_1_explain_0",
+    "text": "Here is the big secret: rotation and revolution are completely different! Think of spinning a basketball on your finger—that is rotation, and Earth does it every 24 hours for day and night. Walking in a big circle around a campfire is revolution—that takes 365 days and gives us our seasons!"
+  },
+  {
+    "key": "m3_1_explain_1",
+    "text": "Ever test a flashlight? When you shine it straight down, the circle of light is small and blazing bright—that is direct sunlight in summer. When you tilt it at a slant, the light stretches out wide and faint—that is winter!"
+  },
+  {
+    "key": "m3_1_explain_2",
+    "text": "More time in the sun means more heat! In summer, Dickinson gets 14 hours of direct daylight soaking into Galveston Bay. In winter, we only get 10 hours of slanted rays, so our bayou town stays cooler."
+  },
+  {
+    "key": "m3_1_explain_3",
+    "text": "Try this on the Dunbar practice field! Stick a ruler in the dirt at solar noon. In June, the Sun is almost directly overhead, making a tiny shadow. In December, the low Sun stretches your shadow out like a giant!"
+  },
+  {
+    "key": "m3_1_explain_4",
+    "text": "Because Earth stays tilted in one direction, the Northern and Southern hemispheres are opposites! When Kelenna is swimming in Texas during July, kids in Australia are putting on winter coats and building snowmen!"
+  },
+  {
+    "key": "vocab_m3_1_v0",
+    "text": "Revolution! Picture yourself walking all the way around a campfire. Earth takes a full 365 days—one whole year—to revolve around the Sun, bringing us the four seasons!"
+  },
+  {
+    "key": "vocab_m3_1_v1",
+    "text": "Axial Tilt! Earth doesn't stand straight up and down. It leans sideways at a 23.5-degree angle, pointing toward the North Star, which is the secret reason we have summer and winter!"
+  },
+  {
+    "key": "vocab_m3_1_v2",
+    "text": "Angle of Incidence! Think of shining a flashlight at a wall. Straight on makes a tight, super bright circle. Tilted sideways makes a huge, faint oval. That angle controls how hot the ground gets!"
+  },
+  {
+    "key": "vocab_m3_1_v3",
+    "text": "Solar Noon! That is the moment the Sun reaches the absolute highest peak of its daily journey across the sky, casting your shortest shadow of the day!"
+  },
+  {
+    "key": "vocab_m3_1_v4",
+    "text": "Solstice! In June, Texas leans as far toward the Sun as possible—our longest day! In December, we lean as far away as possible—our shortest day. Those are the solstices!"
+  },
+  {
+    "key": "m3_2_engage_0",
+    "text": "Look at the Moon from outer space, Kelenna! Notice how the Sun is like a giant flashlight shining on a baseball. Exactly half of the Moon is ALWAYS bathed in bright sunlight, while the other half rests in dark shadow!"
+  },
+  {
+    "key": "m3_2_engage_1",
+    "text": "As the Moon orbits Earth counterclockwise, our angle changes. We start seeing a sliver of that lit half from Earth! When the light is growing bigger on the right side, we call it waxing—remember: wax on, right side on!"
+  },
+  {
+    "key": "m3_2_engage_2",
+    "text": "Two weeks in, around Day 14, Earth sits right between the Sun and Moon. Look up from Dunbar Middle School and boom—you are looking directly at the entire sunlit face of the Moon! That is a brilliant Full Moon!"
+  },
+  {
+    "key": "m3_2_engage_3",
+    "text": "Now the Moon continues its orbit, and the light starts shrinking from right to left. That is waning! Only the left side stays lit until the Moon returns to New Moon, completing the whole 29.5-day cycle!"
+  },
+  {
+    "key": "m3_2_explain_0",
+    "text": "Think of the Moon as Earth’s giant natural night clock! It takes almost a full month—approximately 29.5 days—for the Moon to orbit all the way around Earth and show us all of its beautiful phases."
+  },
+  {
+    "key": "m3_2_explain_1",
+    "text": "We start at New Moon: the sunlit half faces completely away from us, so the Moon looks dark. Over the next 7 days, a thin crescent grows wider until First Quarter, when exactly half of the disk is lit on the right!"
+  },
+  {
+    "key": "m3_2_explain_2",
+    "text": "Between First Quarter and Full Moon, the Moon looks swollen like a football—scientists call this Waxing Gibbous! Around Day 14, the entire Earth-facing side is bathed in light, rising right as the Sun sets!"
+  },
+  {
+    "key": "m3_2_explain_3",
+    "text": "After Full Moon, the light begins to wane or shrink! At Day 21—Third Quarter—the right side goes dark and only the left half shines bright. You can spot it in the sky on your morning ride to Dunbar Middle School!"
+  },
+  {
+    "key": "m3_2_explain_4",
+    "text": "Here is how NASA Artemis scientists use math: each quarter phase is about 7 days apart! If you see a New Moon tonight, you can guarantee a First Quarter in 7 days, a Full Moon in 14 days, and a New Moon again in 29.5 days!"
+  },
+  {
+    "key": "vocab_m3_2_v0",
+    "text": "Lunar Cycle! That is the complete 29.5-day trip the Moon takes around Earth, showing us every phase from New Moon to Full Moon and back again!"
+  },
+  {
+    "key": "vocab_m3_2_v1",
+    "text": "Waxing! When the Moon is waxing, the sunlight is growing bigger each night. Remember the trick: wax on, right side on!"
+  },
+  {
+    "key": "vocab_m3_2_v2",
+    "text": "Waning! Waning means shrinking. After the Full Moon, the light begins fading from right to left, leaving just the left side glowing!"
+  },
+  {
+    "key": "vocab_m3_2_v3",
+    "text": "First Quarter! Even though it looks like half a pie, it is called First Quarter because the Moon has finished one-fourth of its monthly orbit!"
+  },
+  {
+    "key": "vocab_m3_2_v4",
+    "text": "New Moon! The Moon is directly between Earth and the Sun. Its sunny side faces outer space, so from our backyard, it looks completely dark!"
+  },
+  {
+    "key": "m3_3_engage_0",
+    "text": "Look at Galveston Bay, Kelenna! The Sun is like a giant heat lamp in the sky. When sunlight beats down on the water, liquid water molecules get energized and float up into the air as invisible water vapor—that is evaporation!"
+  },
+  {
+    "key": "m3_3_engage_1",
+    "text": "As that warm vapor rises miles above Dickinson, the air gets freezing cold! The gas loses heat, slowing down and clumping together onto microscopic specks of dust to form clouds—just like fog appearing on your bathroom mirror!"
+  },
+  {
+    "key": "m3_3_engage_2",
+    "text": "Inside that cloud, billions of tiny droplets bump and stick together. When they get too heavy for rising air to hold up, gravity takes over and pulls them crashing down to Earth as rain—precipitation!"
+  },
+  {
+    "key": "m3_3_engage_3",
+    "text": "Rainwater rushes off roofs, playgrounds, and grass into Dickinson Bayou. It flows right back into Galveston Bay, ready to be heated by the Sun again. Earth’s water is millions of years old, constantly recycling!"
+  },
+  {
+    "key": "m3_3_explain_0",
+    "text": "Water has two main ways to leap into the sky: evaporation from bayous and oceans, and transpiration—which is plants \"breathing out\" extra water vapor through microscopic pores on their green leaves!"
+  },
+  {
+    "key": "m3_3_explain_1",
+    "text": "Condensation is a cooling process! When invisible water vapor gas chills out high above the ground, it turns back into liquid water droplets. Millions of these droplets huddle together to build fluffy clouds!"
+  },
+  {
+    "key": "m3_3_explain_2",
+    "text": "Precipitation comes in four main flavors: rain, snow, sleet, and hail! In Dickinson, Texas, our air is usually warm, so we get liquid rain, but strong storm updrafts can toss ice balls into the sky to make hail!"
+  },
+  {
+    "key": "m3_3_explain_3",
+    "text": "Weather is what is happening right now outside Dunbar Middle School. It tells you what to wear today: a rain poncho for an afternoon storm, or sunscreen and a t-shirt for PE on the field!"
+  },
+  {
+    "key": "m3_3_explain_4",
+    "text": "Climate is the big picture over 30 years or more! Think of weather as what you wear today, and climate as what is in your entire closet. Dickinson has a humid subtropical climate with hot summers and mild winters!"
+  },
+  {
+    "key": "vocab_m3_3_v0",
+    "text": "Evaporation! Think of a pot of soup on the stove. Heat makes water turn into invisible steam that floats up into the air. That is evaporation happening all over Galveston Bay!"
+  },
+  {
+    "key": "vocab_m3_3_v1",
+    "text": "Condensation! When warm water vapor hits cold air high above us, it chills out and clumps back into liquid water droplets. Billions of these droplets make a cloud!"
+  },
+  {
+    "key": "vocab_m3_3_v2",
+    "text": "Precipitation! When cloud droplets get too heavy for rising air currents to hold, gravity pulls them down. In Texas, that usually means a splashy rainstorm!"
+  },
+  {
+    "key": "vocab_m3_3_v3",
+    "text": "Weather! Weather is today’s snapshot. It answers the question: Should I pack an umbrella or wear a short-sleeve shirt to school today?"
+  },
+  {
+    "key": "vocab_m3_3_v4",
+    "text": "Climate! Climate is the long-term champion. While weather changes day to day, climate is the 30-year average of what weather you expect in our corner of Texas!"
+  },
+  {
+    "key": "m3_4_engage_0",
+    "text": "Look at that giant rock, Kelenna! Weathering is nature’s demolition crew. Rainwater seeps into cracks, freezes during a winter freeze, and expands like an ice cube popping a bottle, shattering solid rock into gravel and sand!"
+  },
+  {
+    "key": "m3_4_engage_1",
+    "text": "Now comes the moving truck: erosion! When heavy storm rain hits Dickinson, rushing bayou water grabs loose mud and sand, sweeping it downstream just like a garden hose washing dirt down your driveway!"
+  },
+  {
+    "key": "m3_4_engage_2",
+    "text": "Finally: deposition! When the swift bayou current enters the wide, calm waters of Galveston Bay, it suddenly slows down. It cannot carry heavy sand anymore, so it drops it—building fan-shaped deltas and sandbars!"
+  },
+  {
+    "key": "m3_4_engage_3",
+    "text": "These three slow processes work together every single second! Over millions of years, weathering, erosion, and deposition have carved steep canyons, built coastal deltas, and piled up towering beach sand dunes!"
+  },
+  {
+    "key": "m3_4_explain_0",
+    "text": "Weathering stays in place. When live oak tree roots push into sidewalk cracks or water freezes inside stone crevices, the rock breaks into smaller pieces called sediment. Nothing has moved yet—it is just broken!"
+  },
+  {
+    "key": "m3_4_explain_1",
+    "text": "Erosion is all about movement! Think of water, wind, ice, or gravity as conveyor belts carrying broken dirt away. During tropical storms along Dickinson Bayou, brown floodwaters carry tons of eroded soil!"
+  },
+  {
+    "key": "m3_4_explain_2",
+    "text": "Deposition is where sediment gets dropped off. When moving water or wind runs out of energy, gravity wins and drops the dirt. That is how layers of nutrient-rich soil form across our Texas coastal floodplains!"
+  },
+  {
+    "key": "m3_4_explain_3",
+    "text": "Here is the big STAAR contrast: canyons are carved OUT by rushing water erosion cutting down into rock. Deltas are built UP by deposition where slow water drops sediment at a river mouth!"
+  },
+  {
+    "key": "m3_4_explain_4",
+    "text": "Take a trip to Galveston Island beach! Strong coastal breezes erode dry beach sand, blowing it inland until sea oat grasses trap the grains. Layer by layer, wind deposition builds tall, protective sand dunes!"
+  },
+  {
+    "key": "vocab_m3_4_v0",
+    "text": "Weathering! Weathering is nature’s hammer. It breaks big rocks into smaller bits right where they sit, using freezing ice, rushing wind, or tough tree roots!"
+  },
+  {
+    "key": "vocab_m3_4_v1",
+    "text": "Erosion! Once rock is broken into pieces, erosion carries it away! Think of moving water, howling wind, or sliding glaciers acting like nature’s moving van!"
+  },
+  {
+    "key": "vocab_m3_4_v2",
+    "text": "Deposition! Deposition means \"depositing\" or dropping off. When river currents slow down, they drop their load of sand and mud, building brand-new land!"
+  },
+  {
+    "key": "vocab_m3_4_v3",
+    "text": "Delta! When a muddy river reaches the calm ocean, it slows down and drops its sand in a giant triangle shape that looks like a duck’s webbed foot—a delta!"
+  },
+  {
+    "key": "vocab_m3_4_v4",
+    "text": "Sand Dune! Wind acts like a giant broom sweeping beach sand into big rolling hills. Sand dunes on Galveston Island protect our coastal towns from ocean waves!"
+  },
+  {
+    "key": "m3_5_engage_0",
+    "text": "Look at the giant wind turbines spinning along the Texas coast, Kelenna! Wind, sunlight, and flowing water are renewable resources. They are like an endless refillable water bottle—nature replenishes them constantly!"
+  },
+  {
+    "key": "m3_5_engage_1",
+    "text": "Now look thousands of feet underground! Petroleum oil and natural gas formed from tiny ancient sea creatures buried under intense heat and pressure over millions of years. Once we burn them, they are gone forever!"
+  },
+  {
+    "key": "m3_5_engage_2",
+    "text": "Here is a secret: underground water and oil do NOT sit in open swimming pools! Instead, they soak into millions of microscopic holes between sand grains inside sandstone rock, just like water soaked inside a kitchen sponge!"
+  },
+  {
+    "key": "m3_5_engage_3",
+    "text": "Because fossil fuels and clean water are precious, we practice conservation: Reduce what we use, Reuse what we can, and Recycle materials so our Texas home stays clean and green for future generations!"
+  },
+  {
+    "key": "m3_5_explain_0",
+    "text": "Natural resources come from Earth. We sort them into two big teams: Renewable resources, which nature replaces quickly (like sun, wind, water, and trees), and Nonrenewable resources, which take millions of years to form!"
+  },
+  {
+    "key": "m3_5_explain_1",
+    "text": "Zoom into this underground sandstone rock! See those tiny spaces between the sand grains? Those are pores. High porosity means the rock has lots of tiny pockets to hold fluids like fresh water or crude petroleum!"
+  },
+  {
+    "key": "m3_5_explain_2",
+    "text": "When those tiny pores connect like little tunnels, the rock is permeable. Water flows right through the sand layers of our local Chicot Aquifer, supplying fresh drinking water to homes in Dickinson and Galveston County!"
+  },
+  {
+    "key": "m3_5_explain_3",
+    "text": "What keeps the oil and gas from bubbling up to the surface? Dense, solid rock layers like shale have zero connected holes. They act like a tight stone lid, trapping oil safely beneath until wells tap it!"
+  },
+  {
+    "key": "m3_5_explain_4",
+    "text": "Conservation is being smart with Earth’s gifts! Turning off classroom lights at Dunbar Middle School reduces electricity waste. And recycling a single aluminum soda can saves 95% of the energy needed to make a new one!"
+  },
+  {
+    "key": "vocab_m3_5_v0",
+    "text": "Renewable Resource! Renewable means it can be renewed or refilled naturally. Sunlight and wind keep coming every single day, so they will never run out!"
+  },
+  {
+    "key": "vocab_m3_5_v1",
+    "text": "Nonrenewable Resource! Nonrenewable resources like coal, oil, and natural gas took millions of years of heat and pressure to form. Once we burn through them, they are gone!"
+  },
+  {
+    "key": "vocab_m3_5_v2",
+    "text": "Conservation! Conservation means being a superhero for the planet—protecting resources by using less, reusing what you have, and recycling!"
+  },
+  {
+    "key": "vocab_m3_5_v3",
+    "text": "Porosity! Think of a kitchen sponge. All those little holes that soak up water are pores. High porosity rocks are full of tiny pockets that store groundwater!"
+  },
+  {
+    "key": "vocab_m3_5_v4",
+    "text": "Aquifer! An aquifer is like a giant underground water filter and sponge made of sand and rock, holding fresh drinking water beneath our feet!"
+  },
+  {
+    "key": "m4_1_engage_0",
+    "text": "Look out across the Dickinson Bayou salt marsh, Kelenna! The Sun is the ultimate powerhouse of life. Every single leaf, fish, bird, and alligator in our Texas wetland is powered by solar energy from 93 million miles away!"
+  },
+  {
+    "key": "m4_1_engage_1",
+    "text": "Plants are the real superheroes—they are called producers! Green cordgrass acts like a tiny solar kitchen. It drinks water through its roots, catches sunlight, and breathes in carbon dioxide to bake sweet glucose food and release fresh oxygen!"
+  },
+  {
+    "key": "m4_1_engage_2",
+    "text": "Animals are consumers—they have to eat! Marsh grasshoppers munch on cordgrass, killifish minnows eat grasshoppers, and roseate spoonbills swoop in to eat the minnows. In science diagrams, arrows point into the tummy of whoever gets the meal!"
+  },
+  {
+    "key": "m4_1_engage_3",
+    "text": "Meet the marsh cleanup crew: decomposers! Fiddler crabs and soil bacteria break down dead leaves and animal waste, turning trash into rich organic soil food so new cordgrass can grow. In nature, nothing goes to waste!"
+  },
+  {
+    "key": "m4_1_explain_0",
+    "text": "Look under a microscope at a cordgrass leaf! See those tiny mouth-like pores? Those are stomata. Guard cells open these microscopic windows so the plant can breathe in carbon dioxide and exhale fresh oxygen for us to breathe!"
+  },
+  {
+    "key": "m4_1_explain_1",
+    "text": "Here is the first-principles rule: Producers make their own food through photosynthesis. Consumers cannot make food; herbivores eat plants, carnivores eat meat, and omnivores eat both to get their fuel!"
+  },
+  {
+    "key": "m4_1_explain_2",
+    "text": "A food chain shows a single straight line of who eats whom. But in our Dickinson Bayou marsh, animals eat many different meals! Connected together, all these overlapping food chains form a giant, sturdy food web!"
+  },
+  {
+    "key": "m4_1_explain_3",
+    "text": "Imagine if nobody ever emptied the trash! Decomposers are the ultimate recyclers. Bacteria and fungi break down dead tissue into nitrogen and minerals, fertilizing the mud so the next generation of plants can sprout!"
+  },
+  {
+    "key": "m4_1_explain_4",
+    "text": "Ecosystems are tightly connected teams. If a severe drought dries up Dickinson Bayou and kills the cordgrass, the grasshoppers starve, the minnows starve, and the birds have to fly away. Every piece matters!"
+  },
+  {
+    "key": "vocab_m4_1_v0",
+    "text": "Producer! Plants produce! Using green chlorophyll, they capture solar rays, drink water from the soil, and produce sweet food for themselves and other living creatures!"
+  },
+  {
+    "key": "vocab_m4_1_v1",
+    "text": "Consumer! Consumers consume! Because animals cannot do photosynthesis, we have to eat plants or other animals to fuel our bodies!"
+  },
+  {
+    "key": "vocab_m4_1_v2",
+    "text": "Decomposer! Decomposers decompose! They break down dead plants, leaves, and animals, recycling vital minerals back into the dirt so new life can grow!"
+  },
+  {
+    "key": "vocab_m4_1_v3",
+    "text": "Stomata! Stomata are tiny breathing windows under leaves. Guard cells open them wide so the plant can drink in carbon dioxide and release fresh oxygen!"
+  },
+  {
+    "key": "vocab_m4_1_v4",
+    "text": "Food Web! In real nature, animals have lots of different food choices. When you draw all the overlapping food chains together, you get a giant, beautiful food web!"
+  },
+  {
+    "key": "m4_2_engage_0",
+    "text": "Look at the wildlife along Dickinson Bayou, Kelenna! Every living creature is equipped with incredible built-in body tools. From sharp claws to waterproof feathers, these physical structures help organisms survive, grow, and thrive in their Texas wetland homes!"
+  },
+  {
+    "key": "m4_2_engage_1",
+    "text": "Bird beaks work just like kitchen tools! The roseate spoonbill’s bill is a specialized soup-strainer spoon. It sweeps its bill side to side in muddy water, and sensitive nerve endings snap it shut in milliseconds when it bumps into a tasty shrimp!"
+  },
+  {
+    "key": "m4_2_engage_2",
+    "text": "How did the spoonbill get that beak? It was born with it! Inherited traits are coded in DNA and passed from parents to offspring. Pink feathers, long wading legs, and the instinct to sweep for food come straight from parent genetics!"
+  },
+  {
+    "key": "m4_2_engage_3",
+    "text": "Now look at a broken wing feather or a leg scar from tangled fishing line. Those are acquired traits! They happened during the bird’s life through environmental interactions. If this spoonbill has chicks, the chicks will NOT be born with scars!"
+  },
+  {
+    "key": "m4_2_explain_0",
+    "text": "External structures are body parts on the outside. A pelican has a giant dip-net throat pouch, a hawk has sharp meat-scissors talons, and a rose bush has sharp prickle thorns to protect itself from hungry plant-eaters!"
+  },
+  {
+    "key": "m4_2_explain_1",
+    "text": "Internal structures work inside the body! Coastal birds have hollow bones that look like Swiss cheese on the inside to keep them super lightweight for flying. And plant stems have microscopic xylem tubes that act like drinking straws to pull water up to leaves!"
+  },
+  {
+    "key": "m4_2_explain_2",
+    "text": "Inherited traits are what you are born with. An alligator’s armored scales, a live oak tree’s leaf shape, and a dolphin’s blowhole are all determined by genetic DNA passed down from biological parents!"
+  },
+  {
+    "key": "m4_2_explain_3",
+    "text": "Acquired traits are changes that happen during life. A scar on your knee from learning to skateboard, a broken oyster shell, or a pine tree bent sideways by Hurricane Harvey are acquired traits that cannot be passed to babies!"
+  },
+  {
+    "key": "m4_2_explain_4",
+    "text": "Behaviors have rules too! Instincts are born ready: baby sea turtles crawling to the ocean at night or spiders weaving webs. Learned behaviors require practice: a dog sitting for a treat, or Kelenna mastering science challenges!"
+  },
+  {
+    "key": "vocab_m4_2_v0",
+    "text": "Internal Structure! Internal means inside! Organs like lungs, hollow bird bones, and plant xylem tubes are internal tools that help living things survive!"
+  },
+  {
+    "key": "vocab_m4_2_v1",
+    "text": "External Structure! External means outside! Claws, bird beaks, scales, and cactus thorns are external structures designed to do tough jobs in nature!"
+  },
+  {
+    "key": "vocab_m4_2_v2",
+    "text": "Inherited Trait! Inherited means it came from your family! Traits like eye color, beak shape, and webbed feet are coded in DNA and passed from parents to offspring!"
+  },
+  {
+    "key": "vocab_m4_2_v3",
+    "text": "Acquired Trait! Acquired means you gained it during your life! Scars, broken branches, or pierced ears are acquired traits that cannot be passed to babies!"
+  },
+  {
+    "key": "vocab_m4_2_v4",
+    "text": "Learned Behavior! You aren’t born knowing how to ride a bicycle or play soccer—you have to learn it through practice! That is a learned behavior!"
+  }
+]

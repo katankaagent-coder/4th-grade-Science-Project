@@ -1,0 +1,1027 @@
+/* Vespa-X09 Cyber-Organic Vivid Dark UI Theme — Kelenna's 4th Grade Science 3D Lab (Dunbar Middle School)
+   Razor-sharp Orbitron + Inter typography, deep #060709 obsidian 3D stage, glassmorphic cyber-panels,
+   and 4-color Core Energy Harmonics (Amber, Cyan, Crimson, Emerald). */
+
+:root {
+  --bg-obsidian: #060709;
+  --panel-bg: rgba(10, 14, 23, 0.78);
+  --panel-bg-strong: rgba(8, 12, 20, 0.92);
+  --card-bg: rgba(15, 23, 42, 0.68);
+  --text-bright: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --theme-color: #f59e0b;
+  --theme-glow: rgba(245, 158, 11, 0.48);
+  --theme-color-15: rgba(245, 158, 11, 0.16);
+  --cyan-neon: #00f0ff;
+  --emerald-neon: #10b981;
+  --crimson-neon: #f43f5e;
+  --border-subtle: rgba(148, 163, 184, 0.18);
+  --border-theme: rgba(245, 158, 11, 0.28);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+html, body {
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-obsidian);
+  color: var(--text-bright);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.font-cyber {
+  font-family: 'Orbitron', 'Inter', monospace;
+  letter-spacing: 0.05em;
+}
+
+.font-mono-tech {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--bg-obsidian);
+}
+
+/* Full-Bleed 3D WebGL Stage */
+.viewport-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+#three-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+/* Subtle CRT / Scanline Atmosphere Overlay */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+/* Glassmorphic Cyber Panels (Vespa-X09 Signature Style) */
+.cyber-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-theme);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.65), inset 0 0 14px rgba(245, 158, 11, 0.06);
+  border-radius: 16px;
+}
+
+/* Glowing Cyber Buttons */
+.cyber-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  color: var(--text-bright);
+  padding: 7px 13px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.cyber-btn:hover {
+  border-color: var(--theme-color);
+  box-shadow: 0 0 14px var(--theme-glow);
+  color: #ffffff;
+}
+
+.cyber-btn.active {
+  background: var(--theme-color-15);
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+  box-shadow: 0 0 18px var(--theme-glow);
+}
+
+/* Pulsing Beacon Indicator */
+@keyframes pingRing {
+  75%, 100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+.beacon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.beacon-ping {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--theme-color);
+  opacity: 0.75;
+  animation: pingRing 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.beacon-dot {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--theme-color);
+  box-shadow: 0 0 10px var(--theme-color);
+}
+
+/* ==================== TOP AEROSPACE TELEMETRY HEADER ==================== */
+.top-header {
+  position: absolute;
+  top: calc(12px + var(--safe-top));
+  left: calc(14px + var(--safe-left));
+  right: calc(14px + var(--safe-right));
+  z-index: 25;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.brand-cluster {
+  pointer-events: auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.teks-badge {
+  font-family: 'Orbitron', monospace;
+  background: var(--theme-color-15);
+  color: var(--theme-color);
+  border: 1px solid var(--theme-color);
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.module-header-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-subline {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 5E Stage Switcher Cluster */
+.stage-tabs {
+  pointer-events: auto;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.stage-tab {
+  font-family: 'Orbitron', sans-serif;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.55);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.73rem;
+  letter-spacing: 0.04em;
+  padding: 7px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stage-tab:hover {
+  border-color: var(--theme-color);
+  color: #ffffff;
+}
+
+.stage-tab.active {
+  background: var(--theme-color-15);
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+  box-shadow: 0 0 16px var(--theme-glow);
+}
+
+.header-actions {
+  pointer-events: auto;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==================== "I CAN" MASTERY & THEME BAR ==================== */
+.ican-banner {
+  position: absolute;
+  top: calc(74px + var(--safe-top));
+  left: calc(14px + var(--safe-left));
+  right: 400px;
+  z-index: 20;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.ican-text {
+  font-size: 0.8rem;
+  color: #e2e8f0;
+  font-weight: 500;
+  line-height: 1.38;
+}
+
+.ican-text strong {
+  font-family: 'Orbitron', monospace;
+  background: var(--theme-color);
+  color: #060709;
+  padding: 2px 7px;
+  border-radius: 5px;
+  margin-right: 7px;
+  font-weight: 900;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
+.theme-pills {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.theme-dot-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.theme-dot-btn:hover,
+.theme-dot-btn.active {
+  transform: scale(1.2);
+  border-color: #ffffff;
+}
+
+/* ==================== LIVE AEROSPACE TELEMETRY STRIP ==================== */
+.telemetry-strip {
+  position: absolute;
+  top: calc(128px + var(--safe-top));
+  left: calc(14px + var(--safe-left));
+  right: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 18;
+}
+
+.metric-card {
+  background: rgba(10, 14, 23, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-left: 3px solid var(--theme-color);
+  border-radius: 12px;
+  padding: 7px 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  min-width: 112px;
+}
+
+.metric-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.07em;
+}
+
+.metric-value {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--theme-color);
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-unit {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-left: 3px;
+}
+
+/* ==================== FLOATING VIDEO HUD & SUBTITLES ==================== */
+.video-hud {
+  position: absolute;
+  left: calc(14px + var(--safe-left));
+  bottom: calc(48px + var(--safe-bottom));
+  width: min(640px, calc(100vw - 420px));
+  z-index: 22;
+  padding: 13px 16px;
+}
+
+.subtitle-box {
+  font-size: 0.9rem;
+  line-height: 1.48;
+  font-weight: 500;
+  color: #f8fafc;
+  margin-bottom: 10px;
+  min-height: 2.5em;
+}
+
+.subtitle-speaker {
+  font-family: 'Orbitron', monospace;
+  color: var(--theme-color);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.scrubber-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.play-btn {
+  font-family: 'Orbitron', sans-serif;
+  background: var(--theme-color);
+  color: #060709;
+  border: none;
+  border-radius: 999px;
+  padding: 7px 15px;
+  font-weight: 800;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 0 14px var(--theme-glow);
+}
+
+/* Custom Glowing Range Sliders (from Vespa-X09 Honeybee) */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  height: 6px;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--theme-color);
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--theme-color);
+  border: 2px solid #ffffff;
+  transition: transform 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.timeline-slider {
+  flex: 1;
+}
+
+.time-readout {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  min-width: 78px;
+  text-align: right;
+}
+
+/* Bottom Interaction Status Bar (Vespa-X09 Style) */
+.bottom-status-pill {
+  position: absolute;
+  bottom: calc(10px + var(--safe-bottom));
+  left: calc(14px + var(--safe-left));
+  z-index: 20;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ==================== FLOATING RIGHT CYBER CONTROL DASHBOARD ==================== */
+.lab-panel {
+  position: absolute;
+  top: calc(74px + var(--safe-top));
+  right: calc(14px + var(--safe-right));
+  bottom: calc(12px + var(--safe-bottom));
+  width: 372px;
+  z-index: 24;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.25s ease, height 0.25s ease;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.55);
+  cursor: pointer;
+}
+
+.panel-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--theme-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sheet-toggle-btn {
+  display: none;
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--text-bright);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 15px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.panel-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-body::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 999px;
+}
+
+/* Control Cards inside Cyber Dashboard */
+.control-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 12px;
+  padding: 11px 13px;
+}
+
+.control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+}
+
+.control-val-badge {
+  font-family: 'Orbitron', monospace;
+  background: var(--theme-color-15);
+  color: var(--theme-color);
+  border: 1px solid var(--border-theme);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.74rem;
+}
+
+.lab-slider {
+  width: 100%;
+}
+
+.lab-select {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 9px;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: rgba(8, 12, 21, 0.92);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #f8fafc;
+  min-height: 40px;
+}
+
+.lab-btn {
+  font-family: 'Orbitron', sans-serif;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 11px;
+  border: 1px solid var(--theme-color);
+  background: var(--theme-color-15);
+  color: var(--theme-color);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.lab-btn:hover {
+  background: var(--theme-color);
+  color: #060709;
+  box-shadow: 0 0 20px var(--theme-glow);
+}
+
+.lab-btn.secondary {
+  border-color: var(--cyan-neon);
+  background: rgba(0, 240, 255, 0.14);
+  color: var(--cyan-neon);
+}
+
+.lab-btn.emerald {
+  border-color: var(--emerald-neon);
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+}
+
+.lab-btn.emerald:hover {
+  background: var(--emerald-neon);
+  color: #060709;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.5);
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-switch.on {
+  background: rgba(16, 185, 129, 0.3);
+  border-color: var(--emerald-neon);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #f8fafc;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle-switch.on .toggle-knob {
+  transform: translateX(20px);
+  background: #34d399;
+}
+
+/* Info / Hook / Challenge Cards */
+.info-box {
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  border-left: 4px solid var(--cyan-neon);
+  border-radius: 12px;
+  padding: 12px 13px;
+  font-size: 0.83rem;
+  line-height: 1.48;
+  color: #e2e8f0;
+}
+
+.info-box h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  color: var(--cyan-neon);
+}
+
+.anchor-option-btn {
+  width: 100%;
+  text-align: left;
+  background: rgba(8, 12, 21, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 7px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #f1f5f9;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: all 0.18s;
+}
+
+.anchor-option-btn:hover {
+  border-color: var(--theme-color);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.anchor-option-btn.correct {
+  border-color: var(--emerald-neon);
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.25);
+}
+
+.anchor-option-btn.wrong {
+  border-color: var(--crimson-neon);
+  background: rgba(244, 63, 94, 0.2);
+  color: #fda4af;
+}
+
+/* Vocabulary Flashcards */
+.vocab-card {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-left: 4px solid var(--theme-color);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.vocab-term {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--theme-color);
+  margin-bottom: 4px;
+}
+
+.vocab-def {
+  font-size: 0.8rem;
+  color: #f1f5f9;
+  line-height: 1.44;
+}
+
+.vocab-ex {
+  font-size: 0.75rem;
+  color: #38bdf8;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* ==================== FULL-SCREEN CYBER MODALS (12-MODULE HUB & NOTEBOOK) ==================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 12, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(16px + var(--safe-top)) 16px calc(16px + var(--safe-bottom));
+}
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
+.modal-window {
+  background: var(--panel-bg-strong);
+  width: min(1140px, 100%);
+  max-height: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 24px var(--theme-glow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--theme-color);
+}
+
+.modal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.28);
+}
+
+.modal-top h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--theme-color);
+  letter-spacing: 0.04em;
+}
+
+.modal-close {
+  font-family: 'Orbitron', sans-serif;
+  background: rgba(244, 63, 94, 0.18);
+  color: #fda4af;
+  border: 1px solid #f43f5e;
+  border-radius: 10px;
+  padding: 7px 14px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.modal-scroll {
+  padding: 20px 22px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.unit-section {
+  margin-bottom: 24px;
+}
+
+.unit-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.unit-banner h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--cyan-neon);
+}
+
+.unit-period {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--theme-color);
+  background: var(--theme-color-15);
+  border: 1px solid var(--border-theme);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.module-card {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.module-card:hover {
+  border-color: var(--theme-color);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--theme-glow);
+}
+
+.module-card.active-module {
+  border-color: var(--theme-color);
+  background: rgba(245, 158, 11, 0.12);
+  box-shadow: 0 0 18px var(--theme-glow);
+}
+
+.module-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.module-icon {
+  font-size: 1.7rem;
+}
+
+.mastery-pill {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(30, 41, 59, 0.9);
+  color: var(--text-secondary);
+}
+
+.mastery-pill.mastered {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+  border: 1px solid #10b981;
+}
+
+/* STAAR 2.0 Assessment Cards */
+.staar-question-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.staar-q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.staar-type-tag {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: rgba(0, 240, 255, 0.14);
+  color: var(--cyan-neon);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.staar-prompt {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f8fafc;
+  line-height: 1.46;
+  margin-bottom: 10px;
+}
+
+/* ==================== IPHONE 14 & IPHONE 15 RESPONSIVE BREAKPOINT (< 960px) ==================== */
+@media (max-width: 960px) {
+  .top-header {
+    top: calc(8px + var(--safe-top));
+    left: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+
+  .brand-cluster {
+    width: 100%;
+    justify-content: space-between;
+    padding: 8px 12px;
+  }
+
+  .stage-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .stage-tab {
+    flex: 1;
+    text-align: center;
+    padding: 6px 4px;
+    font-size: 0.66rem;
+  }
+
+  .ican-banner {
+    display: none;
+  }
+
+  .telemetry-strip {
+    top: calc(118px + var(--safe-top));
+    left: 8px;
+    right: 8px;
+  }
+
+  .metric-card {
+    padding: 5px 9px;
+    min-width: 92px;
+  }
+
+  .metric-value {
+    font-size: 0.82rem;
+  }
+
+  .lab-panel {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + var(--safe-bottom));
+    width: auto;
+    height: 40dvh;
+  }
+
+  .lab-panel.collapsed {
+    height: 46px;
+  }
+
+  .sheet-toggle-btn {
+    display: inline-block;
+  }
+
+  .video-hud {
+    left: 8px;
+    right: 8px;
+    width: auto;
+    bottom: calc(42dvh + 14px);
+    padding: 10px 12px;
+  }
+
+  .bottom-status-pill {
+    display: none;
+  }
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Kelenna Science 3D" />
+  <meta name="theme-color" content="#060709" />
+  <link rel="manifest" href="./manifest.json" />
+  <title>Kelenna's 4th Grade Science 3D Cyber-Lab — Dunbar Middle School (Dickinson ISD)</title>
+
+  <!-- Google Fonts: Orbitron & Inter (from Vespa-X09 Cyber-Organic Reference) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./src/styles/lab-theme.css" />
+  <!-- Three.js r128 WebGL 2.0 Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- Full-Bleed 3D WebGL 2.0 Stage -->
+    <div class="viewport-container">
+      <canvas id="three-canvas"></canvas>
+    </div>
+
+    <!-- Subtle CRT / Scanline Atmosphere Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Top Aerospace Telemetry Header Bar -->
+    <header class="top-header">
+      <div class="cyber-panel brand-cluster">
+        <div class="beacon-wrap">
+          <div class="beacon-ping" id="status-indicator-ping"></div>
+          <div class="beacon-dot" id="status-indicator-dot"></div>
+        </div>
+        <button class="cyber-btn active" id="open-hub-btn" title="Open All 12 TEKS Modules">
+          <span>🐊</span> <span class="font-cyber">ALL 12 MODULES</span>
+        </button>
+        <div style="min-width:0;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="teks-badge" id="teks-badge">TEKS 4.6A</span>
+            <h1 class="module-header-title" id="module-header-title">⚖️ Physical Properties of Matter</h1>
+          </div>
+          <div class="header-subline font-mono-tech">
+            <span>DUNBAR 5E CYBER-LAB</span>
+            <span style="color:#475569;">|</span>
+            <span id="local-anchor-pill" style="color:#38bdf8;font-weight:700;">📍 Galveston Bay Marine Lab</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dickinson ISD 5E Instructional Model + Dedicated Narrated Vocabulary Lab -->
+      <nav class="cyber-panel stage-tabs" aria-label="5E Lesson Stages & Vocabulary">
+        <button class="stage-tab active" data-stage="engage">1. ENGAGE</button>
+        <button class="stage-tab" data-stage="explore">2. EXPLORE</button>
+        <button class="stage-tab" data-stage="explain">3. EXPLAIN</button>
+        <button class="stage-tab" data-stage="vocab">🗣️ VOCAB LAB</button>
+        <button class="stage-tab" data-stage="elaborate">4. ELABORATE</button>
+        <button class="stage-tab" data-stage="evaluate">5. EVALUATE</button>
+      </nav>
+
+      <!-- System Actions & Audio/Dust Toggles -->
+      <div class="cyber-panel header-actions">
+        <button class="cyber-btn" id="open-notebook-btn" title="Open Kelenna's Interactive Science Notebook">
+          📓 <span class="font-cyber">NOTEBOOK</span>
+        </button>
+        <button class="cyber-btn active" id="dust-btn" title="Toggle Ambient Plasma Dust Particles">
+          ✨ <span class="font-cyber">DUST</span>
+        </button>
+        <button class="cyber-btn active" id="mute-btn" title="Toggle Neural HD Voice & Sound Effects">
+          🔊 <span class="font-cyber">AUDIO ON</span>
+        </button>
+        <button class="cyber-btn" id="reset-cam-btn" title="Reset 3D Camera Angle">
+          🎯 <span class="font-cyber">RESET</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Daily "I Can" Mastery Objective & 4-Color Core Energy Theme Bar -->
+    <section class="cyber-panel ican-banner">
+      <div class="ican-text" id="ican-text">
+        <strong>I CAN</strong> classify and describe matter using observable physical properties.
+      </div>
+      <div class="theme-pills" title="Switch Core Energy Harmonic Theme">
+        <span class="font-cyber" style="font-size:0.64rem;color:#94a3b8;margin-right:4px;">THEME:</span>
+        <button class="theme-dot-btn active" data-theme="amber" style="background:#f59e0b;box-shadow:0 0 8px #f59e0b;" title="Amber Core"></button>
+        <button class="theme-dot-btn" data-theme="cyan" style="background:#00f0ff;box-shadow:0 0 8px #00f0ff;" title="Cyan Core"></button>
+        <button class="theme-dot-btn" data-theme="crimson" style="background:#f43f5e;box-shadow:0 0 8px #f43f5e;" title="Crimson Core"></button>
+        <button class="theme-dot-btn" data-theme="emerald" style="background:#10b981;box-shadow:0 0 8px #10b981;" title="Emerald Core"></button>
+      </div>
+    </section>
+
+    <!-- Live Digital Aerospace Telemetry Strip -->
+    <div class="telemetry-strip" id="telemetry-strip"></div>
+
+    <!-- Cinematic 3D Video Scrubber & Live Subtitle HUD (Engage & Explain Stages) -->
+    <div class="cyber-panel video-hud" id="video-hud">
+      <div class="subtitle-box">
+        <span class="subtitle-speaker" id="subtitle-speaker">🎙️ DUNBAR 3D NEURAL GUIDE</span>
+        <span id="subtitle-text">Tap "Play 3D Video" to start the guided 3D phenomenon tour with human-like neural voiceover and sound!</span>
+      </div>
+      <div class="scrubber-row">
+        <button class="play-btn" id="play-btn">▶ PLAY 3D VIDEO</button>
+        <input type="range" class="timeline-slider" id="timeline-slider" min="0" max="45" step="0.1" value="0" />
+        <span class="time-readout" id="time-readout">0:00 / 0:45</span>
+      </div>
+    </div>
+
+    <!-- Bottom Interaction Status Bar (from Vespa-X09 Honeybee) -->
+    <div class="cyber-panel bottom-status-pill font-mono-tech">
+      <span style="color:#f8fafc;font-weight:700;">✥ DRAG TO ORBIT</span>
+      <span style="color:#475569;">•</span>
+      <span>SCROLL / PINCH TO ZOOM</span>
+      <span style="color:#475569;">•</span>
+      <span style="color:var(--theme-color);font-weight:700;" class="font-cyber">NEURAL HD VOICE & 3D KINEMATICS ACTIVE</span>
+    </div>
+
+    <!-- Floating Right Cyber Control Dashboard (Chromebook) / Collapsible Bottom Sheet (iPhone 14/15) -->
+    <aside class="cyber-panel lab-panel" id="lab-panel">
+      <div class="panel-header" id="panel-header">
+        <div class="panel-title" id="panel-title">🎬 1. ENGAGE — PHENOMENON HOOK</div>
+        <button class="sheet-toggle-btn" id="sheet-toggle-btn">▼ Minimize</button>
+      </div>
+      <div class="panel-body" id="panel-body"></div>
+    </aside>
+
+    <!-- 12-Module Master Suite Hub Modal -->
+    <div class="modal-backdrop hidden" id="hub-modal">
+      <div class="modal-window">
+        <div class="modal-top">
+          <h2>🐊 KELENNA'S 4TH GRADE SCIENCE 3D MASTER SUITE — DUNBAR MIDDLE SCHOOL</h2>
+          <button class="modal-close" id="close-hub-btn">✕ CLOSE</button>
+        </div>
+        <div class="modal-scroll" id="hub-content"></div>
+      </div>
+    </div>
+
+    <!-- Interactive Science Notebook Modal -->
+    <div class="modal-backdrop hidden" id="notebook-modal">
+      <div class="modal-window">
+        <div class="modal-top">
+          <h2>📓 KELENNA'S INTERACTIVE SCIENCE NOTEBOOK & VOCABULARY</h2>
+          <button class="modal-close" id="close-notebook-btn">✕ CLOSE</button>
+        </div>
+        <div class="modal-scroll" id="notebook-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

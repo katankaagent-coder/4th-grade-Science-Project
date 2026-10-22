@@ -1,0 +1,25 @@
+{
+  "name": "opus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "texts": "node tools/collect-texts.mjs",
+    "voices": "python tools/voices.py",
+    "lint": "node tools/lint-language.mjs",
+    "build": "node tools/build.mjs",
+    "build:fast": "node tools/build.mjs --no-voice",
+    "offline": "node tools/offline-check.mjs",
+    "all": "npm run texts && npm run voices && npm run lint && npm run build && npm run offline"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/orbitron": "^5.3.0",
+    "esbuild": "^0.28.2",
+    "three": "^0.186.1"
+  }
+}
