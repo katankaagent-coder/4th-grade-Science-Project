@@ -136,8 +136,9 @@ export class Player {
     });
     this.pendingEvents = new Set();
     const create = app.scenes[lesson.id];
+    app.stage.clearContent();
     this.scene = create(this.kit);
-    app.stage.setContent(this.scene.root);
+    app.stage.content.add(this.scene.root);
     this.unsubUpdate = app.stage.onUpdate((dt, t) => this.scene.update?.(dt, t));
     const wide = this.scene.shots?.wide || { pos: [0, 4, 10], look: [0, 1, 0] };
     app.stage.flyTo(wide.pos, wide.look, 1600);
@@ -203,7 +204,7 @@ export class Player {
     const go = h('button', { class: 'btn primary big' }, "Let's go! ➜");
     const ladder = h('ol', { class: 'ladder' }, lesson.ladder.map((r, i) => h('li', { style: { '--i': i } }, r)));
     this.panel(
-      h('div', { class: 'intro' }, h('div', { class: 'big-q' }, h('span', { class: 'bq-label' }, 'Big Question'), h('p', {}, lesson.bigQuestion), speakBtn(this.app, lesson.bigQuestion)), h('details', { class: 'ladder-wrap' }, h('summary', {}, '🪜 Idea ladder (what we will climb)'), ladder), go)
+      h('div', { class: 'intro' }, h('div', { class: 'big-q' }, h('span', { class: 'bq-label' }, 'Big Question'), h('p', {}, lesson.bigQuestion), speakBtn(this.app, lesson.bigQuestion)), h('details', { class: 'ladder-wrap' }, h('summary', {}, '🧗 Idea ladder (what we will climb)'), ladder), go)
     );
     this.caption(lesson.bigQuestion);
     this.app.voice.say(lesson.bigQuestion, (i) => this.highlight(i));
@@ -237,6 +238,7 @@ export class Player {
   async playStep(step) {
     const { app, lesson } = this;
     this.drawPath(step.id);
+    this.stepPhase = step.phase;
     this.setPhase(step.phase, step.title);
     this.kit.ui.clear();
     if (step.shot && this.scene.shots[step.shot]) {
@@ -259,6 +261,7 @@ export class Player {
         await this.guard(askQuestion(host, b.check, { app, key: `${lesson.id}:${step.id}:c${bi}`, lessonId: lesson.id, tag: 'Brain check' }));
         this.panel();
       } else if (b.wiggle) await this.wiggle();
+      if (b.predict || b.task || b.wiggle) this.setPhase(step.phase, step.title);
     }
     progress.stepDone(lesson.id, step.id);
     this.xpEl.textContent = `⚡ ${progress.get().xp}`;
@@ -273,7 +276,7 @@ export class Player {
 
   async predict(p) {
     const { app } = this;
-    this.setPhase('wonder', 'Make a guess');
+    this.setPhase(this.stepPhase || 'wonder', 'Make a guess');
     const opts = h('div', { class: 'opt-grid' });
     let choose;
     const chosen = new Promise((r) => (choose = r));
@@ -307,7 +310,7 @@ export class Player {
 
   async task(t) {
     const { app } = this;
-    this.setPhase('play', 'Your turn');
+    this.setPhase(this.stepPhase || 'play', 'Your turn');
     const skip = h('button', { class: 'btn ghost sm hidden' }, 'Skip ⏭');
     const hint = t.hint ? h('button', { class: 'btn ghost sm', onclick: () => app.voice.say(t.hint) }, '💡 Hint') : null;
     this.panel(h('div', { class: 'task' }, h('span', { class: 'q-tag' }, '🎮 Your turn'), h('p', { class: 'task-goal' }, t.goal), h('div', { class: 'row' }, hint, skip)));

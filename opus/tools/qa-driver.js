@@ -20,35 +20,47 @@
   };
 
   // Generic task solver: tries scene buttons, sliders across their range, taps and drags on registered objects.
-  async function solveTask() {
-    const app = window.__app;
-    const scene = app.player.scene;
-    const stage = app.stage;
+  const shown = (o) => {
+    for (let x = o; x; x = x.parent) if (!x.visible) return false;
+    return true;
+  };
+
+  // Acts like a child: taps things, drags things over the tappable things, slides sliders.
+  // Tray buttons are pressed only in a final attempt (they are often "reset" buttons).
+  async function solveTask(attempt) {
+    const stage = window.__app.stage;
+    const taps = [...stage.tapTargets].filter(([o]) => shown(o));
+    const P = window.__app.stage.camera.position.constructor;
+    const world = (o) => o.getWorldPosition(new P());
+    for (const [obj, fn] of taps) {
+      fn(world(obj));
+      await sleep(1500);
+    }
+    for (const [obj, { opts }] of [...stage.dragTargets].filter(([o]) => shown(o))) {
+      opts.onStart?.();
+      const spots = taps.length ? taps.map(([o]) => world(o)) : [new P(-2, 0, 0), new P(0, 0, 0), new P(2, 0, 0)];
+      for (const p of spots) {
+        for (let k = 1; k <= 5; k++) {
+          opts.onMove?.(obj.position.clone().lerp(new P(p.x, obj.position.y, p.z), k / 5));
+          await sleep(60);
+        }
+        await sleep(500);
+      }
+      opts.onEnd?.();
+    }
     const r = document.querySelector('.tray input[type=range]');
     if (r) {
       const min = +r.min, max = +r.max;
       for (const f of [0, 0.5, 1, 0.25, 0.75, 1]) {
         await setRange(min + (max - min) * f);
-        await sleep(250);
+        await sleep(400);
       }
     }
-    for (const b of document.querySelectorAll('.tray .tool-btn')) {
-      b.click();
-      await sleep(600);
-    }
-    for (const [obj, fn] of [...stage.tapTargets]) {
-      fn(obj.getWorldPosition(new obj.position.constructor()));
-      await sleep(900);
-    }
-    for (const [obj, { opts }] of [...stage.dragTargets]) {
-      const P = obj.position.constructor;
-      const pts = Object.values(scene.points || {});
-      opts.onStart?.();
-      for (const p of pts) {
-        opts.onMove?.(new P(p[0], obj.position.y, p[2]));
-        await sleep(150);
+    if (attempt > 0) {
+      for (const b of document.querySelectorAll('.tray button')) {
+        b.click();
+        await sleep(800);
       }
-      opts.onEnd?.();
     }
   }
 
@@ -56,8 +68,14 @@
     const app = window.__app;
     const L = app.lessons[lessonIdx];
     const log = [];
-    const allQ = [...L.quiz, ...L.steps.flatMap((s) => s.beats.filter((b) => b.check).map((b) => b.check))];
-    const findQ = (t) => allQ.find((q) => q.q === t);
+    const ready = app.lessons.filter((l) => !l.stub);
+    const allQ = ready.flatMap((l) => [...l.quiz, ...l.steps.flatMap((s) => s.beats.filter((b) => b.check).map((b) => b.check))]);
+    const unknown = new Set();
+    const onScreen = (q) => {
+      const first = q.options?.[0]?.t ?? q.items?.[0]?.t ?? q.items?.[0];
+      return first == null || document.querySelector('.q-card')?.innerText.includes(first);
+    };
+    const findQ = (t) => allQ.filter((q) => q.q === t).find(onScreen) || allQ.find((q) => q.q === t);
     let lastKey = '', same = 0, taskTries = 0;
     for (let i = 0; i < maxIters; i++) {
       await sleep(400);
@@ -90,7 +108,7 @@
       }
       const goal = document.querySelector('.task-goal')?.innerText;
       if (goal) {
-        if (taskTries++ < 2) await solveTask();
+        if (taskTries < 2) await solveTask(taskTries++);
         else {
           const skip = btn(/Skip/);
           if (skip) {
@@ -142,7 +160,7 @@
           }
           btn(/Check/)?.click();
         }
-      } else if (qt) log.push('UNKNOWN QUESTION ' + qt);
+      } else if (qt && !unknown.has(qt)) unknown.add(qt), log.push('UNKNOWN QUESTION ' + qt);
     }
     return { log, errs: window.__errs, xp: app.progress.get().xp, fps: Math.round(app.stage.fps || 0) };
   };

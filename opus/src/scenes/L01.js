@@ -195,27 +195,38 @@ export default function createScene(kit) {
     }
   });
 
+  // Each new motion claims the item; an older motion still running stops where it is.
+  // Without this, a fast reset during a drop leaves the item stuck and untappable.
+  const claim = (it) => (it.seq = (it.seq || 0) + 1);
+  const glide = (it, s, ms, fn, ease) => kit.animate(ms, (k) => it.seq === s && fn(k), ease).then(() => it.seq === s);
+  const glideY = (it, s, y, ms, ease) => {
+    const y0 = it.mesh.position.y;
+    return glide(it, s, ms, (k) => (it.mesh.position.y = y0 + (y - y0) * k), ease);
+  };
+
   async function drop(it) {
     if (it.where === 'tank' || it.busy) return;
+    const s = claim(it);
     it.busy = true;
     bobbing.delete(it);
     const from = it.mesh.position.clone();
     const to = new THREE.Vector3(it.slot, TANK.top + 0.9, 0);
     kit.sfx('whoosh');
-    await kit.animate(700, (k) => {
+    const arc = (k) => {
       it.mesh.position.lerpVectors(from, to, k);
       it.mesh.position.y += Math.sin(k * Math.PI) * 0.9;
-    }, 'inOut');
+    };
+    if (!(await glide(it, s, 700, arc, 'inOut'))) return;
     // fall to the water
-    await kit.tween(it.mesh, { 'position.y': TANK.top + it.half * 0.3 }, 260, 'in');
+    if (!(await glideY(it, s, TANK.top + it.half * 0.3, 260, 'in'))) return;
     splash(it.slot);
     if (it.floats) {
-      await kit.tween(it.mesh, { 'position.y': TANK.top - it.floatDepth - 0.18 }, 260, 'out');
-      await kit.tween(it.mesh, { 'position.y': TANK.top - it.floatDepth }, 600, 'back');
+      if (!(await glideY(it, s, TANK.top - it.floatDepth - 0.18, 260, 'out'))) return;
+      if (!(await glideY(it, s, TANK.top - it.floatDepth, 600, 'back'))) return;
       bobbing.add(it);
       kit.sfx('bubble');
     } else {
-      await kit.tween(it.mesh, { 'position.y': TANK.floor + it.half + 0.02 }, 1300, 'out');
+      if (!(await glideY(it, s, TANK.floor + it.half + 0.02, 1300, 'out'))) return;
       kit.sfx('thud');
     }
     it.where = 'tank';
@@ -226,14 +237,16 @@ export default function createScene(kit) {
   }
 
   async function backToShelf(it) {
+    const s = claim(it);
     bobbing.delete(it);
     it.busy = true;
     const from = it.mesh.position.clone();
     const to = shelfPos(it);
-    await kit.animate(700, (k) => {
+    const arc = (k) => {
       it.mesh.position.lerpVectors(from, to, k);
       it.mesh.position.y += Math.sin(k * Math.PI) * 0.8;
-    }, 'inOut');
+    };
+    if (!(await glide(it, s, 700, arc, 'inOut'))) return;
     it.mesh.rotation.set(0, 0, 0);
     it.where = 'shelf';
     it.busy = false;
@@ -267,14 +280,16 @@ export default function createScene(kit) {
   async function weigh(it) {
     if (it.busy) return;
     if (onScale && onScale !== it) backToShelf(onScale);
-    if (it.where === 'tank') bobbing.delete(it);
+    const s = claim(it);
+    bobbing.delete(it);
     it.busy = true;
     const from = it.mesh.position.clone();
     const to = new THREE.Vector3(SCALE.x, SCALE.top + it.half, SCALE.z);
-    await kit.animate(800, (k) => {
+    const arc = (k) => {
       it.mesh.position.lerpVectors(from, to, k);
       it.mesh.position.y += Math.sin(k * Math.PI) * 1.0;
-    }, 'inOut');
+    };
+    if (!(await glide(it, s, 800, arc, 'inOut'))) return;
     it.mesh.rotation.set(0, 0, 0);
     it.where = 'scale';
     it.busy = false;
@@ -336,14 +351,16 @@ export default function createScene(kit) {
 
   async function grabNail() {
     const nail = items.nail;
-    stuck = nail;
+    const s = claim(nail);
     nail.busy = true;
     kit.sfx('magnet');
     const from = nail.mesh.position.clone();
-    await kit.animate(250, (k) => {
+    const snap = (k) => {
       const to = magnet.position.clone().add(new THREE.Vector3(0, -0.15, 0));
       nail.mesh.position.lerpVectors(from, to, k * k);
-    });
+    };
+    if (!(await glide(nail, s, 250, snap))) return;
+    stuck = nail;
     kit.sfx('clank');
     nail.where = 'magnet';
     nail.tag.setText('Iron nail: STUCK!');
@@ -528,7 +545,7 @@ export default function createScene(kit) {
     releaseNail();
     onScale = null;
     readout.setText('0 g');
-    await Promise.all(Object.values(items).filter((it) => it.where !== 'shelf').map((it) => backToShelf(it)));
+    await Promise.all(Object.values(items).filter((it) => it.where !== 'shelf' || it.busy).map((it) => backToShelf(it)));
   }
 
   // ---------------- cues used by the lesson script ----------------

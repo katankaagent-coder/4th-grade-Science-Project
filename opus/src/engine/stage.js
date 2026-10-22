@@ -54,6 +54,11 @@ export class Stage {
     new ResizeObserver(() => this._resize()).observe(container);
     this._fps = { frames: 0, time: 0, low: 0 };
     r.setAnimationLoop(() => this._tick());
+    // Some webviews stop animation frames when not on screen; keep lesson animations finishing.
+    this._lastTick = performance.now();
+    setInterval(() => {
+      if (performance.now() - this._lastTick > 300) this._tick(true);
+    }, 250);
   }
 
   _buildStudio() {
@@ -145,7 +150,8 @@ export class Stage {
     return () => this.updaters.delete(fn);
   }
 
-  _tick() {
+  _tick(fallback = false) {
+    this._lastTick = performance.now();
     const dt = Math.min(this.clock.getDelta(), 0.05);
     const t = this.clock.elapsedTime;
     this.rings.rotation.y += dt * 0.05;
@@ -154,7 +160,7 @@ export class Stage {
     for (const fn of this.updaters) fn(dt, t);
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
-    this._adapt(dt);
+    if (!fallback) this._adapt(dt);
   }
 
   _adapt(dt) {
