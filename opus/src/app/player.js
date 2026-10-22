@@ -95,11 +95,13 @@ export class Player {
   async open(lesson) {
     const { app } = this;
     this.lesson = lesson;
+    app.voice.loadLesson(lesson.id);
     this.run++;
     const runId = this.run;
     app.stage.setStudioVisible(true);
     app.vespa.setVisible(true);
     app.vespa.setExplode(0);
+    app.vespa.setSize(0.75);
 
     this.root = h('div', { class: 'player' });
     const back = h('button', { class: 'icon-btn', 'aria-label': 'Back to map', onclick: () => this.exit() }, '⟵');
@@ -136,6 +138,7 @@ export class Player {
     const create = app.scenes[lesson.id];
     this.scene = create(this.kit);
     app.stage.setContent(this.scene.root);
+    this.unsubUpdate = app.stage.onUpdate((dt, t) => this.scene.update?.(dt, t));
     const wide = this.scene.shots?.wide || { pos: [0, 4, 10], look: [0, 1, 0] };
     app.stage.flyTo(wide.pos, wide.look, 1600);
     app.vespa.goHome([2.4, 2.4, 2]);
@@ -151,6 +154,8 @@ export class Player {
   exit() {
     this.run++;
     this.app.voice.stop();
+    this.unsubUpdate?.();
+    this.unsubUpdate = null;
     this.kit?.dispose();
     this.scene?.dispose?.();
     this.app.stage.clearContent();
@@ -178,10 +183,8 @@ export class Player {
   async flow(lesson) {
     await this.intro(lesson);
     await this.warmUp(lesson);
-    const order = ['wonder', 'play', 'why', 'words', 'useit'];
-    const steps = [...lesson.steps].sort((a, b) => order.indexOf(a.phase) - order.indexOf(b.phase));
-    const before = steps.filter((s) => s.phase !== 'useit');
-    const after = steps.filter((s) => s.phase === 'useit');
+    const before = lesson.steps.filter((s) => s.phase !== 'useit');
+    const after = lesson.steps.filter((s) => s.phase === 'useit');
     let count = 0;
     for (const step of before) {
       await this.playStep(step);

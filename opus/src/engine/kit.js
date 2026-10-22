@@ -25,10 +25,12 @@ function resolvePath(obj, path) {
 
 export function createKit({ stage, audio, tray, vespa, emit }) {
   const tweens = new Set();
-  const unsub = stage.onUpdate((dt) => {
+  // Tweens run on the wall clock so slow devices finish on time (just with fewer frames).
+  const unsub = stage.onUpdate(() => {
+    const now = performance.now();
     for (const tw of [...tweens]) {
-      tw.e += dt * 1000;
-      const k = Math.min(1, tw.e / tw.ms);
+      tw.t0 ??= now;
+      const k = Math.min(1, (now - tw.t0) / tw.ms);
       tw.step(tw.ease(k));
       if (k >= 1) {
         tweens.delete(tw);
@@ -59,7 +61,7 @@ export function createKit({ stage, audio, tray, vespa, emit }) {
     });
   }
 
-  const wait = (ms) => animate(ms, () => {});
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
   const kit = {
     THREE,

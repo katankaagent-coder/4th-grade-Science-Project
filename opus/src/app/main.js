@@ -59,6 +59,7 @@ window.__app = app;
 // First screen: one tap is needed so iPhone allows sound.
 function splash() {
   app.stage.flyTo([0, 2.6, 6], [0, 1.8, 0], 10);
+  app.vespa.setSize(1.1);
   app.vespa.goHome([0, 1.9, 2.2]);
   const start = h(
     'button',

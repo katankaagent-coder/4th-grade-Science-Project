@@ -190,17 +190,19 @@ function lintLesson(lesson, opusRoot, report) {
     if (!VALID_PHASES.has(phase)) {
       warnings.push(`${id}/${step.id}: invalid phase "${phase}"`);
     } else {
+      // play and why may alternate; wonder must come first and useit last.
       const ord = PHASE_ORDER[phase];
-      if (ord < lastPhase) {
-        warnings.push(`${id}/${step.id}: phase "${phase}" out of order`);
+      if ((phase === 'wonder' && lastPhase > 0) || (phase !== 'useit' && lastPhase === 4)) {
+        warnings.push(`${id}/${step.id}: phase "${phase}" out of order (wonder first, useit last)`);
       }
-      lastPhase = ord;
+      lastPhase = Math.max(lastPhase, ord);
     }
 
     let seenPredict = false;
     for (let bi = 0; bi < (step.beats ?? []).length; bi++) {
       const beat = step.beats[bi];
-      const present = BEAT_KEYS.filter((k) => beat[k] != null && beat[k] !== false);
+      let present = BEAT_KEYS.filter((k) => beat[k] != null && beat[k] !== false);
+      if (beat.say != null) present = present.filter((k) => k !== 'cue');
       if (present.length !== 1) {
         errors.push(`${id}/${step.id}/beat[${bi}]: need exactly one beat key (${present.join(', ') || 'none'})`);
       }
@@ -302,6 +304,10 @@ async function main() {
 
   const report = { lessons: [], totals: { errors: 0, warnings: 0 } };
   for (const lesson of lessons) {
+    if (lesson.stub) {
+      console.log(`${lesson.id}: stub (skipped)`);
+      continue;
+    }
     lintLesson(lesson, args.root, report);
   }
 

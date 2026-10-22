@@ -32,9 +32,23 @@ function collectFromQuestion(set, q) {
   }
 }
 
+export function textsForLesson(lesson) {
+  const set = new Set();
+  collectFromLesson(set, lesson);
+  return set;
+}
+
+export function textsForSystem(SYSTEM) {
+  const set = new Set();
+  for (const v of Object.values(SYSTEM)) for (const s of [].concat(v)) add(set, s);
+  return set;
+}
+
 function collectFromLesson(set, lesson) {
+  if (lesson.stub) return;
   add(set, lesson.bigQuestion);
   add(set, lesson.teachBack?.prompt);
+  for (const p of lesson.teachBack?.pieces ?? []) add(set, p);
 
   for (const step of lesson.steps ?? []) {
     add(set, step.title);
@@ -51,6 +65,7 @@ function collectFromLesson(set, lesson) {
   }
 
   for (const v of lesson.vocab ?? []) {
+    add(set, v.word);
     add(set, v.means);
     add(set, v.example);
     add(set, v.test);
@@ -79,6 +94,8 @@ async function main() {
   for (const lesson of lessons) {
     collectFromLesson(set, lesson);
   }
+  const { SYSTEM } = await import(pathToFileURL(join(dirname(content), 'system.js')).href);
+  for (const v of Object.values(SYSTEM)) for (const s of [].concat(v)) add(set, s);
 
   const texts = [...set].sort();
   const totalChars = texts.reduce((n, t) => n + t.length, 0);
@@ -92,7 +109,9 @@ async function main() {
   console.log(`Wrote ${outPath}`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

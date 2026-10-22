@@ -78,7 +78,7 @@ async def synthesize_one(text: str, mp3_path: Path, json_path: Path) -> None:
                 "-ar",
                 "22050",
                 "-b:a",
-                "32k",
+                "20k",
                 str(mp3_path),
             ],
             check=True,

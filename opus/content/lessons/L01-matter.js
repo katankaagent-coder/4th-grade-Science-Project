@@ -1,0 +1,473 @@
+// Lesson 1 - GOLD STANDARD. Every other lesson copies this tone, rhythm, and depth.
+export default {
+  id: 'L01', num: 1, unit: 1, unitTitle: 'Matter',
+  title: 'What Is Stuff Made Of?',
+  testTitle: 'Physical Properties of Matter',
+  teks: ['4.6A'],
+  icon: '⚖️', color: '#f59e0b',
+  bigQuestion: 'Why does a giant log float, but a tiny pebble sinks?',
+  ladder: [
+    'Everything is made of stuff. Scientists call it matter.',
+    'We can measure how much stuff is in something. That is mass.',
+    'Stuff can be packed tight or packed loose.',
+    'Packed tighter than water sinks. Packed looser floats.',
+    'Magnets pull some metals. Heat changes ice to water to steam.',
+    'These clues are called physical properties. They help us sort things.',
+  ],
+
+  steps: [
+    {
+      id: 's1', phase: 'wonder', title: 'The Bayou Mystery', shot: 'bayou',
+      beats: [
+        { say: 'Picture this. A big storm just rolled through Dickinson.' },
+        { say: 'You walk along Dickinson Bayou to see what washed up.' },
+        { say: 'You spot a giant log and a tiny pebble.', point: 'log' },
+        { say: 'The giant log is way heavier than the pebble.' },
+        { predict: { q: 'If we drop both in water, which one sinks?', options: [{ t: 'The giant log' }, { t: 'The tiny pebble', correct: true }, { t: 'Both of them sink' }] } },
+        { say: 'Here goes the giant log!', shot: 'tank', cue: 'dropLog' },
+        { cue: 'idle', wait: false },
+        { say: 'And now the tiny pebble.', cue: 'dropPebble', point: 'tank' },
+        { verdict: { right: 'You called it! The pebble sinks, and the giant log floats.', wrong: 'Surprise! The giant log floats, and the tiny pebble sinks.' } },
+        { say: 'So being heavy is not what makes things sink. Weird, right?' },
+        { say: 'Let us find the real secret.' },
+      ],
+    },
+    {
+      id: 's2', phase: 'play', title: 'Sink or Float Lab', shot: 'shelf',
+      beats: [
+        { cue: 'reset', wait: true },
+        { say: 'Your turn to test things, like a real scientist.', cue: 'dropMode' },
+        { say: 'We have a log, a pebble, an iron nail, and a pool noodle.', point: 'shelf' },
+        { predict: { q: 'Will the little iron nail sink or float?', options: [{ t: 'Sink', correct: true }, { t: 'Float' }] } },
+        { task: { goal: 'Tap each thing on the shelf to drop it in the water.', event: 'allDropped', hint: 'Tap the log, the pebble, the nail, and the noodle.' } },
+        { verdict: { right: 'Yes! The nail sank, just like you guessed.', wrong: 'Surprise! The little nail sank right to the bottom.' } },
+        { say: 'Look closely. Two things floated, and two things sank.', shot: 'tank' },
+        { say: 'The log and the noodle float. The pebble and the nail sink.' },
+        { say: 'Floating or sinking is a clue about what a thing is like.' },
+        { say: 'Scientists call clues like this properties.' },
+      ],
+    },
+    {
+      id: 's3', phase: 'why', title: 'Everything Is Stuff', shot: 'wide',
+      beats: [
+        { cue: 'idle' },
+        { say: 'Let us start at the very beginning.' },
+        { say: 'Everything around you is made of stuff.' },
+        { say: 'Your shoes, the water, the air, and even you!' },
+        { say: 'Scientists have a name for stuff. They call it matter.' },
+        { say: 'Matter is anything that takes up space.' },
+        { say: 'Air takes up space too. That is why a balloon puffs up.' },
+        { say: 'All matter is made of tiny pieces called particles.' },
+        { say: 'They are way too small to see, even with a magnifying glass.' },
+        {
+          check: {
+            type: 'one', q: 'Which of these are made of matter?',
+            options: [
+              { t: 'A rock, water, and air. All of them!', correct: true },
+              { t: 'Only the rock', why: 'Water and air are stuff too. They take up space, so they are matter.' },
+              { t: 'Only the rock and the water', why: 'Air takes up space too. A balloon proves it!' },
+            ],
+            explain: 'Rocks, water, and air all take up space. So they are all matter.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's4', phase: 'why', title: 'How Much Stuff? Mass', shot: 'scale',
+      beats: [
+        { cue: 'reset', wait: true },
+        { say: 'Here is a fun question. How much stuff is in something?', cue: 'weighMode' },
+        { say: 'The amount of stuff in a thing is called mass.' },
+        { say: 'We measure mass with a scale, in units called grams.', point: 'scale' },
+        { say: 'A paper clip is about one gram. A sneaker is about three hundred grams.' },
+        { predict: { q: 'Which has more mass: the big log or the tiny pebble?', options: [{ t: 'The big log', correct: true }, { t: 'The tiny pebble' }, { t: 'They are the same' }] } },
+        { task: { goal: 'Tap the log and the pebble to weigh them.', event: 'logPebbleWeighed', hint: 'Tap the log first. Then tap the pebble.' } },
+        { verdict: { right: 'Right! The log has 900 grams. The pebble has only 30.', wrong: 'The log wins with 900 grams. The pebble has only 30 grams.' } },
+        { say: 'So the log has way more mass. But it still floats!' },
+        { say: 'That means mass alone does not decide sink or float.' },
+      ],
+    },
+    {
+      id: 's5', phase: 'why', title: 'Packed Tight or Loose', shot: 'zoom',
+      beats: [
+        { cue: 'idle' },
+        { say: 'Here is the real secret. It is about how packed the stuff is.' },
+        { say: 'Let us zoom way in on wood, water, and rock.', cue: 'packingSlider' },
+        { task: { goal: 'Slide the zoom bar all the way up.', event: 'zoomed', hint: 'Drag the zoom slider to the right.' } },
+        { say: 'Look at the rock. Its particles are packed super tight.', point: 'zoom' },
+        { say: 'Water is packed a little looser.' },
+        { say: 'Wood is packed looser still. It even has tiny air spaces.' },
+        { say: 'Here is the rule. Compare each thing to the same amount of water.' },
+        { say: 'Packed tighter than water? It sinks. Packed looser? It floats.' },
+        { say: 'Scientists call this relative density.' },
+        { say: 'Relative means compared to something else. Here, we compare to water.' },
+      ],
+    },
+    {
+      id: 's6', phase: 'why', title: 'The Tiny Piece Test', shot: 'tank',
+      beats: [
+        { cue: 'hidePacking' },
+        { cue: 'reset', wait: true },
+        { say: 'Let us test our rule with a tricky one.' },
+        { predict: { q: 'We cut a tiny piece off the log. Will it sink or float?', options: [{ t: 'Sink, because it is so small now' }, { t: 'Float', correct: true }] } },
+        { say: 'Snip! Here goes the tiny piece.', cue: 'cutLog' },
+        { say: 'Watch it land.' },
+        { verdict: { right: 'Yes! Even a tiny piece of wood floats.', wrong: 'Surprise! Even a tiny piece of wood floats.' } },
+        { say: 'Big or small, wood is still packed looser than water.' },
+        {
+          check: {
+            type: 'one', q: 'A huge tree trunk floats in the bayou. Why?',
+            options: [
+              { t: 'Wood is packed looser than water.', correct: true },
+              { t: 'It is very heavy.', why: 'Heavy does not make things float. A heavy rock sinks.' },
+              { t: 'It is very long.', why: 'Length is not the reason. A tiny piece of wood floats too.' },
+            ],
+            explain: 'Wood is packed looser than water, so it floats. Big or small!',
+          },
+        },
+      ],
+    },
+    {
+      id: 's7', phase: 'play', title: 'The Magnet Test', shot: 'magnet',
+      beats: [
+        { cue: 'hideChip' },
+        { cue: 'reset', wait: true },
+        { say: 'Here is another property. Some things get pulled by magnets.', cue: 'showMagnet', point: 'shelf' },
+        { say: 'A magnet pulls on some metals, like iron and steel.' },
+        { predict: { q: 'Will the magnet pull the pebble?', options: [{ t: 'Yes' }, { t: 'No', correct: true }] } },
+        { cue: 'magnetMode' },
+        { task: { goal: 'Drag the red magnet over the things on the shelf.', event: 'nailGrabbed', hint: 'Drag the magnet slowly over the nail.' } },
+        { verdict: { right: 'Right! The pebble did not move. Only the iron nail jumped.', wrong: 'Surprise! The pebble stayed put. Only the iron nail jumped up.' } },
+        { say: 'This property is called magnetism.' },
+        { say: 'The log, the pebble, and the noodle do not feel the pull.' },
+        { cue: 'hideMagnet' },
+      ],
+    },
+    {
+      id: 's8', phase: 'why', title: 'Hot, Cold, and Three States', shot: 'states',
+      beats: [
+        { cue: 'reset' },
+        { say: 'One more property: temperature. That is how hot or cold something is.', point: 'states' },
+        { say: 'We measure it with a thermometer, in degrees.' },
+        { say: 'Inside this box are water particles. Right now it is freezing cold.', cue: 'statesMode' },
+        { say: 'Cold particles just jiggle in place. That is a solid, like ice.' },
+        { predict: { q: 'If we heat it up, what will the particles do?', options: [{ t: 'Move faster and spread out', correct: true }, { t: 'Stop moving' }, { t: 'Disappear' }] } },
+        { say: 'Let us turn up the heat.', cue: 'setTemp', args: { t: 120 } },
+        { say: 'Now they slide past each other. The ice melted into a liquid.' },
+        { say: 'More heat!', cue: 'setTemp', args: { t: 240 } },
+        { say: 'Now they zoom everywhere. The water became a gas called steam.' },
+        { verdict: { right: 'You got it! Heat makes particles move faster and spread out.', wrong: 'Surprise! Heat makes particles move faster and spread out.' } },
+        { cue: 'statesTask', wait: true },
+        { task: { goal: 'Use the heat slider to make ice, then water, then steam.', event: 'allStates', hint: 'Slide all the way left for ice. Then slide right.' } },
+        { say: 'Same water, three states: solid, liquid, and gas.' },
+        {
+          check: {
+            type: 'sort', q: 'Sort them by state of matter.',
+            groups: ['Solid', 'Liquid', 'Gas'],
+            items: [{ t: 'Ice cube', g: 0 }, { t: 'Rock', g: 0 }, { t: 'Apple juice', g: 1 }, { t: 'Milk', g: 1 }, { t: 'Steam', g: 2 }, { t: 'Air in a balloon', g: 2 }],
+            explain: 'Solids keep their shape. Liquids flow and take the shape of the cup. Gases spread out to fill any space.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's9', phase: 'useit', title: 'Hurricane Cleanup Crew', shot: 'wide',
+      beats: [
+        { cue: 'idle' },
+        { say: 'Big job time. A hurricane left a mess in a Dickinson yard.' },
+        { say: 'Nails, rocks, and wood chips are all mixed together.' },
+        { say: 'Your crew needs to sort them fast, using properties.' },
+        {
+          check: {
+            type: 'one', q: 'What is the fastest way to pull out all the iron nails?',
+            options: [
+              { t: 'Sweep a magnet over the pile', correct: true },
+              { t: 'Pour water on the pile', why: 'Water helps sort floaters from sinkers. But nails and rocks both sink.' },
+              { t: 'Weigh each piece one by one', why: 'Weighing one by one is super slow. A magnet grabs all the iron at once.' },
+            ],
+            explain: 'Magnetism! A magnet pulls out every iron nail in one sweep.',
+          },
+        },
+        {
+          check: {
+            type: 'one', q: 'Now only rocks and wood chips are left. How can water help?',
+            options: [
+              { t: 'Dump them in water. Wood floats, and rocks sink.', correct: true },
+              { t: 'Water makes the rocks float.', why: 'Rocks are packed tighter than water, so they sink.' },
+              { t: 'Water melts the wood away.', why: 'Water does not melt wood. Wood just floats on top.' },
+            ],
+            explain: 'Relative density! Scoop the floating wood off the top. The rocks stay at the bottom.',
+          },
+        },
+        { say: 'You used magnetism and relative density, like a real scientist!' },
+        { say: 'Properties are clues. Clues help us sort and understand stuff.' },
+      ],
+    },
+  ],
+
+  vocab: [
+    { word: 'Matter', emoji: '🧱', means: 'Anything that takes up space. All the stuff in the world.', example: 'A rock, juice, and the air in a balloon are all matter.', test: 'Matter is anything that has mass and takes up space.' },
+    { word: 'Mass', emoji: '⚖️', means: 'How much stuff is packed into a thing.', example: 'A bowling ball has more mass than a beach ball of the same size.', test: 'Mass is the amount of matter in an object. It is measured in grams using a scale or balance.' },
+    { word: 'Physical property', emoji: '🔎', means: 'A clue about something that you can see, feel, or measure.', example: 'Hard, red, magnetic, floats, and 900 grams are all physical properties.', test: 'A physical property can be observed or measured, such as mass, temperature, magnetism, relative density, and physical state.' },
+    { word: 'Relative density', emoji: '🛟', means: 'How tightly packed something is, compared to the same amount of water.', example: 'A pool noodle is packed looser than water, so it floats.', test: 'Relative density compares an object to water. Objects more dense than water sink. Objects less dense than water float.' },
+    { word: 'Magnetism', emoji: '🧲', means: 'The pull a magnet has on some metals, like iron and steel.', example: 'A magnet sticks to the steel fridge door, but not to a wood table.', test: 'Magnetism is the attraction of a magnet to certain metals, such as iron.' },
+    { word: 'States of matter', emoji: '🧊', means: 'The three forms stuff can be in: solid, liquid, or gas.', example: 'Ice is a solid. Water is a liquid. Steam is a gas.', test: 'A solid has a definite shape. A liquid takes the shape of its container. A gas spreads out to fill any container.' },
+  ],
+
+  quiz: [
+    {
+      type: 'one', staar: true, q: 'A student puts a wood block and a steel spoon in water. The block floats. The spoon sinks. What does this show?',
+      options: [
+        { t: 'The spoon is more dense than water.', correct: true },
+        { t: 'The block has more mass.', why: 'Mass alone does not decide. A heavy log can still float.' },
+        { t: 'The water is too cold.', why: 'The water temperature is not the reason. It is about how packed each thing is.' },
+        { t: 'The spoon is magnetic.', why: 'Being magnetic has nothing to do with floating or sinking.' },
+      ],
+      explain: 'Things packed tighter than water sink. The steel spoon is more dense than water.',
+    },
+    {
+      type: 'one', q: 'Which tool measures mass?',
+      options: [
+        { t: 'A scale or balance', correct: true },
+        { t: 'A thermometer', why: 'A thermometer measures how hot or cold something is.' },
+        { t: 'A ruler', why: 'A ruler measures how long something is.' },
+        { t: 'A magnet', why: 'A magnet tests for magnetism, not mass.' },
+      ],
+      explain: 'A scale or a balance measures mass in grams.',
+    },
+    {
+      type: 'one', q: 'Which tool measures temperature?',
+      options: [
+        { t: 'A thermometer', correct: true },
+        { t: 'A scale', why: 'A scale measures mass, not how hot something is.' },
+        { t: 'A measuring cup', why: 'A measuring cup tells how much liquid you have, not how hot it is.' },
+        { t: 'A magnet', why: 'A magnet tests for magnetism. It cannot tell hot from cold.' },
+      ],
+      explain: 'A thermometer measures temperature in degrees.',
+    },
+    {
+      type: 'pick', q: 'Tap the thing a magnet will pull.',
+      options: [
+        { t: 'Steel paper clip', emoji: '📎', correct: true },
+        { t: 'Pencil', emoji: '✏️', why: 'A pencil is made of wood and graphite. Magnets do not pull it.' },
+        { t: 'Rubber ball', emoji: '🏀', why: 'Rubber is not a metal. Magnets do not pull it.' },
+        { t: 'Plastic cup', emoji: '🥤', why: 'Plastic is not pulled by magnets.' },
+      ],
+      explain: 'Paper clips are made of steel. Steel has iron in it, so magnets pull it.',
+    },
+    {
+      type: 'pick', q: 'Tap the thing that will float in water.',
+      options: [
+        { t: 'Apple', emoji: '🍎', correct: true },
+        { t: 'Rock', emoji: '🪨', why: 'A rock is packed tighter than water, so it sinks.' },
+        { t: 'Coin', emoji: '🪙', why: 'A coin is metal packed tighter than water, so it sinks.' },
+        { t: 'Key', emoji: '🔑', why: 'A metal key is packed tighter than water, so it sinks.' },
+      ],
+      explain: 'An apple has tiny air spaces inside. It is packed looser than water, so it floats.',
+    },
+    {
+      type: 'pick', q: 'Tap the one that is a gas.',
+      options: [
+        { t: 'Steam', emoji: '♨️', correct: true },
+        { t: 'Ice', emoji: '🧊', why: 'Ice is a solid. It keeps its own shape.' },
+        { t: 'Juice', emoji: '🧃', why: 'Juice is a liquid. It flows and takes the shape of its cup.' },
+        { t: 'Rock', emoji: '🪨', why: 'A rock is a solid. It keeps its own shape.' },
+      ],
+      explain: 'Steam is water as a gas. It spreads out to fill the space.',
+    },
+    {
+      type: 'pick', q: 'Tap the solid.',
+      options: [
+        { t: 'Brick', emoji: '🧱', correct: true },
+        { t: 'Milk', emoji: '🥛', why: 'Milk is a liquid. It flows.' },
+        { t: 'Air in a balloon', emoji: '🎈', why: 'Air is a gas. It spreads out to fill the balloon.' },
+        { t: 'Raindrop', emoji: '💧', why: 'A raindrop is liquid water.' },
+      ],
+      explain: 'A brick keeps its own shape. That makes it a solid.',
+    },
+    {
+      type: 'two', q: 'Pick TWO physical properties of a rock.',
+      options: [
+        { t: 'Its mass', correct: true },
+        { t: 'It sinks in water', correct: true },
+        { t: 'Its name', why: 'A name is a word people give it. You cannot see or measure it on the rock.' },
+        { t: 'Who found it', why: 'Who found it does not tell you anything about the rock itself.' },
+      ],
+      explain: 'Mass and sinking are things you can measure or see. They are physical properties.',
+    },
+    {
+      type: 'two', q: 'Pick TWO things that sink in water.',
+      options: [
+        { t: 'A rock', correct: true },
+        { t: 'An iron nail', correct: true },
+        { t: 'A pool noodle', why: 'A pool noodle is foam full of air. It floats.' },
+        { t: 'A wood chip', why: 'Wood is packed looser than water. It floats.' },
+      ],
+      explain: 'Rocks and iron are packed tighter than water, so they sink.',
+    },
+    {
+      type: 'two', staar: true, q: 'A student tests four objects with a magnet. Which TWO are pulled?',
+      options: [
+        { t: 'A steel paper clip', correct: true },
+        { t: 'An iron nail', correct: true },
+        { t: 'A piece of aluminum foil', why: 'Aluminum is a metal, but magnets do not pull it.' },
+        { t: 'A wood craft stick', why: 'Wood is not pulled by magnets.' },
+      ],
+      explain: 'Magnets pull iron, and steel is made mostly of iron.',
+    },
+    {
+      type: 'two', q: 'Pick TWO true facts about mass.',
+      options: [
+        { t: 'Mass is how much stuff is in something.', correct: true },
+        { t: 'Mass can be measured in grams.', correct: true },
+        { t: 'Bigger things always have more mass.', why: 'Not always! A big beach ball has less mass than a small rock.' },
+        { t: 'Mass is measured with a thermometer.', why: 'A thermometer measures temperature. A scale measures mass.' },
+      ],
+      explain: 'Mass is the amount of stuff in a thing. We measure it in grams.',
+    },
+    {
+      type: 'sort', q: 'Sort them: sink or float in water?',
+      groups: ['Sinks', 'Floats'],
+      items: [{ t: 'Rock', g: 0 }, { t: 'Iron nail', g: 0 }, { t: 'Coin', g: 0 }, { t: 'Wood block', g: 1 }, { t: 'Pool noodle', g: 1 }, { t: 'Apple', g: 1 }],
+      explain: 'Things packed tighter than water sink. Things packed looser than water float.',
+    },
+    {
+      type: 'sort', q: 'Sort them: does a magnet pull it?',
+      groups: ['Magnet pulls it', 'Magnet does not pull it'],
+      items: [{ t: 'Iron nail', g: 0 }, { t: 'Steel paper clip', g: 0 }, { t: 'Steel spoon', g: 0 }, { t: 'Plastic spoon', g: 1 }, { t: 'Wood pencil', g: 1 }, { t: 'Rubber band', g: 1 }],
+      explain: 'Magnets pull iron and steel. They do not pull plastic, wood, or rubber.',
+    },
+    {
+      type: 'sort', q: 'Sort them by state of matter.',
+      groups: ['Solid', 'Liquid', 'Gas'],
+      items: [{ t: 'Brick', g: 0 }, { t: 'Ice cube', g: 0 }, { t: 'Orange juice', g: 1 }, { t: 'Bayou water', g: 1 }, { t: 'Steam', g: 2 }, { t: 'Air', g: 2 }],
+      explain: 'Solids keep their shape. Liquids flow. Gases spread out everywhere.',
+    },
+    {
+      type: 'sort', q: 'Sort the tools by what they measure.',
+      groups: ['Mass', 'Temperature', 'Length'],
+      items: [{ t: 'Digital scale', g: 0 }, { t: 'Pan balance', g: 0 }, { t: 'Thermometer', g: 1 }, { t: 'Oven thermometer', g: 1 }, { t: 'Ruler', g: 2 }, { t: 'Tape measure', g: 2 }],
+      explain: 'Scales and balances measure mass. Thermometers measure temperature. Rulers measure length.',
+    },
+    {
+      type: 'order', q: 'Put these in order from coldest to hottest.',
+      items: ['Ice', 'Cold water', 'Warm bath water', 'Steam'],
+      explain: 'Ice is coldest. Heat melts it into water. Lots of heat turns water into steam.',
+    },
+    {
+      type: 'order', q: 'Put the steps of a sink or float test in order.',
+      items: ['Guess if it will sink or float', 'Gently drop it in water', 'Watch what it does', 'Write down what happened'],
+      explain: 'Scientists guess first, then test, then watch, then write it down.',
+    },
+    {
+      type: 'one', staar: true, q: 'Kelenna heats an ice cube in a pan. What happens first?',
+      options: [
+        { t: 'It melts into liquid water.', correct: true },
+        { t: 'It turns right into steam.', why: 'Ice melts into water first. More heat turns the water into steam.' },
+        { t: 'It gets bigger and harder.', why: 'Heat makes ice melt. It does not make it grow.' },
+        { t: 'Nothing happens to it.', why: 'Heat always changes ice. It melts.' },
+      ],
+      explain: 'Heat makes the ice particles move faster. The solid melts into a liquid.',
+    },
+    {
+      type: 'one', q: 'Which one describes a liquid?',
+      options: [
+        { t: 'It flows and takes the shape of its cup.', correct: true },
+        { t: 'It keeps its own shape.', why: 'That is a solid, like a rock or ice.' },
+        { t: 'It spreads out to fill a whole room.', why: 'That is a gas, like air or steam.' },
+        { t: 'It is always hot.', why: 'Liquids can be cold, like ice water.' },
+      ],
+      explain: 'A liquid flows. It takes the shape of whatever it is in.',
+    },
+    {
+      type: 'one', q: 'What makes the particles in water move faster?',
+      options: [
+        { t: 'Heating it up', correct: true },
+        { t: 'Cooling it down', why: 'Cooling makes particles slow down.' },
+        { t: 'Pouring it into a bigger cup', why: 'A bigger cup does not change how fast the particles move.' },
+        { t: 'Weighing it', why: 'Weighing tells mass. It does not change the particles.' },
+      ],
+      explain: 'Heat gives particles energy. They move faster and spread out.',
+    },
+    {
+      type: 'one', staar: true, q: 'A big beach ball and a small rock are on a scale. The rock has more mass. Why?',
+      options: [
+        { t: 'The rock has more stuff packed inside.', correct: true },
+        { t: 'The rock is bigger.', why: 'The beach ball is bigger. But it is mostly air inside.' },
+        { t: 'The beach ball is colder.', why: 'Temperature does not change how much stuff is inside.' },
+        { t: 'Rocks are magnetic.', why: 'Most rocks are not magnetic. And magnetism is not mass.' },
+      ],
+      explain: 'Mass is how much stuff is inside. The small rock is packed full of stuff.',
+    },
+    {
+      type: 'one', q: 'Which question can a magnet help you answer?',
+      options: [
+        { t: 'Is this made of iron or steel?', correct: true },
+        { t: 'How hot is it?', why: 'Use a thermometer to find how hot something is.' },
+        { t: 'Will it float?', why: 'Use water to test floating.' },
+        { t: 'What is its mass?', why: 'Use a scale to find mass.' },
+      ],
+      explain: 'Magnets pull iron and steel. So a magnet tests for those metals.',
+    },
+    {
+      type: 'one', staar: true, q: 'A student wrote: Cork floats. Marble sinks. Ice floats. Which is TRUE?',
+      options: [
+        { t: 'Ice is less dense than water.', correct: true },
+        { t: 'The marble is less dense than water.', why: 'The marble sank. So it is more dense than water.' },
+        { t: 'Cork is more dense than water.', why: 'The cork floated. So it is less dense than water.' },
+        { t: 'All three have the same density.', why: 'They did different things in water. So they are not the same.' },
+      ],
+      explain: 'Ice floats, so it is packed looser than water. That means less dense.',
+    },
+    {
+      type: 'one', q: 'What is matter?',
+      options: [
+        { t: 'Anything that takes up space', correct: true },
+        { t: 'Only things you can hold', why: 'Air is matter too, and you cannot hold it.' },
+        { t: 'Only solids', why: 'Liquids and gases are matter too.' },
+        { t: 'Only heavy things', why: 'Light things like air and feathers are matter too.' },
+      ],
+      explain: 'Matter is anything that takes up space and has mass. That is all stuff!',
+    },
+    {
+      type: 'one', q: 'A juice box sits in the freezer all night. What state will the juice be?',
+      options: [
+        { t: 'A solid', correct: true },
+        { t: 'A gas', why: 'Cold makes particles slow down and lock together. A gas needs lots of heat.' },
+        { t: 'It stays a liquid forever.', why: 'Freezer cold turns juice into a solid, like an ice pop.' },
+      ],
+      explain: 'Cold slows the particles down until they lock in place. The juice freezes solid.',
+    },
+    {
+      type: 'pick', q: 'Tap the best tool to find out how hot your soup is.',
+      options: [
+        { t: 'Thermometer', emoji: '🌡️', correct: true },
+        { t: 'Scale', emoji: '⚖️', why: 'A scale measures mass, not temperature.' },
+        { t: 'Magnet', emoji: '🧲', why: 'A magnet tests for iron, not temperature.' },
+        { t: 'Ruler', emoji: '📏', why: 'A ruler measures length, not temperature.' },
+      ],
+      explain: 'A thermometer measures temperature.',
+    },
+    {
+      type: 'one', q: 'Two cubes are the same size. One floats, and one sinks. What is different?',
+      options: [
+        { t: 'How tightly packed their stuff is', correct: true },
+        { t: 'Their size', why: 'They are the same size, so size is not the reason.' },
+        { t: 'Their color', why: 'Color does not decide sink or float.' },
+      ],
+      explain: 'Same size, different packing. The tightly packed cube is more dense, so it sinks.',
+    },
+  ],
+
+  teachBack: {
+    prompt: 'Teach Vespa why a giant log floats, but a tiny pebble sinks. Tap the ideas in order.',
+    pieces: [
+      'Everything is made of tiny particles of matter.',
+      'Some things have their particles packed tighter than others.',
+      'We compare each thing to the same amount of water.',
+      'The pebble is packed tighter than water, so it sinks.',
+      'The log is packed looser than water, so it floats.',
+    ],
+    decoys: ['Heavy things always sink.', 'Small things always float.'],
+  },
+};

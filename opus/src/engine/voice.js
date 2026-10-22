@@ -1,23 +1,39 @@
 // Narration: plays the embedded neural voice clip for an exact text, with word timings.
 // Falls back to the browser voice when a clip is missing.
 
-let bank = null;
+// Clips live in one JSON block per lesson (id "kvoice-L01", ...) plus "kvoice-common".
+const bank = {};
+const loaded = new Set();
 const urls = new Map();
 
-function loadBank() {
-  if (bank) return bank;
-  const el = document.getElementById('kvoice');
+export function loadVoiceGroup(id) {
+  if (loaded.has(id)) return;
+  loaded.add(id);
+  const el = document.getElementById('kvoice-' + id);
+  if (!el) return;
   try {
-    bank = el ? JSON.parse(el.textContent) : {};
-  } catch {
-    bank = {};
-  }
+    Object.assign(bank, JSON.parse(el.textContent));
+  } catch {}
+  el.textContent = '';
+}
+
+function loadAllGroups() {
+  document.querySelectorAll('script.kvoice').forEach((el) => loadVoiceGroup(el.id.slice(7)));
+}
+
+function loadBank() {
+  loadVoiceGroup('common');
   return bank;
+}
+
+function findEntry(text) {
+  if (!loadBank()[text]) loadAllGroups();
+  return bank[text];
 }
 
 function clipUrl(text) {
   if (urls.has(text)) return urls.get(text);
-  const entry = loadBank()[text];
+  const entry = findEntry(text);
   if (!entry) return null;
   const bin = atob(entry.a);
   const bytes = new Uint8Array(bin.length);
@@ -75,10 +91,15 @@ export class Voice {
   }
 
   has(text) {
-    return !!loadBank()[text];
+    return !!findEntry(text);
+  }
+
+  loadLesson(id) {
+    loadVoiceGroup(id);
   }
 
   stop() {
+    this._token = (this._token || 0) + 1;
     cancelAnimationFrame(this._raf);
     this.el.pause();
     this.el.onended = null;
@@ -97,10 +118,16 @@ export class Voice {
       this._done = resolve;
       const url = clipUrl(text);
       if (url) {
-        const timings = alignTimings(tokens, loadBank()[text].w || []);
+        const timings = alignTimings(tokens, bank[text].w || []);
         this.el.src = url;
         this.el.playbackRate = this.rate;
+        const token = ++this._token;
+        const lastMs = timings.length ? timings[timings.length - 1].end : tokens.length * 400;
+        // If audio stalls (no output device, glitch), move on instead of freezing the lesson.
+        const watchdog = setTimeout(() => finish(), (lastMs + 3000) / this.rate);
         const finish = () => {
+          clearTimeout(watchdog);
+          if (token !== this._token) return resolve();
           cancelAnimationFrame(this._raf);
           onWord?.(tokens.length);
           if (this._done === resolve) this._done = null;
@@ -119,7 +146,10 @@ export class Voice {
           }
           this._raf = requestAnimationFrame(loop);
         };
-        this.el.play().then(loop).catch(() => this._fallback(text, tokens, onWord, resolve));
+        this.el.play().then(loop).catch(() => {
+          clearTimeout(watchdog);
+          if (token === this._token) this._fallback(text, tokens, onWord, resolve);
+        });
       } else {
         this._fallback(text, tokens, onWord, resolve);
       }
@@ -148,7 +178,9 @@ export class Voice {
       for (let i = 0; i < starts.length; i++) if (starts[i] <= e.charIndex) idx = i;
       onWord?.(idx);
     };
+    const watchdog = setTimeout(() => end(), 2500 + (tokens.length * 450) / this.rate);
     const end = () => {
+      clearTimeout(watchdog);
       onWord?.(tokens.length);
       if (this._done === resolve) this._done = null;
       resolve();

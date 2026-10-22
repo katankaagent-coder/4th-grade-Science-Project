@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { dirname, join, resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { createHash } from 'crypto';
 import * as esbuild from 'esbuild';
 
@@ -44,34 +44,33 @@ function buildFontCss() {
   ].join('');
 }
 
-function loadVoiceEmbed() {
+// One JSON block per lesson (plus "common" for app phrases), so the app only decodes what it needs.
+async function loadVoiceEmbed() {
   const cacheDir = join(opusDir, '.voice-cache');
-  const textsPath = join(cacheDir, 'texts.json');
-  if (!existsSync(textsPath)) {
-    console.log('Voice: no texts.json — skipping voice embed');
-    return { script: '', bytes: 0, missing: 0, total: 0 };
-  }
-
-  const texts = JSON.parse(readFileSync(textsPath, 'utf8'));
-  const voice = {};
-  let missing = 0;
-
-  for (const text of texts) {
-    const key = sha1(text);
-    const mp3Path = join(cacheDir, `${key}.mp3`);
-    const jsonPath = join(cacheDir, `${key}.json`);
-    if (!existsSync(mp3Path) || !existsSync(jsonPath)) {
-      missing++;
-      continue;
+  const { LESSONS } = await import(pathToFileURL(join(opusDir, 'content', 'index.js')).href);
+  const { SYSTEM } = await import(pathToFileURL(join(opusDir, 'content', 'system.js')).href);
+  const { textsForLesson, textsForSystem } = await import(pathToFileURL(join(toolsDir, 'collect-texts.mjs')).href);
+  const groups = [['common', textsForSystem(SYSTEM)], ...LESSONS.filter((l) => !l.stub).map((l) => [l.id, textsForLesson(l)])];
+  let missing = 0, total = 0, script = '';
+  for (const [id, texts] of groups) {
+    const voice = {};
+    for (const text of texts) {
+      total++;
+      const key = sha1(text);
+      const mp3Path = join(cacheDir, `${key}.mp3`);
+      const jsonPath = join(cacheDir, `${key}.json`);
+      if (!existsSync(mp3Path) || !existsSync(jsonPath)) {
+        missing++;
+        continue;
+      }
+      const a = readFileSync(mp3Path).toString('base64');
+      const { w } = JSON.parse(readFileSync(jsonPath, 'utf8'));
+      voice[text] = { a, w };
     }
-    const a = readFileSync(mp3Path).toString('base64');
-    const { w } = JSON.parse(readFileSync(jsonPath, 'utf8'));
-    voice[text] = { a, w };
+    const json = JSON.stringify(voice).replace(/</g, '\\u003c');
+    script += `<script id="kvoice-${id}" class="kvoice" type="application/json">${json}</script>`;
   }
-
-  const json = JSON.stringify(voice).replace(/</g, '\\u003c');
-  const script = `<script id="kvoice" type="application/json">${json}</script>`;
-  return { script, bytes: Buffer.byteLength(script, 'utf8'), missing, total: texts.length };
+  return { script, bytes: Buffer.byteLength(script, 'utf8'), missing, total };
 }
 
 async function bundleJs(entry, dev) {
@@ -104,7 +103,7 @@ async function main() {
   let voiceBytes = 0;
   let voiceMissing = 0;
   if (!args.noVoice) {
-    const v = loadVoiceEmbed();
+    const v = await loadVoiceEmbed();
     voiceScript = v.script;
     voiceBytes = v.bytes;
     voiceMissing = v.missing;

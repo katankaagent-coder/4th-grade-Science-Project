@@ -10,8 +10,10 @@ const UNITS = [
 
 export function renderHome(app) {
   const s = progress.get();
-  app.stage.flyTo([0, 2.4, 6.5], [0, 1.6, 0], 1400);
-  app.vespa.goHome([-1.6, 1.8, 1.6]);
+  const narrow = window.innerWidth < 700;
+  app.stage.flyTo(narrow ? [0, 2.6, 8] : [1.6, 2.4, 7.5], narrow ? [0, 2.6, 0] : [1.6, 1.6, 0], 1400);
+  app.vespa.setSize(1.2);
+  app.vespa.goHome(narrow ? [0, 3.4, 0] : [-1.2, 1.9, 0.5]);
 
   const nowId = s.settings.nowInClass;
   const missedN = progress.missedKeys().length;

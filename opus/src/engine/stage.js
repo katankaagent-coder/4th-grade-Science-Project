@@ -188,10 +188,10 @@ export class Stage {
     });
   }
 
-  _stepCam(dt) {
+  _stepCam() {
     const c = this.camTween;
-    c.e += dt;
-    const k = ease(Math.min(1, c.e / c.dur));
+    c.start ??= performance.now();
+    const k = ease(Math.min(1, (performance.now() - c.start) / 1000 / c.dur));
     this.camera.position.lerpVectors(c.p0, c.p1, k);
     this.controls.target.lerpVectors(c.t0, c.t1, k);
     if (k >= 1) {

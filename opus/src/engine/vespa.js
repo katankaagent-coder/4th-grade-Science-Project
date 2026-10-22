@@ -212,6 +212,10 @@ export class Vespa {
     this.root.visible = v;
   }
 
+  setSize(s) {
+    this.root.scale.setScalar(s);
+  }
+
   setExplode(k) {
     this.explode = k;
     for (const p of this.parts) p.position.copy(p.userData.base).addScaledVector(p.userData.dir, k * 0.45);
