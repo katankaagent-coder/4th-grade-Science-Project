@@ -1,4 +1,4 @@
-// STUB written by Opus. A worker turns this into a full lesson (see docs/SPEC.md, docs/STYLE.md, L01 as the example).
+// Lesson 12 - Plant structures and inherited vs acquired traits.
 export default {
   id: 'L12', num: 12, unit: 4, unitTitle: 'Living Things',
   title: 'Built to Survive',
@@ -14,29 +14,464 @@ export default {
     'Some you get during your life, like a scar or riding a bike. They are acquired.',
     'Acquired traits are not passed down to babies.',
   ],
-  stub: true,
-  brief: {
-    phenomenon: 'On a trip from Dickinson to West Texas, Kelenna sees cactus and mesquite in the dry desert. At home, water lilies float in a pond and cattails grow in the marsh at the bay. Same Sun - very different plants!',
-    predictions: [
-      'Why does a cactus have a thick waxy skin? -> to keep water from escaping.',
-      'Mesquite tree roots: shallow or very deep? -> very deep, to reach water far down.',
-      'Water lily leaves: why are they big, flat, and floating? -> to catch sunlight on the water surface (air pockets help them float).',
-      'Kelenna\'s dog learned to sit. Will her puppies know how to sit at birth? -> no, it was learned, not inherited.',
+
+  steps: [
+    {
+      id: 's1', phase: 'wonder', title: 'The Long Drive', shot: 'wide',
+      beats: [
+        { say: 'Picture a drive from Dickinson out to West Texas.' },
+        { say: 'At home, water lilies float on a pond by the bay.' },
+        { say: 'Out west, cactus and mesquite grow in dry sand.', point: 'cactus' },
+        { say: 'Same Sun. The plants look nothing alike!' },
+        { predict: { q: 'Why does a cactus have a thick waxy skin?', options: [{ t: 'To keep water from escaping', correct: true }, { t: 'So it looks pretty to people' }, { t: 'To soak up extra rain' }] } },
+        { say: 'Let us test a thin leaf beside the cactus.', shot: 'desert' },
+        { cue: 'hotSunDemo', wait: true },
+        { say: 'Water flies off the thin leaf.', point: 'leaf' },
+        { verdict: { right: 'You called it! The waxy skin keeps water in.', wrong: 'Surprise! That thick skin keeps the water in.' } },
+        { say: 'A body part like that skin is a structure.' },
+        { say: 'The skin has a job. It saves desert water.' },
+      ],
+    },
+    {
+      id: 's2', phase: 'why', title: 'Parts and Jobs', shot: 'desert',
+      beats: [
+        { say: 'Every plant has roots, a stem, and leaves.' },
+        { say: 'Each part has a job that helps it survive.' },
+        { say: 'Scientists call that job a function.' },
+        { predict: { q: 'Where does a plant get its food?', options: [{ t: 'From its leaves, using sunlight', correct: true }, { t: 'From the soil, like a snack' }, { t: 'From the pot it sits in' }] } },
+        { say: 'Watch the leaf in the sun.', cue: 'leafFood', point: 'leaf' },
+        { verdict: { right: 'Yes! Leaves make food using sunlight.', wrong: 'Surprise! Leaves make the food, not the soil.' } },
+        { say: 'Leaves use sunlight, air, and water to make food.' },
+        { say: 'The soil does not feed the plant.' },
+        { say: 'Roots take in water and hold the plant steady.' },
+        { say: 'The stem carries water up and supports the plant.' },
+        {
+          check: {
+            type: 'one', q: 'Which job do roots do for a plant?',
+            options: [
+              { t: 'Take in water and hold the plant', correct: true },
+              { t: 'Make food using sunlight', why: 'Leaves make food using sunlight. Roots take in water.' },
+              { t: 'Carry water up to the leaves', why: 'That job belongs to the stem. Roots take in water and hold the plant.' },
+            ],
+            explain: 'Roots take in water and hold the plant. They do not make food.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's3', phase: 'play', title: 'Hot Sun Test', shot: 'desert',
+      beats: [
+        { say: 'Your turn. Test the thin leaf and the cactus.' },
+        { predict: { q: 'Which plant loses water faster in hot sun?', options: [{ t: 'The thin leaf', correct: true }, { t: 'The waxy cactus' }, { t: 'They lose the same amount' }] } },
+        { cue: 'sunMode' },
+        { task: { goal: 'Press Hot Sun and watch the drops.', event: 'sunTest', hint: 'Tap the Hot Sun button.' } },
+        { verdict: { right: 'Yes! The thin leaf loses water fast.', wrong: 'Surprise! The thin leaf loses water fast.' } },
+        { say: 'The waxy coat keeps cactus water inside.' },
+        { say: 'Let us open the cactus and look.', shot: 'inside', cue: 'lookInside' },
+        { say: 'The thick stem stores water for dry days.', point: 'cactus' },
+        { say: 'Most leaves make food. This green stem does too.' },
+        { say: 'Spines protect it. The plant did not choose them.' },
+      ],
+    },
+    {
+      id: 's4', phase: 'play', title: 'Dig for Water', shot: 'roots',
+      beats: [
+        { say: 'This mesquite tree grows in dry West Texas.', point: 'mesquite' },
+        { say: 'Rain is rare, so water hides deep underground.' },
+        { predict: { q: 'Are the mesquite roots shallow or very deep?', options: [{ t: 'Very deep, to reach water', correct: true }, { t: 'Shallow, right under the sand' }, { t: 'It has no roots at all' }] } },
+        { say: 'Slide the ground open and find out.', cue: 'rootsMode' },
+        { task: { goal: 'Slide until you reach the deepest root.', event: 'rootsFound', hint: 'Drag the dig slider all the way right.' } },
+        { verdict: { right: 'You called it! Mesquite roots grow very deep.', wrong: 'Surprise! Those roots grow very deep.' } },
+        { say: 'The deep root can reach water far down.', cue: 'digOpen', point: 'roots' },
+        { say: 'A cactus is different. Its roots spread wide.' },
+        { say: 'Wide shallow roots catch a quick rain.' },
+      ],
+    },
+    {
+      id: 's5', phase: 'why', title: 'The Pond at Home', shot: 'pond',
+      beats: [
+        { say: 'Back home, the ground by the bay is wet.' },
+        { say: 'Water lilies float on a Dickinson pond.', point: 'lily' },
+        { predict: { q: 'Why are water lily leaves big, flat, and floating?', options: [{ t: 'To catch sunlight on the water', correct: true }, { t: 'So fish have a place to sit' }, { t: 'To pull food up from the mud' }] } },
+        { say: 'Air pockets help the big leaf float.', cue: 'lilyFloat', point: 'lily' },
+        { verdict: { right: 'Yes! The flat leaf catches sunlight up top.', wrong: 'Surprise! The flat leaf is there to catch sun.' } },
+        { say: 'Cattails grow in the marsh by the bay.', point: 'cattail' },
+        { say: 'Roots hold in the mud. Stems lift leaves to the light.' },
+        { say: 'Plants do not all need the same amount of water.' },
+        { say: 'A structure that fits its home is an adaptation.' },
+      ],
+    },
+    {
+      id: 's6', phase: 'why', title: 'From Mom and Dad', shot: 'dogs',
+      beats: [
+        { say: 'Meet a mom dog and her puppy.', cue: 'showDogs', point: 'dogs' },
+        { say: 'Both have brown fur and floppy ears.' },
+        { say: 'The puppy was born looking like the mom.', point: 'pup' },
+        { predict: { q: 'Where did the puppy get its brown fur?', options: [{ t: 'From the mom', correct: true }, { t: 'From a bath' }, { t: 'From practicing every day' }] } },
+        { verdict: { right: 'Yes! The puppy got brown fur from mom.', wrong: 'Surprise! That brown fur came from the mom.' } },
+        { say: 'You get some traits from your parents.' },
+        { say: 'Scientists call those inherited traits.' },
+        { say: 'Fur color and floppy ears are inherited.', point: 'mom' },
+        { say: 'Cactus spines come from parent plants too.' },
+        {
+          check: {
+            type: 'one', q: 'Which trait comes from a parent?',
+            options: [
+              { t: 'Brown eyes like a parent', correct: true },
+              { t: 'A scar from a fall', why: 'A scar happens during life. Babies are not born with it.' },
+              { t: 'Knowing how to read', why: 'Reading is learned by practice. Babies are not born reading.' },
+            ],
+            explain: 'Brown eyes come from parents. That trait is inherited.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's7', phase: 'play', title: 'Not Passed On', shot: 'dogs',
+      beats: [
+        { say: 'The mom learned to sit, and she has a scar.', cue: 'showTrick', point: 'mom' },
+        { predict: { q: 'Will her puppies know how to sit at birth?', options: [{ t: 'No, sitting was learned', correct: true }, { t: 'Yes, they are born knowing it' }, { t: 'Only if their ears are floppy' }] } },
+        { say: 'A scar and a trick both happen during life.' },
+        { say: 'Scientists call those acquired traits.' },
+        { say: 'Acquired traits are not passed to babies.' },
+        { say: 'Sort the cards into the two groups.', cue: 'traitsMode' },
+        { task: { goal: 'Drag each card to Inherited or Acquired.', event: 'traitsSorted', hint: 'Drag a card to a mat. Or tap a card, then tap a mat.' } },
+        { verdict: { right: 'Right! Puppies are not born knowing sit.', wrong: 'Surprise! Sitting is learned. Puppies are not born doing it.' } },
+        { say: 'Sit is a learned behavior. Riding a bike is too.' },
+        { say: 'A trimmed bush does not pass its shape on.' },
+      ],
+    },
+    {
+      id: 's8', phase: 'useit', title: 'Dune Designer', shot: 'wide',
+      beats: [
+        { say: 'Design a plant for the Galveston Island dunes.' },
+        { say: 'The beach is salty, sandy, and very windy.' },
+        { say: 'Sea oats grow there. Long roots hold the sand.', point: 'roots' },
+        {
+          check: {
+            type: 'one', q: 'Which roots help a plant on windy sand dunes?',
+            options: [
+              { t: 'Long roots that hold the sand', correct: true },
+              { t: 'No roots, so the wind can roll it', why: 'Roots hold the plant and the sand. Without roots it would blow away.' },
+              { t: 'Only a tiny root on top of the sand', why: 'A tiny root cannot hold a plant in strong dune wind.' },
+            ],
+            explain: 'Long roots hold the sand and the plant, like sea oats on Galveston.',
+          },
+        },
+        {
+          check: {
+            type: 'one', q: 'Which leaves help a plant in salty wind?',
+            options: [
+              { t: 'Narrow leaves that keep water in', correct: true },
+              { t: 'Huge thin leaves that dry out fast', why: 'Huge thin leaves lose water fast in the wind.' },
+              { t: 'Leaves that eat salt for food', why: 'Leaves make food using sunlight. They do not eat salt.' },
+            ],
+            explain: 'Narrow leaves lose less water. That helps on a windy beach.',
+          },
+        },
+        { say: 'Match the structure to the windy salty home.' },
+        { say: 'Inherited traits come from parents.' },
+        { say: 'Acquired traits, like a scar, are not passed on.' },
+      ],
+    },
+  ],
+
+  vocab: [
+    { word: 'Structure', emoji: '🌿', means: 'A body part of a living thing.', example: 'A cactus stem and a floppy ear are both structures.', test: 'A structure is a body part. Its form helps an organism survive in its environment.' },
+    { word: 'Function', emoji: '🧰', means: 'The job that a structure does.', example: 'Roots take in water and hold the plant steady.', test: 'Function is the job a structure does. Roots take in water. Stems carry water and support. Leaves make food.' },
+    { word: 'Adaptation', emoji: '🌵', means: 'A structure that helps a living thing survive in its home.', example: 'Waxy cactus skin is an adaptation for a dry desert.', test: 'An adaptation is a structure that helps an organism survive in its environment.' },
+    { word: 'Inherited trait', emoji: '👪', means: 'A trait that comes from parents.', example: 'Brown fur on a puppy and your eye color are inherited.', test: 'An inherited trait is passed from parents to offspring, such as eye color or fur color.' },
+    { word: 'Acquired trait', emoji: '🩹', means: 'A trait gained during life. It is not passed to babies.', example: 'A scar, a trimmed bush, and dyed hair are acquired traits.', test: 'An acquired trait develops during life, like a scar, and is not passed to offspring.' },
+    { word: 'Learned behavior', emoji: '🐕', means: 'A skill that is taught or practiced. It is not passed to babies.', example: 'Sitting on command and riding a bike are learned behaviors.', test: 'A learned behavior is acquired by practice, such as sitting or riding a bike, and is not inherited.' },
+  ],
+
+  quiz: [
+    {
+      type: 'one', staar: true, q: 'A student studies a West Texas cactus. Which structure keeps water in?',
+      options: [
+        { t: 'A thick waxy skin', correct: true },
+        { t: 'A thin soft leaf', why: 'A thin leaf loses water fast. The waxy skin keeps water in.' },
+        { t: 'A bright flower color', why: 'Flower color does not seal water in. The waxy skin does that job.' },
+        { t: 'A scar on the stem', why: 'A scar is only a mark from life. It does not save water.' },
+      ],
+      explain: 'The thick waxy skin slows water leaving. That helps in a dry desert.',
+    },
+    {
+      type: 'one', q: 'What is a structure?',
+      options: [
+        { t: 'A body part of a living thing', correct: true },
+        { t: 'Only a building in town', why: 'In science, a structure is a body part, like a root or an ear.' },
+        { t: 'A kind of weather', why: 'Weather is not a body part. A structure is part of a living thing.' },
+        { t: 'A trick you practice', why: 'A trick is a learned behavior. A structure is a body part.' },
+      ],
+      explain: 'A structure is a body part, like a stem, a root, or an ear.',
+    },
+    {
+      type: 'one', staar: true, q: 'A student asks where a plant gets food. Which answer is right?',
+      options: [
+        { t: 'Leaves make it using sunlight', correct: true },
+        { t: 'The soil feeds the plant', why: 'Soil does not feed a plant. Leaves make food using sunlight.' },
+        { t: 'Roots make food from sand', why: 'Roots take in water. They do not make the plant food.' },
+        { t: 'The flower pot makes food', why: 'A pot only holds the plant. Leaves make the food.' },
+      ],
+      explain: 'Leaves use sunlight to make food. The soil does not feed the plant.',
+    },
+    {
+      type: 'one', q: 'Which job does a stem do?',
+      options: [
+        { t: 'Carry water and support the plant', correct: true },
+        { t: 'Make all of the food', why: 'Leaves make food using sunlight. The stem carries water.' },
+        { t: 'Hold the plant in the ground', why: 'Roots hold the plant. The stem supports it above the ground.' },
+        { t: 'Pull food out of the soil', why: 'Plants do not get food from soil. The stem carries water.' },
+      ],
+      explain: 'The stem carries water up and supports the plant.',
+    },
+    {
+      type: 'one', staar: true, q: 'Mesquite lives where water is deep underground. Which roots fit it best?',
+      options: [
+        { t: 'Very deep roots that reach water', correct: true },
+        { t: 'No roots at all', why: 'Roots take in water and hold the plant. Mesquite needs them.' },
+        { t: 'Roots that float on a pond', why: 'Floating leaves fit a pond. Mesquite lives in dry ground.' },
+        { t: 'Spines instead of roots', why: 'Spines can protect a cactus. Roots are what take in water.' },
+      ],
+      explain: 'A deep mesquite root can reach water far underground.',
+    },
+    {
+      type: 'one', q: 'Why do many cactus roots spread wide and shallow?',
+      options: [
+        { t: 'To catch a little rain quickly', correct: true },
+        { t: 'To make food from the sand', why: 'Roots do not make food. Wide roots catch rain near the top.' },
+        { t: 'So the cactus can walk', why: 'Plants do not walk. Wide roots catch a quick rain.' },
+        { t: 'To pass a scar to babies', why: 'A scar is acquired. Roots do not pass scars to new plants.' },
+      ],
+      explain: 'Wide shallow roots catch rain fast. Deep roots fit a mesquite instead.',
+    },
+    {
+      type: 'one', staar: true, q: 'A water lily lives on a pond. Why are its leaves big and flat?',
+      options: [
+        { t: 'To catch sunlight on the water', correct: true },
+        { t: 'To drink mud as food', why: 'Leaves do not drink mud for food. They catch sunlight to make food.' },
+        { t: 'To hide the roots from sun', why: 'The flat shape is for catching sun, not for hiding roots.' },
+        { t: 'So the lily can walk ashore', why: 'A lily does not walk. Flat leaves float and catch sun.' },
+      ],
+      explain: 'Big flat leaves float and catch sunlight on top of the pond.',
+    },
+    {
+      type: 'one', q: 'What helps a water lily leaf float?',
+      options: [
+        { t: 'Air pockets in the leaf', correct: true },
+        { t: 'Heavy rocks in the leaf', why: 'Rocks would make the leaf sink. Air pockets help it float.' },
+        { t: 'A waxy desert stem', why: 'A desert stem stores water. Air pockets help a lily leaf float.' },
+        { t: 'A very deep taproot', why: 'A deep root reaches water underground. It does not float a leaf.' },
+      ],
+      explain: 'Air pockets in the leaf help a water lily float on the pond.',
+    },
+    {
+      type: 'one', q: 'What is an adaptation?',
+      options: [
+        { t: 'A structure that helps it survive at home', correct: true },
+        { t: 'A trick a dog learns', why: 'A learned trick is acquired. An adaptation is a helpful structure.' },
+        { t: 'A scar from a fence', why: 'A scar is acquired during life. It is not a helpful body plan.' },
+        { t: 'A change the plant chooses', why: 'Plants do not choose their parts. An adaptation is a helpful structure.' },
+      ],
+      explain: 'An adaptation is a helpful structure for the place a living thing lives.',
+    },
+    {
+      type: 'one', staar: true, q: 'A student says a cactus grew spines because it wanted them. What is true?',
+      options: [
+        { t: 'Spines are inherited, not a choice', correct: true },
+        { t: 'Yes, plants pick their own parts', why: 'Plants do not choose. Spines are inherited from parent plants.' },
+        { t: 'The spines are a scar', why: 'Spines are not a scar from an injury. They are inherited.' },
+        { t: 'Spines are learned by practice', why: 'A cactus does not practice spines. That trait is inherited.' },
+      ],
+      explain: 'Plants do not choose spines. Parent plants passed that trait on.',
+    },
+    {
+      type: 'one', q: 'Which trait is inherited?',
+      options: [
+        { t: 'Eye color like a parent', correct: true },
+        { t: 'A scar on your knee', why: 'A scar happens during life. It is acquired, not inherited.' },
+        { t: 'Knowing how to ride a bike', why: 'Riding a bike is learned. You are not born knowing it.' },
+        { t: 'A haircut from the barber', why: 'A haircut happens during life. It is not passed to babies.' },
+      ],
+      explain: 'Eye color comes from parents. A scar, a haircut, and a bike skill do not.',
+    },
+    {
+      type: 'one', staar: true, q: 'A dog learns to sit. What is true about her new puppies?',
+      options: [
+        { t: 'They are not born knowing sit', correct: true },
+        { t: 'They are born knowing sit', why: 'Sit is a learned behavior. Puppies must practice it too.' },
+        { t: 'They inherit a scar she got', why: 'A scar is acquired. It is not passed to puppies.' },
+        { t: 'They inherit every trick she knows', why: 'Tricks are learned. They are not passed to puppies.' },
+      ],
+      explain: 'Sitting is learned. Puppies are not born knowing the trick.',
+    },
+    {
+      type: 'two', q: 'Pick TWO inherited traits.',
+      options: [
+        { t: 'Brown eyes', correct: true },
+        { t: 'Curly hair like mom', correct: true },
+        { t: 'A scar on the chin', why: 'A scar happens during life. It is acquired, not inherited.' },
+        { t: 'A learned sit trick', why: 'Sit is learned by practice. Puppies are not born knowing it.' },
+      ],
+      explain: 'Eye color and hair like a parent come from parents. They are inherited.',
+    },
+    {
+      type: 'two', staar: true, q: 'A student lists traits of one puppy. Pick TWO that are acquired.',
+      options: [
+        { t: 'A scar on its ear', correct: true },
+        { t: 'The sit trick it practiced', correct: true },
+        { t: 'Brown fur like its mom', why: 'Fur color comes from the mom. It is inherited.' },
+        { t: 'Floppy ears like its mom', why: 'Ear shape comes from parents. It is inherited.' },
+      ],
+      explain: 'A scar and a practiced trick happen during life. They are acquired.',
+    },
+    {
+      type: 'two', q: 'Pick TWO true jobs of plant structures.',
+      options: [
+        { t: 'Roots take in water', correct: true },
+        { t: 'Stems carry water', correct: true },
+        { t: 'Soil makes the food', why: 'Soil does not make food. Leaves make food using sunlight.' },
+        { t: 'Scars get passed to babies', why: 'A scar is acquired. It is not passed to babies.' },
+      ],
+      explain: 'Roots take in water. Stems carry it. Leaves make the food.',
+    },
+    {
+      type: 'two', staar: true, q: 'Pick TWO structures that help a plant in a dry desert.',
+      options: [
+        { t: 'Waxy skin that keeps water in', correct: true },
+        { t: 'Roots that reach or catch water', correct: true },
+        { t: 'Huge thin leaves that dry fast', why: 'Thin leaves lose water fast. A desert plant needs to save water.' },
+        { t: 'Leaves that float on a pond', why: 'Floating leaves fit a pond, not dry desert sand.' },
+      ],
+      explain: 'Waxy skin saves water. Desert roots catch rain or reach water far down.',
+    },
+    {
+      type: 'sort', q: 'Sort each trait: inherited or acquired?',
+      groups: ['Inherited', 'Acquired'],
+      items: [
+        { t: 'Eye color', g: 0 },
+        { t: 'Fur color', g: 0 },
+        { t: 'Flower color', g: 0 },
+        { t: 'A scar', g: 1 },
+        { t: 'A trimmed bush', g: 1 },
+        { t: 'A dog sit trick', g: 1 },
+      ],
+      explain: 'Inherited traits come from parents. Scars, trims, and tricks happen during life.',
+    },
+    {
+      type: 'sort', staar: true, q: 'Sort each structure by its main job.',
+      groups: ['Takes in water', 'Carries water', 'Makes food'],
+      items: [
+        { t: 'Roots', g: 0 },
+        { t: 'A mesquite root', g: 0 },
+        { t: 'A plant stem', g: 1 },
+        { t: 'A tree trunk', g: 1 },
+        { t: 'A green leaf', g: 2 },
+        { t: 'A lily pad', g: 2 },
+      ],
+      explain: 'Roots take in water. Stems carry it and give support. Leaves make food.',
+    },
+    {
+      type: 'sort', q: 'Sort each structure by the home it fits.',
+      groups: ['Dry desert', 'Wet pond or marsh'],
+      items: [
+        { t: 'Cactus waxy skin', g: 0 },
+        { t: 'Mesquite deep roots', g: 0 },
+        { t: 'Wide shallow cactus roots', g: 0 },
+        { t: 'Floating lily pad', g: 1 },
+        { t: 'Cattail in wet mud', g: 1 },
+        { t: 'Air pockets in a lily leaf', g: 1 },
+      ],
+      explain: 'Desert plants save or reach water. Pond plants float or stand in wet mud.',
+    },
+    {
+      type: 'sort', staar: true, q: 'A class sorts traits. Which ones get passed to babies?',
+      groups: ['Passed to babies', 'Not passed to babies'],
+      items: [
+        { t: 'Eye color', g: 0 },
+        { t: 'Floppy ears', g: 0 },
+        { t: 'Cactus spines', g: 0 },
+        { t: 'A scar', g: 1 },
+        { t: 'A sit trick', g: 1 },
+        { t: 'A trimmed bush shape', g: 1 },
+      ],
+      explain: 'Traits from parents can be passed on. Acquired traits and learned tricks are not.',
+    },
+    {
+      type: 'order', q: 'Put the cactus water steps in order.',
+      items: ['A little rain falls on the desert', 'Wide roots catch the water', 'The thick stem stores the water', 'Waxy skin keeps the water in'],
+      explain: 'Roots catch water, the stem stores it, and waxy skin keeps it from leaving.',
+    },
+    {
+      type: 'order', staar: true, q: 'Put the steps in order: how water reaches a leaf.',
+      items: ['Roots take in water', 'Water moves into the stem', 'The stem carries water up', 'The leaf uses water and sunlight to make food'],
+      explain: 'Roots take water in. The stem carries it up. The leaf uses it to make food.',
+    },
+    {
+      type: 'order', q: 'Put the puppy story in order.',
+      items: ['A puppy is born with brown fur', 'That fur color came from its mom', 'The puppy practices the sit trick', 'Its babies are not born knowing sit'],
+      explain: 'Fur is inherited from mom. The sit trick is learned and is not passed on.',
+    },
+    {
+      type: 'order', staar: true, q: 'Put the dune plant plan in order.',
+      items: ['Wind blows across the sandy dune', 'Long roots grow through the sand', 'The roots hold the sand in place', 'The plant stays standing in the wind'],
+      explain: 'Sea oats use long roots to hold sand so the wind does not pull them away.',
+    },
+    {
+      type: 'pick', staar: true, q: 'Tap the structure that makes food for a plant.',
+      options: [
+        { t: 'Leaf', emoji: '🍃', correct: true },
+        { t: 'Root', emoji: '🌱', why: 'Roots take in water and hold the plant. They do not make food.' },
+        { t: 'Stem', emoji: '🌿', why: 'The stem carries water and supports the plant. Leaves make the food.' },
+        { t: 'Soil', emoji: '🟤', why: 'Soil does not feed the plant. Leaves make food using sunlight.' },
+      ],
+      explain: 'Leaves make food using sunlight. Roots and soil do not do that job.',
+    },
+    {
+      type: 'pick', q: 'Tap the acquired trait.',
+      options: [
+        { t: 'A scar', emoji: '🩹', correct: true },
+        { t: 'Eye color', emoji: '👁️', why: 'Eye color comes from parents. It is inherited.' },
+        { t: 'Floppy ears', emoji: '🐶', why: 'Ear shape comes from parents. It is inherited.' },
+        { t: 'Flower color', emoji: '🌸', why: 'Flower color is inherited from the parent plant.' },
+      ],
+      explain: 'A scar happens during life. It is not passed to babies.',
+    },
+    {
+      type: 'pick', staar: true, q: 'Tap the structure that helps a plant in a dry desert.',
+      options: [
+        { t: 'Waxy cactus', emoji: '🌵', correct: true },
+        { t: 'Lily pad', emoji: '🪷', why: 'A lily pad fits a pond. It would lose too much water in a desert.' },
+        { t: 'A bicycle', emoji: '🚲', why: 'A bicycle is a machine you ride. It is not a plant structure.' },
+        { t: 'A scar', emoji: '🩹', why: 'A scar is acquired. It does not help a cactus save water.' },
+      ],
+      explain: 'Waxy skin keeps water in. That helps a cactus survive the desert.',
+    },
+    {
+      type: 'pick', q: 'Tap the learned behavior.',
+      options: [
+        { t: 'Sit trick', emoji: '🐕', correct: true },
+        { t: 'Brown fur', emoji: '🐶', why: 'Fur color is inherited from parents. It is not practiced.' },
+        { t: 'A scar', emoji: '🩹', why: 'A scar is acquired, but it is not a skill you practice.' },
+        { t: 'Eye color', emoji: '👁️', why: 'Eye color comes from parents. You do not learn it.' },
+      ],
+      explain: 'Sit is practiced. A puppy is not born knowing that trick.',
+    },
+  ],
+
+  teachBack: {
+    prompt: 'Teach Vespa why a cactus and a water lily look so different. Tap the ideas in order.',
+    pieces: [
+      'Plants have structures, and each structure has a job.',
+      'Leaves make food using sunlight. Roots take in water and hold the plant.',
+      'A cactus has a waxy stem that stores water for the dry desert.',
+      'A water lily has flat floating leaves that catch sun on the pond.',
+      'Inherited traits come from parents. Acquired traits are not passed to babies.',
     ],
-    scene: 'Split diorama: a desert side (sand, cactus with ribs and spines, mesquite tree, cutaway showing deep taproot and wide shallow roots) and a wetland side (pond with floating water lily pads, cattails, marsh grass). "Look inside" slider cuts the cactus open to show stored water and the waxy coat. Water drop particles escape quickly from a thin leaf but not from the waxy cactus when a "hot sun" button is pressed. A family portrait station: parent and child dogs (simple primitives) with trait cards to sort.',
-    tasks: [
-      'Press Hot Sun and see which plant loses water fastest (event sunTest).',
-      'Slide the roots open to find the deepest roots (event rootsFound).',
-      'Sort the dog traits into Inherited and Acquired (event traitsSorted).',
+    decoys: [
+      'Plants choose spines because they want them.',
+      'Puppies are born knowing every trick their mom learned.',
     ],
-    vocab: ['Structure', 'Function (job)', 'Adaptation', 'Inherited trait', 'Acquired trait', 'Learned behavior'],
-    misconceptions: [
-      'Plants choose to grow spines because they want to. (No - plants with helpful traits survived and passed them on.)',
-      'Acquired traits (a scar, big muscles from exercise) get passed to children. (No.)',
-      'All plants need the same amount of water. (No - structures fit the environment.)',
-    ],
-    useIt: 'Design a plant for Galveston Island\'s salty, windy beach dunes. What roots and leaves would help? (Sea oats have long roots that hold sand.)',
-    staarStyles: 'Match structure to function to environment; sort inherited vs acquired traits for people, animals, and plants.',
   },
-  steps: [], vocab: [], quiz: [], teachBack: null,
 };

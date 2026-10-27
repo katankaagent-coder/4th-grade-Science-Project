@@ -1,4 +1,4 @@
-// STUB written by Opus. A worker turns this into a full lesson (see docs/SPEC.md, docs/STYLE.md, L01 as the example).
+// Lesson 4 - Energy on the Move. Motion, waves, sound, and a little heat and light.
 export default {
   id: 'L04', num: 4, unit: 2, unitTitle: 'Force & Energy',
   title: 'Energy on the Move',
@@ -13,29 +13,466 @@ export default {
     'A wave carries energy, but the water mostly bobs in place.',
     'Sound is a wave too. It shakes the air from your drum to your ear.',
   ],
-  stub: true,
-  brief: {
-    phenomenon: 'On a fishing pier in Kemah, a boat goes by. Waves reach the pier, and a rubber duck floating nearby bobs up and down but does not ride to shore.',
-    predictions: [
-      'A rolling marble hits a resting marble. What happens? -> the first one stops (or slows), the second rolls on: energy moved.',
-      'Roll the marble faster: will the hit marble go farther? -> yes, more energy.',
-      'A wave passes the duck. Will the duck ride the wave to the shore? -> no, it bobs up and down in place.',
-      'Tap a drum with rice on top. What will the rice do? -> jump; the drum shakes, that shaking (sound) travels to your ear.',
+
+  steps: [
+    {
+      id: 's1', phase: 'wonder', title: 'The Pier Duck', shot: 'pier',
+      beats: [
+        { say: 'Picture a fishing pier in Kemah, on Galveston Bay.' },
+        { say: 'Kemah is just up the road from Dickinson.' },
+        { say: 'A shrimp boat rumbles past. It leaves waves behind.', point: 'boat' },
+        { say: 'The waves roll all the way to the pier.', point: 'wave' },
+        { say: 'A rubber duck floats in the water nearby.', point: 'duck' },
+        { predict: { q: 'A wave reaches the duck. Will the duck ride to shore?', options: [{ t: 'Yes. The wave carries the duck in.' }, { t: 'No. It just bobs up and down.', correct: true }, { t: 'The duck sinks under the wave.' }] } },
+        { say: 'Here comes a wave. Watch the duck.', shot: 'duck', cue: 'passWave' },
+        { verdict: { right: 'You called it! The duck bobs, but it stays put.', wrong: 'Surprise! The duck bobs. It does not ride in.' } },
+        { say: 'The wave arrived. The duck did not come with it.' },
+        { say: 'So what actually moved? Let us find out.' },
+      ],
+    },
+    {
+      id: 's2', phase: 'why', title: 'What Energy Is', shot: 'wide',
+      beats: [
+        { cue: 'idle' },
+        { say: 'Let us start with one big idea.' },
+        { say: 'Energy is what makes things happen.' },
+        { say: 'It can make things move.' },
+        { say: 'It can light things up, heat them up, or make sound.' },
+        { say: 'The boat moved across the water. That took energy.', point: 'boat' },
+        { say: 'Pier lights glow. Sunshine warms the wood.', point: 'lights' },
+        { say: 'A boat horn makes sound. That is energy too.' },
+        {
+          check: {
+            type: 'one', q: 'Which one shows energy at work?',
+            options: [
+              { t: 'A boat speeding across the bay', correct: true },
+              { t: 'A rope lying still on the dock', why: 'A still rope is not moving, lighting up, heating, or making sound.' },
+              { t: 'A flashlight that is switched off', why: 'An off flashlight is not making light. It is not using energy right now.' },
+              { t: 'A quiet rock sitting in the shade', why: 'That rock is still, cool, and quiet. Nothing is happening.' },
+            ],
+            explain: 'The speeding boat is moving. Motion shows energy at work.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's3', phase: 'play', title: 'Faster Means More', shot: 'marbles',
+      beats: [
+        { cue: 'resetMarbles', wait: true },
+        { say: 'Here is a ramp and a row of steel marbles.', point: 'ramp' },
+        { say: 'The blue marble is still. It is not moving anything yet.', point: 'marble' },
+        { say: 'A moving thing has energy. Faster means more energy.' },
+        { predict: { q: 'We raise the ramp so it rolls faster. Will the last marble roll farther?', options: [{ t: 'Yes. It will roll farther.', correct: true }, { t: 'No. It will roll the same distance.' }, { t: 'No. It will roll a shorter way.' }] } },
+        { cue: 'marbleMode' },
+        { task: { goal: 'Raise the ramp, then tap Release.', event: 'marbleHit', hint: 'Slide Ramp height up. Then tap Release.' } },
+        { verdict: { right: 'Yes! Faster means more energy, so it rolled farther.', wrong: 'Surprise! The faster marble sent the last one farther.' } },
+        { say: 'A low ramp makes a short roll.' },
+        { say: 'A high ramp makes a long roll.', point: 'marks' },
+        {
+          check: {
+            type: 'one', staar: true,
+            q: 'A student tests a ramp. Low: 1 foot. Medium: 2 feet. High: 4 feet. What is true?',
+            options: [
+              { t: 'A higher ramp gives the marble more energy.', correct: true },
+              { t: 'A higher ramp takes energy away.', why: 'Higher means faster. Faster means more energy, not less.' },
+              { t: 'Ramp height does not change the roll.', why: 'The distances changed. A higher ramp rolled farther.' },
+              { t: 'Going faster means the marble lost energy.', why: 'Faster means more energy. The marble did not lose it by speeding up.' },
+            ],
+            explain: 'The high ramp rolled 4 feet. More speed means more energy.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's4', phase: 'why', title: 'The Energy Jump', shot: 'marbles',
+      beats: [
+        { say: 'Watch that bump one more time.', cue: 'replayHit', point: 'row' },
+        { say: 'The blue marble slows down. It almost stops.' },
+        { say: 'The last marble rolls away.' },
+        { say: 'A glow passes along the row. That glow is the energy.' },
+        { say: 'The energy did not vanish. It jumped across.' },
+        { say: 'A little became sound. That is the click.' },
+        { say: 'A tiny bit became heat. Not enough to feel.' },
+        { say: 'That jump has a name. Scientists call it a transfer.' },
+        {
+          check: {
+            type: 'one', q: 'A rolling marble bumps a still one. The still one rolls away. Where did the energy go?',
+            options: [
+              { t: 'To the other marble, plus a little sound and heat.', correct: true },
+              { t: 'It was all used up and disappeared.', why: 'Energy does not vanish in a bump. It moves, and a little becomes sound and heat.' },
+              { t: 'It all stayed in the first marble.', why: 'The first marble stopped. The energy left it and went to the next one.' },
+              { t: 'It turned into a new marble.', why: 'A bump does not make new marbles. Energy just moves to the next one.' },
+            ],
+            explain: 'Energy transferred to the next marble. A little became sound and heat.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's5', phase: 'play', title: 'Make a Wave', shot: 'wave',
+      beats: [
+        { cue: 'idle' },
+        { say: 'Back to the duck on Galveston Bay.', point: 'duck' },
+        { say: 'You get to be the wave maker.', point: 'paddle' },
+        { predict: { q: 'You make a bigger wave. Will the duck ride to the shore?', options: [{ t: 'No. It bobs higher, but it stays.', correct: true }, { t: 'Yes. A big wave carries it away.' }, { t: 'The duck will sink to the bottom.' }] } },
+        { cue: 'waveMode' },
+        { task: { goal: 'Make a wave, then watch the duck.', event: 'waveMade', hint: 'Tap Make a wave. Slide strength if you want it bigger.' } },
+        { verdict: { right: 'Yes! The duck bobs, and it stays put.', wrong: 'Surprise! A bigger wave only makes a bigger bob.' } },
+        { say: 'See the glow move to the shore.', cue: 'showPulse', point: 'pulse' },
+        { say: 'That glow is energy on the move.' },
+        { say: 'The duck stays. The water mostly bobs in place.' },
+        { say: 'A wave carries energy, not the water.' },
+      ],
+    },
+    {
+      id: 's6', phase: 'play', title: 'The Rice Jump', shot: 'drum',
+      beats: [
+        { cue: 'idle' },
+        { say: 'Sound is energy you can hear.', point: 'drum' },
+        { say: 'Grains of rice sit on this drum.', point: 'rice' },
+        { predict: { q: 'You tap the drum. What will the rice do?', options: [{ t: 'The rice will jump up.', correct: true }, { t: 'The rice will sit perfectly still.' }, { t: 'The rice will turn into water.' }] } },
+        { cue: 'drumMode' },
+        { task: { goal: 'Tap the drum.', event: 'drumTapped', hint: 'Tap the drum, or tap the Tap drum button.' } },
+        { verdict: { right: 'You called it! The rice jumped.', wrong: 'Surprise! The rice jumped when the drum shook.' } },
+        { say: 'The drum skin shakes back and forth.' },
+        { say: 'That shake has a name. It is a vibration.', cue: 'showShake' },
+      ],
+    },
+    {
+      id: 's7', phase: 'why', title: 'Sound Needs Stuff', shot: 'ear',
+      beats: [
+        { cue: 'idle' },
+        { say: 'A vibration can travel away from the drum.', point: 'drum' },
+        { say: 'It shakes the air, bit by bit.', point: 'ear' },
+        { say: 'Watch the rings go from the drum to the ear.', cue: 'showRings' },
+        { say: 'Sound is a wave that carries energy.' },
+        { say: 'It needs stuff to shake, like air, water, or wood.' },
+        { say: 'Empty space has nothing to shake, so there is no sound.' },
+        {
+          check: {
+            type: 'one', q: 'Can sound travel through empty space?',
+            options: [
+              { t: 'No. It needs air, water, or a solid.', correct: true },
+              { t: 'Yes. Loud sounds need nothing around them.', why: 'Loud or soft, sound must shake something. Empty space has nothing to shake.' },
+              { t: 'Only if someone leaves a light on.', why: 'Light can cross empty space. Sound cannot. Sound needs stuff to shake.' },
+            ],
+            explain: 'Sound is a vibration moving through stuff. No stuff means no sound.',
+          },
+        },
+      ],
+    },
+    {
+      id: 's8', phase: 'useit', title: 'Waves from the Gulf', shot: 'pier',
+      beats: [
+        { cue: 'idle' },
+        { say: 'A big storm spins far out in the Gulf.' },
+        { say: 'Days later, big waves hit Galveston beach.' },
+        { predict: { q: 'Did that storm water travel all the way to the beach?', options: [{ t: 'No. The energy traveled as waves.', correct: true }, { t: 'Yes. That same water came ashore.' }, { t: 'The beach made the waves all by itself.' }] } },
+        { say: 'Watch a long wave cross the tank.', cue: 'gulfSwell', point: 'duck' },
+        { verdict: { right: 'Right! The energy traveled. The water mostly bobbed.', wrong: 'Surprise! The water did not make the trip. Energy did.' } },
+        { say: 'The wind gave energy to the water way out at sea.' },
+        { say: 'That energy moved as waves for miles and miles.' },
+        { say: 'Same duck trick, just a whole lot bigger.' },
+        { say: 'You tracked energy in motion, waves, and sound.' },
+      ],
+    },
+  ],
+
+  vocab: [
+    { word: 'Energy', emoji: '⚡', means: 'What makes things move, light up, heat up, or make sound.', example: 'A speeding boat, a flashlight, and a drum all use energy.', test: 'Energy can cause motion, light, heat, or sound. A moving object has energy, and a faster object has more.' },
+    { word: 'Transfer', emoji: '🔀', means: 'When energy moves from one thing to another.', example: 'A rolling marble bumps a still one, and the energy transfers.', test: 'Energy transfer is energy moving from one object to another. In a collision, some energy can also become sound and heat.' },
+    { word: 'Wave', emoji: '🌊', means: 'A traveling wiggle that carries energy from place to place.', example: 'A wave crosses Galveston Bay. The water mostly bobs in place.', test: 'A wave transfers energy. In a water wave, the water mostly moves up and down in place.' },
+    { word: 'Sound', emoji: '🔊', means: 'A wave made when something shakes air or other stuff.', example: 'A drum sends sound through the air all the way to your ear.', test: 'Sound is energy moving as a vibration through air, water, or a solid. Sound cannot travel through empty space.' },
+    { word: 'Vibrate', emoji: '🥁', means: 'To shake back and forth again and again.', example: 'A drum skin vibrates when you tap it, and the rice jumps.', test: 'Vibrate means to shake back and forth. Vibrations in matter can start a sound wave.' },
+  ],
+
+  quiz: [
+    {
+      type: 'one', staar: true,
+      q: 'A student measured the last marble. Low ramp: 2 feet. High ramp: 6 feet. What does this show?',
+      options: [
+        { t: 'The higher ramp gave the marble more energy.', correct: true },
+        { t: 'The higher ramp took energy away.', why: 'Higher means faster. Faster means more energy, not less.' },
+        { t: 'Both ramps gave the same energy.', why: 'The distances are different. More speed sent the marble farther.' },
+        { t: 'The marble lost energy by rolling faster.', why: 'Rolling faster means more energy. It did not lose energy by speeding up.' },
+      ],
+      explain: 'The high ramp rolled 6 feet. More speed means more energy.',
+    },
+    {
+      type: 'one', q: 'What is energy?',
+      options: [
+        { t: 'What makes things move, light up, heat up, or make sound.', correct: true },
+        { t: 'Only electricity from a wall plug.', why: 'A plug is one source. Motion, light, heat, and sound are energy too.' },
+        { t: 'Only heat from a stove.', why: 'Heat is one kind. Moving things and sound have energy too.' },
+        { t: 'A rock you can pick up.', why: 'A rock is stuff you can hold. Energy is what makes things happen.' },
+      ],
+      explain: 'Energy makes things move, light up, heat up, or make sound.',
+    },
+    {
+      type: 'pick', q: 'Tap the one with more energy.',
+      options: [
+        { t: 'Racing boat', emoji: '🚤', correct: true },
+        { t: 'Docked boat', emoji: '⚓', why: 'A docked boat is still. It does not have motion energy right now.' },
+        { t: 'Beach chair', emoji: '🪑', why: 'A chair sitting still is not moving, lighting up, or making sound.' },
+        { t: 'Closed book', emoji: '📕', why: 'A closed book is just sitting there. Nothing is happening.' },
+      ],
+      explain: 'The racing boat is moving fast. Faster means more energy.',
+    },
+    {
+      type: 'two', q: 'Pick TWO things that happen when a rolling marble bumps a still one.',
+      options: [
+        { t: 'Energy moves to the next marble.', correct: true },
+        { t: 'A little energy becomes sound.', correct: true },
+        { t: 'All the energy disappears.', why: 'Energy does not vanish in a bump. It moves to the next marble.' },
+        { t: 'The marbles turn into water.', why: 'A bump does not melt marbles. They stay marbles and trade energy.' },
+      ],
+      explain: 'The energy transfers. A little of it becomes sound, and a tiny bit becomes heat.',
+    },
+    {
+      type: 'one', staar: true,
+      q: 'A student rolls a marble into a still marble. The still one rolls away. Where did the energy go?',
+      options: [
+        { t: 'Mostly to the second marble, plus a little sound and heat.', correct: true },
+        { t: 'It was all used up and is gone.', why: 'Energy does not get used up in a bump. It moves to the other marble.' },
+        { t: 'It stayed inside the first marble only.', why: 'The first marble stopped. The energy left it and moved on.' },
+        { t: 'It made a brand-new marble.', why: 'Bumps do not make new marbles. The same marbles trade energy.' },
+      ],
+      explain: 'Energy transferred to the second marble. A little became sound and heat.',
+    },
+    {
+      type: 'sort', q: 'Sort each one by the kind of energy you notice.',
+      groups: ['Motion', 'Sound', 'Heat'],
+      items: [
+        { t: 'Shrimp boat speeding by', g: 0 },
+        { t: 'Marble rolling downhill', g: 0 },
+        { t: 'A drum beat', g: 1 },
+        { t: 'A boat horn', g: 1 },
+        { t: 'Sunshine warming the pier', g: 2 },
+        { t: 'A bowl of hot soup', g: 2 },
+      ],
+      explain: 'Motion, sound, and heat are ways energy shows up. A moving boat, a horn, and hot soup.',
+    },
+    {
+      type: 'one', q: 'A wave passes a rubber duck. What does the duck do?',
+      options: [
+        { t: 'It bobs up and down in place.', correct: true },
+        { t: 'It rides the wave all the way to shore.', why: 'The wave does not carry the duck. The duck bobs and stays.' },
+        { t: 'It turns into water.', why: 'The duck stays a duck. It only bobs as the wave passes.' },
+        { t: 'It stops every wave forever.', why: 'A duck does not stop waves. Waves pass, and the duck bobs.' },
+      ],
+      explain: 'The duck bobs in place. The wave carries energy, not the duck.',
+    },
+    {
+      type: 'pick', staar: true, q: 'Tap what a water wave carries to the pier.',
+      options: [
+        { t: 'Energy', emoji: '⚡', correct: true },
+        { t: 'The rubber duck', emoji: '🦆', why: 'The duck bobs up and down. The wave does not carry it in.' },
+        { t: 'All the bay water', emoji: '🌊', why: 'The water mostly bobs in place. The energy is what travels.' },
+        { t: 'Beach sand', emoji: '🏖️', why: 'The wave does not pick up the beach and carry it to the boat.' },
+      ],
+      explain: 'A wave carries energy across the water. The water mostly bobs in place.',
+    },
+    {
+      type: 'two', staar: true, q: 'Which TWO show energy moving from one place to another?',
+      options: [
+        { t: 'A wave crossing Galveston Bay', correct: true },
+        { t: 'A drum sending sound to an ear', correct: true },
+        { t: 'A rock sitting on the sand', why: 'A still rock is not moving energy from one place to another.' },
+        { t: 'A flashlight that is turned off', why: 'An off flashlight is not sending light or any other energy out.' },
+      ],
+      explain: 'The wave and the sound both carry energy from one place to another.',
+    },
+    {
+      type: 'sort', staar: true, q: 'Sort them. What travels across the bay, and what mostly bobs?',
+      groups: ['Moves across the bay', 'Mostly bobs in place'],
+      items: [
+        { t: 'Wave energy', g: 0 },
+        { t: 'Waves from a far-off storm', g: 0 },
+        { t: 'A floating duck', g: 1 },
+        { t: 'Water under the duck', g: 1 },
+      ],
+      explain: 'Energy travels across the bay. The duck and the water mostly bob in place.',
+    },
+    {
+      type: 'order', q: 'Put the marble bump in order.',
+      items: ['The blue marble rolls down the ramp', 'It bumps the still marbles', 'Energy passes along the row', 'The last marble rolls away'],
+      explain: 'The moving marble brings energy. The bump passes it along. The last marble rolls.',
+    },
+    {
+      type: 'one', staar: true, q: 'A student can set a ramp low or high. Which ramp gives the marble more energy?',
+      options: [
+        { t: 'The higher ramp', correct: true },
+        { t: 'The lower ramp', why: 'A lower ramp makes a slower roll. Slower means less energy.' },
+        { t: 'Both ramps give the same energy', why: 'Height changes the speed. Faster means more energy.' },
+        { t: 'Whichever ramp is painted blue', why: 'Paint color does not change the energy. Height and speed do.' },
+      ],
+      explain: 'A higher ramp makes the marble faster. Faster means more energy.',
+    },
+    {
+      type: 'one', q: 'What does transfer mean?',
+      options: [
+        { t: 'Energy moves from one thing to another.', correct: true },
+        { t: 'Energy is used up and gone.', why: 'Energy does not vanish. It moves, and a little can become sound and heat.' },
+        { t: 'The object gets much heavier.', why: 'Transfer is about energy moving, not about getting heavier.' },
+        { t: 'Water turns into a sound.', why: 'Water does not become sound. Energy from a bump can become sound.' },
+      ],
+      explain: 'Transfer means the energy moved. It did not disappear.',
+    },
+    {
+      type: 'two', q: 'Pick TWO that sound can travel through.',
+      options: [
+        { t: 'Air', correct: true },
+        { t: 'Water', correct: true },
+        { t: 'Outer space', why: 'Outer space has nothing to shake. Sound cannot cross it.' },
+        { t: 'A flashlight beam', why: 'A beam is light, not stuff that sound can shake.' },
+      ],
+      explain: 'Sound can travel through air and water. It needs stuff to shake.',
+    },
+    {
+      type: 'pick', q: 'Tap what sound needs so it can travel.',
+      options: [
+        { t: 'Air', emoji: '💨', correct: true },
+        { t: 'Empty space', emoji: '🌌', why: 'Empty space has nothing to shake, so sound cannot cross it.' },
+        { t: 'Darkness', emoji: '🌑', why: 'Dark or bright does not matter. Sound needs stuff to shake.' },
+        { t: 'A magnet', emoji: '🧲', why: 'A magnet pulls some metals. It does not carry sound.' },
+      ],
+      explain: 'Sound needs stuff to shake, like air. Empty space will not work.',
+    },
+    {
+      type: 'one', staar: true,
+      q: 'Kelenna taps a drum in Dickinson. A friend in the next room hears it. How did the sound get there?',
+      options: [
+        { t: 'Vibrations traveled through the air.', correct: true },
+        { t: 'The rice flew across the room.', why: 'Rice may jump on the drum. It does not fly into the next room.' },
+        { t: 'The sound crossed empty space.', why: 'The room is full of air. Sound shakes that air on its way.' },
+        { t: 'The drum flashed a bright light.', why: 'A drum makes a shake, not a flash. The shake travels as sound.' },
+      ],
+      explain: 'The drum skin vibrates. That shake travels through the air to the ear.',
+    },
+    {
+      type: 'sort', q: 'Sort them. Can sound travel through it?',
+      groups: ['Sound can travel', 'Sound cannot travel'],
+      items: [
+        { t: 'Air', g: 0 },
+        { t: 'Galveston Bay water', g: 0 },
+        { t: 'A wood door', g: 0 },
+        { t: 'Outer space', g: 1 },
+        { t: 'A jar with all the air pumped out', g: 1 },
+      ],
+      explain: 'Sound can shake air, water, and wood. It cannot cross empty space.',
+    },
+    {
+      type: 'order', staar: true, q: 'A student taps a drum. Put the sound path in order.',
+      items: ['The student taps the drum', 'The drum skin vibrates', 'The air starts to shake', 'The shake reaches an ear'],
+      explain: 'The tap shakes the skin. The skin shakes the air. The air carries the sound to an ear.',
+    },
+    {
+      type: 'pick', q: 'Tap the part that vibrates and makes the rice jump.',
+      options: [
+        { t: 'Drum skin', emoji: '🥁', correct: true },
+        { t: 'Rice color', emoji: '🍚', why: 'Color does not make the rice jump. The shaking skin does.' },
+        { t: 'Your ear', emoji: '👂', why: 'Your ear receives the sound. The drum skin is what shakes first.' },
+        { t: 'Flashlight', emoji: '🔦', why: 'A flashlight makes light. It does not shake the drum skin.' },
+      ],
+      explain: 'The drum skin vibrates when you tap it. That shake tosses the rice up.',
+    },
+    {
+      type: 'two', staar: true, q: 'A student watches four events. Which TWO show a transfer of energy?',
+      options: [
+        { t: 'A marble hits another and that one rolls', correct: true },
+        { t: 'A wave reaches a duck and the duck bobs', correct: true },
+        { t: 'A marble sits still on a table', why: 'A still marble is not passing energy to anything.' },
+        { t: 'A drawing of a wave on paper', why: 'A drawing is just a picture. Energy is not moving across the page.' },
+      ],
+      explain: 'The bump and the wave both move energy from one place to another.',
+    },
+    {
+      type: 'one', staar: true, q: 'Which one can travel through empty space?',
+      options: [
+        { t: 'Light from the Sun', correct: true },
+        { t: 'Sound from a drum', why: 'Sound must shake stuff. Empty space has nothing to shake.' },
+        { t: 'A voice calling your name', why: 'A voice is sound. It needs air to reach your ear.' },
+        { t: 'The splash of a duck', why: 'A splash is sound in air and water. It cannot cross empty space.' },
+      ],
+      explain: 'Light can cross empty space. Sound cannot, because sound needs stuff to shake.',
+    },
+    {
+      type: 'order', staar: true, q: 'Put the Gulf storm story in order.',
+      items: ['Wind pushes on water far out in the Gulf', 'Energy moves into the water', 'Waves travel across the Gulf', 'Big waves reach Galveston beach'],
+      explain: 'The storm gives the water energy. That energy travels as waves to Galveston.',
+    },
+    {
+      type: 'one', staar: true,
+      q: 'A student says the wave brought all the bay water to the beach. What is right?',
+      options: [
+        { t: 'The energy traveled. The water mostly bobbed.', correct: true },
+        { t: 'The student is right. The water made the trip.', why: 'The water mostly bobs in place. The energy is what travels to the beach.' },
+        { t: 'Waves do not carry any energy.', why: 'Waves do carry energy. That is why a duck bobs when a wave passes.' },
+        { t: 'Ducks always surf all the way to shore.', why: 'Ducks bob in place. A wave does not carry them to shore.' },
+      ],
+      explain: 'Wave energy can cross the bay. The water itself mostly bobs in place.',
+    },
+    {
+      type: 'sort', q: 'Where is the energy in a marble bump?',
+      groups: ['Before the bump', 'After the bump'],
+      items: [
+        { t: 'The fast blue marble', g: 0 },
+        { t: 'The marble rolling down the ramp', g: 0 },
+        { t: 'The marble that starts rolling', g: 1 },
+        { t: 'The click you hear', g: 1 },
+        { t: 'A tiny bit of heat', g: 1 },
+      ],
+      explain: 'Before the bump, the fast marble has the energy. After, it has moved on, with a little sound and heat.',
+    },
+    {
+      type: 'order', staar: true, q: 'Put the ramp test steps in order.',
+      items: ['Set the ramp low and release', 'Measure how far the last marble rolls', 'Raise the ramp and release again', 'Compare the two distances'],
+      explain: 'Test low, measure, test high, then compare. That shows faster means more energy.',
+    },
+    {
+      type: 'two', staar: true, q: 'Pick TWO true facts about a water wave.',
+      options: [
+        { t: 'It carries energy across the water.', correct: true },
+        { t: 'The water mostly bobs in place.', correct: true },
+        { t: 'It carries all the water to the shore.', why: 'The water does not take the whole trip. The energy does.' },
+        { t: 'It can only happen in a bathtub.', why: 'Waves happen in bays and the Gulf too. A bathtub is just a small one.' },
+      ],
+      explain: 'A water wave carries energy. The water mostly bobs up and down in place.',
+    },
+    {
+      type: 'pick', q: 'Tap where a far-off Gulf storm shows up days later.',
+      options: [
+        { t: 'Galveston beach', emoji: '🏖️', correct: true },
+        { t: 'A still pond', emoji: '💧', why: 'A still pond is not getting those Gulf waves. The energy stays in the sea path.' },
+        { t: 'A dark closet', emoji: '🚪', why: 'A closet is not connected to the Gulf. The waves travel through the water.' },
+        { t: 'A switched-off radio', emoji: '📻', why: 'An off radio is quiet. It is not the beach receiving wave energy.' },
+      ],
+      explain: 'Storm energy travels as waves. Days later, those waves reach Galveston beach.',
+    },
+    {
+      type: 'one', q: 'One marble rolls fast. Another rolls slowly. Which has more energy?',
+      options: [
+        { t: 'The fast marble', correct: true },
+        { t: 'The slow marble', why: 'Slower means less energy. The fast marble has more.' },
+        { t: 'They have the same energy', why: 'Speed changes the energy. Faster means more.' },
+        { t: 'The shinier marble', why: 'Shine does not add motion energy. Speed does.' },
+      ],
+      explain: 'A faster marble has more energy than a slower one.',
+    },
+  ],
+
+  teachBack: {
+    prompt: 'Teach Vespa how energy moves in a bump, a wave, and sound. Tap the ideas in order.',
+    pieces: [
+      'Energy makes things move, light up, heat up, or make sound.',
+      'A moving thing has energy, and faster means more energy.',
+      'In a bump, energy transfers, and a little becomes sound and heat.',
+      'A wave carries energy, but the water mostly bobs in place.',
+      'Sound is a vibration that travels through stuff to your ear.',
     ],
-    scene: 'Three stations. (1) Marble track: a ramp with a height slider sends a steel marble into a row of marbles (Newton-cradle style) - energy glow passes along the row. (2) Wave tank: a wide strip of water made of a grid mesh with animated sine wave; a rubber duck that bobs in place; a "wave maker" paddle with a strength slider; a glowing energy pulse travels along. (3) Drum: tap it, rice grains jump, rings of sound spread through air dots to an ear.',
-    tasks: [
-      'Raise the ramp and release the marble (event marbleHit).',
-      'Make a wave and watch the duck (event waveMade).',
-      'Tap the drum (event drumTapped).',
+    decoys: [
+      'The wave carries the duck and the water all the way to shore.',
+      'A bump uses the energy up, so it is gone.',
     ],
-    vocab: ['Energy', 'Transfer', 'Wave', 'Sound', 'Vibrate (shake back and forth)'],
-    misconceptions: [
-      'Waves carry the water to the shore. (No - the energy moves; the water mostly bobs.)',
-      'Energy is used up in a collision. (Say: it moves to the other object, and some becomes sound and heat.)',
-      'Sound can travel through empty space. (No - it needs stuff like air, water, or solids to shake.)',
-    ],
-    useIt: 'Why does a big storm far out in the Gulf make big waves on Galveston beach days later? (energy travels through the water).',
-    staarStyles: 'Include a table: ramp height vs distance the hit marble rolled; and identify where energy goes after a collision.',
   },
-  steps: [], vocab: [], quiz: [], teachBack: null,
 };
