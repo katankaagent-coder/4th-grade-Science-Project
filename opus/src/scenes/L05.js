@@ -342,6 +342,7 @@ export default function createScene(kit) {
     { key: 'pspoon', name: 'Plastic spoon', short: 'Plastic', emoji: '🟣', conducts: false, dx: 0.72, dz: -0.34, build: (g) => addSpoon(g, kit.mat.plastic(0xfb7185)) },
   ];
 
+  const gapToken = { seq: 0 };
   let occupant = null;
   const things = thingSpecs.map((spec) => {
     const group = new THREE.Group();
@@ -362,7 +363,11 @@ export default function createScene(kit) {
 
   function goHome(it) {
     const s = claim(it);
-    if (occupant === it) occupant = null;
+    if (occupant === it) {
+      occupant = null;
+      claim(gapToken);
+    }
+    it.where = 'moving';
     const from = it.mesh.position.clone();
     const to = it.home.clone();
     refreshCircuit();
@@ -381,7 +386,12 @@ export default function createScene(kit) {
   }
 
   function putInGap(it) {
-    if (occupant && occupant !== it) goHome(occupant);
+    if (occupant === it && it.where === 'gap') return;
+    const gSeq = claim(gapToken);
+    const prev = occupant;
+    occupant = it;
+    it.where = 'moving';
+    if (prev && prev !== it) goHome(prev);
     const s = claim(it);
     const from = it.mesh.position.clone();
     const to = gapSpot.clone();
@@ -389,7 +399,7 @@ export default function createScene(kit) {
       it.mesh.position.lerpVectors(from, to, k);
       it.mesh.position.y += Math.sin(k * Math.PI) * 0.5;
     }, 'inOut').then((ok) => {
-      if (!ok) return false;
+      if (!ok || gapToken.seq !== gSeq) return false;
       it.mesh.position.copy(to);
       it.where = 'gap';
       occupant = it;
@@ -472,6 +482,14 @@ export default function createScene(kit) {
     });
   }
 
+  function turnOffFlash() {
+    claim(flash);
+    flash.on = false;
+    if (flash.btn) flash.btn.position.y = flash.btnHome;
+    if (flash.lensMat) flash.lensMat.emissiveIntensity = 0.04;
+    if (flash.beam) flash.beam.visible = false;
+  }
+
   // ---------- look inside a wire ----------
   const lid = { seq: 0, mesh: null };
   const copperMat = kit.mat.metal(0xb87333);
@@ -510,6 +528,14 @@ export default function createScene(kit) {
       wireSign.setText('Copper inside. Plastic coat.');
       return true;
     });
+  }
+
+  function closeLid() {
+    claim(lid);
+    if (lid.mesh) lid.mesh.position.y = 0.26;
+    copperMat.emissive.setHex(0x000000);
+    copperMat.emissiveIntensity = 0;
+    if (wireSign) wireSign.setText('Closed coat');
   }
 
   // ---------- hot pan ----------
@@ -598,6 +624,14 @@ export default function createScene(kit) {
     });
   }
 
+  function resetHeat() {
+    claim(heat);
+    heat.level = 0;
+    paintSpoons();
+    if (metalTag) metalTag.setText('Metal spoon');
+    if (woodTag) woodTag.setText('Wood spoon');
+  }
+
   // ---------- flow dots and heat shimmer ----------
   const loopKeys = ['batPlus', 'bulbIn', 'bulbOut', 'switchIn', 'switchOut', 'gapLeft', 'gapRight', 'batMinus', 'batPlus'];
   const loopPts = loopKeys.map((k) => P[k]);
@@ -671,7 +705,7 @@ export default function createScene(kit) {
 
   function refreshCircuit() {
     const wiresOn = wires.every((w) => w.connected);
-    const gapOn = (!!bridge.on && !occupant) || !!(occupant && occupant.conducts);
+    const gapOn = !!bridge.on || !!(occupant && occupant.where === 'gap' && occupant.conducts);
     const closed = wiresOn && sw.closed && gapOn;
     if (closed !== wasLit) {
       wasLit = closed;
@@ -793,13 +827,18 @@ export default function createScene(kit) {
     disarm();
     kit.ui.clear();
     showHeat = false;
+    resetHeat();
+    closeLid();
+    turnOffFlash();
     const jobs = wires.map((w) => glideWire(w, false));
     jobs.push(setSwitch(true, false));
     jobs.push(setBridge(true));
-    if (occupant) jobs.push(goHome(occupant));
+    const toHome = new Set();
+    if (occupant) toHome.add(occupant);
     things.forEach((it) => {
-      if (it.where !== 'shelf') jobs.push(goHome(it));
+      if (it.where !== 'shelf') toHome.add(it);
     });
+    toHome.forEach((it) => jobs.push(goHome(it)));
     return Promise.all(jobs).then(() => {
       gapTag.setText('Gap');
       refreshCircuit();
@@ -869,6 +908,24 @@ export default function createScene(kit) {
     disarm();
     kit.ui.clear();
     wires.forEach(syncWireChrome);
+    showHeat = false;
+    claim(sw);
+    claim(bridge);
+    claim(gapToken);
+    things.forEach((it) => {
+      claim(it);
+      if (it.where === 'moving') {
+        it.mesh.position.copy(it.home);
+        it.mesh.rotation.set(0, 0, 0);
+        it.where = 'shelf';
+        it.tag.setText(it.short);
+      }
+    });
+    if (occupant && occupant.where !== 'gap') occupant = null;
+    resetHeat();
+    closeLid();
+    turnOffFlash();
+    refreshCircuit();
   }
 
   updaters.push((dt, t) => {

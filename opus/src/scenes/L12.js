@@ -10,18 +10,14 @@ const DOG_Y = 0.32;
 const MOM_HOME = { x: -0.55, z: -2.4 };
 const PUP_HOME = { x: 0.72, z: -2.28 };
 
-const claim = (it) => (it.seq = (it.seq || 0) + 1);
-const glide = (it, s, ms, fn, ease) => kitAnimate(it, s, ms, fn, ease);
-
-let kitAnimate = () => Promise.resolve(false);
-
 export default function createScene(kit) {
   const { THREE } = kit;
   const root = new THREE.Group();
   const updaters = [];
   let mode = 'idle';
 
-  kitAnimate = (it, s, ms, fn, ease) => kit.animate(ms, (k) => it.seq === s && fn(k), ease).then(() => it.seq === s);
+  const claim = (it) => (it.seq = (it.seq || 0) + 1);
+  const glide = (it, s, ms, fn, ease) => kit.animate(ms, (k) => it.seq === s && fn(k), ease).then(() => it.seq === s);
 
   const sandMat = new THREE.MeshStandardMaterial({ color: 0xe3c48a, roughness: 0.96 });
   const soilMat = new THREE.MeshStandardMaterial({ color: 0x6b4423, roughness: 0.92 });
@@ -37,7 +33,6 @@ export default function createScene(kit) {
   const darkMat = new THREE.MeshStandardMaterial({ color: 0x1c1917, roughness: 0.4 });
   const scarMat = new THREE.MeshStandardMaterial({ color: 0xef4444, roughness: 0.45, emissive: 0x7f1d1d, emissiveIntensity: 0.3 });
   const padMat = new THREE.MeshStandardMaterial({ color: 0x16a34a, roughness: 0.55, emissive: 0x14532d, emissiveIntensity: 0.08 });
-  const cardMatA = new THREE.MeshStandardMaterial({ color: 0xfff7ed, roughness: 0.4, emissive: 0xf59e0b, emissiveIntensity: 0 });
   const cardColors = [0xfff7ed, 0xf0f9ff, 0xfdf2f8, 0xf7fee7];
 
   function sign(text, x, y, z, opts) {
@@ -115,7 +110,7 @@ export default function createScene(kit) {
     waterCore.scale.setScalar(sc);
     waxTag.visible = cutAmt > 0.55;
     waterTag.visible = cutAmt > 0.55;
-    if (cutSlider) cutSlider.setValue(String(cutAmt));
+    if (cutSlider?.setValue) cutSlider.setValue(String(cutAmt));
   }
   async function setCut(target, ms) {
     const s = claim(cut);
@@ -317,7 +312,7 @@ export default function createScene(kit) {
     if (digAmt > 0.9) depthTag.setText('Deepest: mesquite!');
     else if (digAmt > 0.32) depthTag.setText('Keep digging');
     else depthTag.setText('Shallow roots');
-    if (digSlider) digSlider.setValue(String(digAmt));
+    if (digSlider?.setValue) digSlider.setValue(String(digAmt));
     if (rootsArmed && !rootsDone && digAmt >= 0.97) {
       rootsDone = true;
       kit.sfx('chime');
@@ -626,7 +621,7 @@ export default function createScene(kit) {
         const moved = Math.hypot(card.mesh.position.x - card.dragX, card.mesh.position.z - card.dragZ) > 0.18;
         const kind = binAt(card.mesh.position.x, card.mesh.position.z);
         if (kind && moved) placeCard(card, kind);
-        else if (moved) glideCard(card, new THREE.Vector3(...card.home));
+        else glideCard(card, new THREE.Vector3(...card.home));
       },
     });
   }
@@ -663,6 +658,8 @@ export default function createScene(kit) {
       mode = 'idle';
       kit.ui.clear();
       waterRead = null;
+      cutSlider = null;
+      digSlider = null;
     },
     async hotSunDemo() {
       mode = 'demo';

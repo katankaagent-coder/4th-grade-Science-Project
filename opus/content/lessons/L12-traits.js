@@ -212,7 +212,7 @@ export default {
         { t: 'Leaves make it using sunlight', correct: true },
         { t: 'The soil feeds the plant', why: 'Soil does not feed a plant. Leaves make food using sunlight.' },
         { t: 'Roots make food from sand', why: 'Roots take in water. They do not make the plant food.' },
-        { t: 'The flower pot makes food', why: 'A pot only holds the plant. Leaves make the food.' },
+        { t: 'Rain feeds the plant', why: 'Rain gives water, but leaves make food using sunlight.' },
       ],
       explain: 'Leaves use sunlight to make food. The soil does not feed the plant.',
     },
@@ -241,7 +241,7 @@ export default {
       options: [
         { t: 'To catch a little rain quickly', correct: true },
         { t: 'To make food from the sand', why: 'Roots do not make food. Wide roots catch rain near the top.' },
-        { t: 'So the cactus can walk', why: 'Plants do not walk. Wide roots catch a quick rain.' },
+        { t: 'To reach water deep underground', why: 'Shallow roots stay near the surface. Deep taproots reach deep water.' },
         { t: 'To pass a scar to babies', why: 'A scar is acquired. Roots do not pass scars to new plants.' },
       ],
       explain: 'Wide shallow roots catch rain fast. Deep roots fit a mesquite instead.',
@@ -252,7 +252,7 @@ export default {
         { t: 'To catch sunlight on the water', correct: true },
         { t: 'To drink mud as food', why: 'Leaves do not drink mud for food. They catch sunlight to make food.' },
         { t: 'To hide the roots from sun', why: 'The flat shape is for catching sun, not for hiding roots.' },
-        { t: 'So the lily can walk ashore', why: 'A lily does not walk. Flat leaves float and catch sun.' },
+        { t: 'To store water for dry days', why: 'Water lilies live in water. Flat leaves float and catch sunlight.' },
       ],
       explain: 'Big flat leaves float and catch sunlight on top of the pond.',
     },
@@ -260,7 +260,7 @@ export default {
       type: 'one', q: 'What helps a water lily leaf float?',
       options: [
         { t: 'Air pockets in the leaf', correct: true },
-        { t: 'Heavy rocks in the leaf', why: 'Rocks would make the leaf sink. Air pockets help it float.' },
+        { t: 'Filling up with water', why: 'Filling with water makes things sink. Air pockets help a leaf float.' },
         { t: 'A waxy desert stem', why: 'A desert stem stores water. Air pockets help a lily leaf float.' },
         { t: 'A very deep taproot', why: 'A deep root reaches water underground. It does not float a leaf.' },
       ],
@@ -419,14 +419,14 @@ export default {
       explain: 'Sea oats use long roots to hold sand so the wind does not pull them away.',
     },
     {
-      type: 'pick', staar: true, q: 'Tap the structure that makes food for a plant.',
+      type: 'pick', staar: true, q: 'In most plants, which part makes the food?',
       options: [
         { t: 'Leaf', emoji: '🍃', correct: true },
         { t: 'Root', emoji: '🌱', why: 'Roots take in water and hold the plant. They do not make food.' },
-        { t: 'Stem', emoji: '🌿', why: 'The stem carries water and supports the plant. Leaves make the food.' },
+        { t: 'Flower', emoji: '🌸', why: 'Flowers help make seeds. Leaves make the food.' },
         { t: 'Soil', emoji: '🟤', why: 'Soil does not feed the plant. Leaves make food using sunlight.' },
       ],
-      explain: 'Leaves make food using sunlight. Roots and soil do not do that job.',
+      explain: 'In most plants, leaves use sunlight to make food. Flowers make seeds.',
     },
     {
       type: 'pick', q: 'Tap the acquired trait.',
@@ -443,7 +443,7 @@ export default {
       options: [
         { t: 'Waxy cactus', emoji: '🌵', correct: true },
         { t: 'Lily pad', emoji: '🪷', why: 'A lily pad fits a pond. It would lose too much water in a desert.' },
-        { t: 'A bicycle', emoji: '🚲', why: 'A bicycle is a machine you ride. It is not a plant structure.' },
+        { t: 'Thin soft leaf', emoji: '🌿', why: 'A thin soft leaf loses water too fast in hot desert sun.' },
         { t: 'A scar', emoji: '🩹', why: 'A scar is acquired. It does not help a cactus save water.' },
       ],
       explain: 'Waxy skin keeps water in. That helps a cactus survive the desert.',
