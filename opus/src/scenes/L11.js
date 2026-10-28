@@ -1,4 +1,4 @@
-﻿// Lesson 11 scene: Galveston Bay prairie. Leaf kitchen, food-chain arrows, population story, log, Texas fossils.
+// Lesson 11 scene: Galveston Bay prairie. Leaf kitchen, food-chain arrows, population story, log, Texas fossils.
 // Energy arrows always point from the food to the eater. Anything that moves two ways uses claim / glide.
 
 const POS = {
@@ -16,7 +16,8 @@ const NAME = { sun: 'Sun', grass: 'Grass', hopper: 'Hopper', frog: 'Frog', snake
 const EMOJI = { sun: '☀️', grass: '🌿', hopper: '🦗', frog: '🐸', snake: '🐍', hawk: '🦅' };
 const BASE = { hopper: 40, snake: 8, frogs: 20 };
 const NO_FROG = { hopper: 75, snake: 3, frogs: 0 };
-const DRY = { hopper: 68, snake: 4, frogs: 5 };
+// Drought: the pond shrinks AND the grass dries, so hoppers lose food too.
+const DRY = { hopper: 22, snake: 3, frogs: 5 };
 
 export default function createScene(kit) {
   const { THREE } = kit;
@@ -910,7 +911,7 @@ export default function createScene(kit) {
       if (ok) release(demoRed, s);
     },
     async flipArrow() {
-      claim(demoRed);
+      const sRed = claim(demoRed);
       const s = claim(demoGold);
       const [wrongFrom, wrongTo] = ends(POS.hopper, POS.grass, 0.26);
       const [rightFrom, rightTo] = ends(POS.grass, POS.hopper, 0.26);
@@ -922,6 +923,7 @@ export default function createScene(kit) {
       if (!ok) return;
       placeArrow(demoGold, rightFrom, rightTo);
       demoRed.visible = false;
+      release(demoRed, sRed);
       release(demoGold, s);
       kit.sfx('chime');
     },
@@ -972,7 +974,17 @@ export default function createScene(kit) {
     },
     logMode() {
       mode = 'log';
-      logArmed = !decayed;
+      if (decayed) {
+        // Revisit: put the log back so the child can speed up time again (the task must re-arm).
+        claim(decay);
+        claim(shroomAnim);
+        decayed = false;
+        applyDecay(0);
+        crumbs.material.opacity = 0;
+        release(decay, decay.seq);
+        release(shroomAnim, shroomAnim.seq);
+      }
+      logArmed = true;
       kit.ui.clear();
       kit.ui.buttons([{ emoji: '⏳', label: 'Speed up time', onClick: () => requestDecay() }]);
       kit.sfx('tick');
@@ -982,12 +994,14 @@ export default function createScene(kit) {
     },
     frogMode() {
       mode = 'frogs';
-      frogsArmed = !frogsGone;
+      frogsArmed = true;
       bars.visible = true;
       barSign.visible = true;
       kit.ui.clear();
       readout = kit.ui.readout('Story count');
       readout.set(popText(Math.round(hopperBar.fill.scale.y * 100), Math.round(snakeBar.fill.scale.y * 12), frogsGone ? 0 : BASE.frogs));
+      // Revisit (frogs already gone or pond dry): bring the web back so the frog is visible and tappable.
+      if (frogsGone || frogCount !== BASE.frogs) setHabitat('full');
       kit.ui.buttons([{ emoji: '🐸', label: 'Remove frogs', onClick: () => removeFrogs() }]);
     },
     showFossils() {
