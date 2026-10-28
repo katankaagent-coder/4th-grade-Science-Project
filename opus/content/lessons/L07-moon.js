@@ -115,6 +115,7 @@ export default {
         { predict: { q: 'The Moon is half dark. Is Earth\'s shadow on it?', options: [{ t: 'Yes, the shadow covers half' }, { t: 'No, the Moon is far from the shadow', correct: true }, { t: 'Yes, but only a little' }] } },
         { cue: 'pulseMoon', wait: true },
         { verdict: { right: 'You called it! The Moon is far from the shadow.', wrong: 'Surprise! The Moon is far from Earth\'s shadow.' } },
+        { say: 'We tilted the orbit extra so you can see it miss Earth\'s shadow.' },
         { say: 'The dark half is just the side facing away from the Sun.' },
         { say: 'It is not a shadow from Earth.' },
         { say: 'Earth\'s shadow reaches the Moon only on a rare night.' },
